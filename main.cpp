@@ -9,10 +9,10 @@ const string NOMBRE_ARCHIVO_AEROPUERTO = "aeropuertos.txt";
 using namespace std;
 int main(){
     //==============EJEMPLO PARA VER COMO FUNCIONA LA CLASE AEROPUERTO=================
-/*    Menu menu;
-    menu.mostrar_menu();
     Archivo archivo;
-    archivo.lectura_aeropuertos(NOMBRE_ARCHIVO_AEROPUERTO);*/
+    archivo.lectura_aeropuertos(NOMBRE_ARCHIVO_AEROPUERTO);
+   /* Menu menu;
+    menu.mostrar_menu();*/
     string nom = "Ministro_Pistarini";
     string ciudad = "Ezeiza";
     string pais = "Argentina";

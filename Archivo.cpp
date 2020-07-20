@@ -24,6 +24,8 @@ void Archivo::lectura_aeropuertos(const string nombre_archivo){
                 int internacionales;
                 stringstream ss(linea);
                 ss >> iata >> nombre >> ciudad >> pais >> superficie >> terminales >> nacionales >> internacionales;
+                Aeropuertos aero(nombre, ciudad, pais, superficie, terminales, nacionales, internacionales);
+
             }
             archivo.close();
         }
