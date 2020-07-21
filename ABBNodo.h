@@ -1,6 +1,7 @@
 #ifndef ABBNODO_H_INCLUDED
 #define ABBNODO_H_INCLUDED
 
+#include "Aeropuertos.h"
 #include<string>
 
 using namespace std;
