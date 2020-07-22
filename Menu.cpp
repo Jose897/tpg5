@@ -26,13 +26,29 @@ bool Menu::opcion_valida(int entrada){
     return !(entrada < 1 || entrada > 5);
 }
 
+void Menu::procesar_opcion_uno(){}
+
+void Menu::procesar_opcion_dos(){}
+
+void Menu::procesar_opcion_tres(){}
+
+void Menu::procesar_opcion_cuatro(){}
+
 void Menu::procesar_opcion(int opcion){
 
     switch(opcion){
-        case 1:  break;
-        case 2:  break;
-        case 3:  break;
-        case 4: break;
+        case 1:  
+            procesar_opcion_uno();
+            break;
+        case 2:
+            procesar_opcion_dos();
+            break;
+        case 3:
+            procesar_opcion_tres();
+            break;
+        case 4:
+            procesar_opcion_cuatro();
+            break;
         case 5:
             cout << endl << "Gracias por utilizar el programa. Hasta luego." << endl;
             salir = true;
