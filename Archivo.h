@@ -8,7 +8,6 @@
 using namespace std;
 class Archivo{
 private:
-    bool excepcion;
 
 public:
 // Constructor
