@@ -1,12 +1,10 @@
 #include "Archivo.h"
 const string EXCEPCION = "Error al encontrar el archivo solicitado";
 
-Archivo::Archivo() {
-    excepcion = false;
-}
+Archivo::Archivo() {}
 
-Archivo:: ~Archivo() {
-}
+Archivo:: ~Archivo() {}
+
 void Archivo::lectura_aeropuertos(const string nombre_archivo){
 
     string linea;
@@ -34,7 +32,6 @@ void Archivo::lectura_aeropuertos(const string nombre_archivo){
         }
     }
     catch(const string e){
-        excepcion = true;
         cout << "Ha ocurrido una excepcion del tipo '" << e << "'." << endl;
     }
 }
