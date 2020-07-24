@@ -14,10 +14,10 @@ private:
     BSTNode<T>* left; //Left children
     BSTNode<T>* right; //Right children
     BSTNode<T>* parent;
-    string valor;
+    Aeropuertos* valor;
 
 public:
-    BSTNode(T data, string valor);
+    BSTNode(T data, Aeropuertos* valor);
     T get_data();
     void set_data(T data);
     void set_right(BSTNode<T>* right, BSTNode<T>* parent);
@@ -25,7 +25,7 @@ public:
     void set_left(BSTNode<T>* left);
     void set_right(BSTNode<T>* right);
     void set_parent(BSTNode<T>* parent);
-    string get_valor();
+    Aeropuertos* get_valor();           //Nose si esta bien que devuelva un puntero a la clase
     BSTNode<T>* get_right();
     BSTNode<T>* get_left();
     BSTNode<T>* get_parent();
@@ -35,7 +35,7 @@ public:
 };
 
 template <class T>
-BSTNode<T>::BSTNode(T data, string valor)
+BSTNode<T>::BSTNode(T data, Aeropuertos* valor)
 {
     this->data = data;
     this->left = NULL;
@@ -51,7 +51,7 @@ T BSTNode<T>::get_data()
 }
 
 template <class T>
-string BSTNode<T>::get_valor()
+Aeropuertos* BSTNode<T>::get_valor()
 {
     return this->valor;
 }
