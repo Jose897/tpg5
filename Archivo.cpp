@@ -3,9 +3,10 @@ const string EXCEPCION = "Error al encontrar el archivo solicitado";
 
 Archivo::Archivo() {}
 
-Archivo:: ~Archivo() {}
+Archivo:: ~Archivo() {
+}
 
-void Archivo::lectura_aeropuertos(const string nombre_archivo){
+void Archivo::lectura_aeropuertos(const string nombre_archivo, BST<string>* &diccionario){
 
     string linea;
     try{
@@ -22,8 +23,10 @@ void Archivo::lectura_aeropuertos(const string nombre_archivo){
                 int internacionales;
                 stringstream ss(linea);
                 ss >> iata >> nombre >> ciudad >> pais >> superficie >> terminales >> nacionales >> internacionales;
-                Aeropuertos aero(nombre, ciudad, pais, superficie, terminales, nacionales, internacionales);
-
+                cout<<iata<<endl;
+                Aeropuertos *aero = new Aeropuertos(nombre, ciudad, pais, superficie, terminales, nacionales, internacionales);
+                diccionario->insert(iata, aero);
+                //aero->mostrar(); Solo si queres ver si funciona bien
             }
             archivo.close();
         }
