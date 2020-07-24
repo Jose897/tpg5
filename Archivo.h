@@ -4,6 +4,8 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include "ABBNodo.h"
+#include "ABB.h"
 #include "Aeropuertos.h"
 using namespace std;
 class Archivo{
@@ -15,7 +17,7 @@ public:
     // POST: construye objeto vacio
     Archivo();
 
-void lectura_aeropuertos(const string nombre_archivo);
+void lectura_aeropuertos(const string nombre_archivo, BST<string>* &diccionario);
 
 // Destructor
     // PRE: Ninguna
