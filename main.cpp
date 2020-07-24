@@ -13,7 +13,8 @@ int main(){
     menu.mostrar_menu();
     ==============EJEMPLO PARA VER COMO FUNCIONA EL DICCIONARIO EN EL ABB=================
     COMENTARIOS: Hay que revisar como eliminar elementos, con el remove solo me setea la clave en 0.
-    Tambien ver como setear nuevas claves e interactuar para en una clave poner mas valores o eliminar algunos.*/
+    Tambien ver como setear nuevas claves e interactuar para en una clave poner mas valores o eliminar algunos.
+    El programa pierde memoria.*/
     BST<string>* bst = new BST<string>();
     Archivo archivo;
     archivo.lectura_aeropuertos(NOMBRE_ARCHIVO_AEROPUERTO, bst);
