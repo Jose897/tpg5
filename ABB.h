@@ -2,6 +2,7 @@
 #define ABB_H_INCLUDED
 
 #include "ABBNodo.h"
+#include "Aeropuertos.h"
 #include<iostream>
 
 template <class T>
@@ -12,7 +13,7 @@ private:
     BSTNode<T>* root;
 
     // methods
-    BSTNode<T>* insert(BSTNode<T>* node, T data, string valor);
+    BSTNode<T>* insert(BSTNode<T>* node, T data, Aeropuertos* valor);
     void print_in_order(BSTNode<T> * node);
     BSTNode<T>* search(BSTNode<T>* node, T data);
     T find_min(BSTNode<T>* node);
@@ -21,6 +22,7 @@ private:
     T predecessor(BSTNode<T>* node);
     BSTNode<T>* remove(BSTNode<T>* node, T data);
     void delete_all(BSTNode<T>* node);
+    void borrar_valores(BSTNode<T> * node);
 
 public:
     //methods
@@ -30,7 +32,7 @@ public:
 
      // Adds a new node to the actual BST. If its the tree is empty
      // the node inserted will be the root
-    void insert(T data, string valor);
+    void insert(T data, Aeropuertos* valor);
 
     // Prints all the data stored in the BST, sorted from the
     // smallest value to the greatest value.
@@ -60,6 +62,7 @@ public:
 
     // Deletes all the nodes in the BST
     void delete_all();
+    void borrar_valores();
     ~BST<T>();
 
 };
@@ -70,7 +73,7 @@ BST<T>::BST() {
 }
 
 template <class T>
-BSTNode<T>* BST<T>::insert(BSTNode<T>* node, T data, string valor) {
+BSTNode<T>* BST<T>::insert(BSTNode<T>* node, T data, Aeropuertos* valor) {
 
     if (node == NULL) {
         node = new BSTNode<T>(data, valor);
@@ -87,7 +90,7 @@ BSTNode<T>* BST<T>::insert(BSTNode<T>* node, T data, string valor) {
 }
 
 template <class T>
-void BST<T>::insert(T data, string valor)
+void BST<T>::insert(T data, Aeropuertos* valor)
 {
     this->root = insert(this->root, data, valor);
 }
@@ -99,7 +102,8 @@ void BST<T>::print_in_order(BSTNode<T>* node)
     {
         print_in_order(node->get_left());
         std::cout<<"\nClave = "<< node->get_data()<<endl;
-        std::cout<<"\nValor = "<< node->get_valor()<<endl;
+        std::cout<<"\nValor = ";
+        node->get_valor()->mostrar();
         print_in_order(node->get_right());
     }
 }
@@ -108,6 +112,23 @@ template <class T>
 void BST<T>::print_in_order()
 {
     this->print_in_order(this->root);
+}
+
+template <class T>
+void BST<T>::borrar_valores(BSTNode<T>* node)
+{
+    if (node != NULL)
+    {
+        borrar_valores(node->get_left());
+        delete node->get_valor();
+        print_in_order(node->get_right());
+    }
+}
+
+template <class T>
+void BST<T>::borrar_valores()
+{
+    this->borrar_valores(this->root);
 }
 
 template <class T>
@@ -315,6 +336,7 @@ void BST<T>::delete_all()
 template <class T>
 BST<T>::~BST<T>()
 {
+    this->borrar_valores();
     this->delete_all();
 }
 
