@@ -1,13 +1,16 @@
 #include "Menu.h"
+
 Menu::Menu(BST<string>* &diccionario){
     this->diccionario = diccionario;
 }
 
-void Menu::mostrar_menu() {
+void Menu::mostrar_menu(){
     int opcion;
     while (!salir) {
-        cout << "1. Consultar un aeropuerto" << endl;
-        cout << "2. Agregar aueropuerto " << endl;
+        cout << endl;
+        cout << "================================== MENU ==================================" << endl;
+        cout << "1.Consultar un aeropuerto" << endl;
+        cout << "2. Agregar aueropuerto" << endl;
         cout << "3. Eliminar un aeropuerto" << endl;
         cout << "4. Mostrar todos los aeropuertos" << endl;
         cout << "5. Salir" << endl;
@@ -57,9 +60,9 @@ void Menu::procesar_opcion_dos(){
     cin >> superficie;
     cout << "Ingrese terminales: " << endl;
     cin >> terminales;
-    cout << "Ingrese nacinoales: " << endl;
+    cout << "Ingrese destinos nacionales: " << endl;
     cin >> nacionales;
-    cout << "Ingrese internacionales: " << endl;
+    cout << "Ingrese destinos internacionales: " << endl;
     cin >> internacionales;
     Aeropuertos *aero = new Aeropuertos(nombre, ciudad, pais, superficie, terminales, nacionales, internacionales);
     diccionario->insert(iata, aero);
@@ -79,7 +82,7 @@ void Menu::procesar_opcion_cuatro(){
 void Menu::procesar_opcion(int opcion){
 
     switch(opcion){
-        case 1:  
+        case 1:
             procesar_opcion_uno();
             break;
         case 2:
