@@ -146,7 +146,6 @@ void BST<T>::borrar_valores(BSTNode<T>* node)
     {
         borrar_valores(node->get_left());
         delete node->get_valor();
-        print_in_order(node->get_right());
     }
 }
 
