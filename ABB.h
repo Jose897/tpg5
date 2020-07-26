@@ -180,7 +180,7 @@ template <class T>
 T BST<T>::find_min(BSTNode<T>* node)
 {
     if(node == NULL)
-        return -1;
+        return NULL;
     else if(node->get_left() == NULL)
         return node->get_data();
     else
@@ -197,7 +197,7 @@ template <class T>
 T BST<T>::find_max(BSTNode<T>* node)
 {
     if(node == NULL)
-        return -1;
+        return NULL;
     else if(node->get_right() == NULL)
         return node->get_data();
     else
@@ -236,7 +236,7 @@ T BST<T>::successor(T data)
     BSTNode<T>* data_node = this->search(this->root, data);
     // Return the key. If the key is not found or successor is not found, return -1
     if(data_node == NULL)
-        return -1;
+         return NULL;
     else return successor(data_node);
 }
 
@@ -267,7 +267,7 @@ T BST<T>::predecessor(T data)
     BSTNode<T> * data_node = this->search(this->root, data);
 
     if(data_node == NULL)
-        return -1;
+        return NULL;
     else return predecessor(data_node);
 }
 
@@ -276,7 +276,7 @@ BSTNode<T> * BST<T>::remove(BSTNode<T>* node, T data)
 {
     // The given node is not found in BST
     if (node == NULL)
-        return NULL;
+        return node;
 
     if (node->get_data() == data)
     {

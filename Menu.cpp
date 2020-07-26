@@ -66,7 +66,10 @@ void Menu::procesar_opcion_dos(){
 }
 
 void Menu::procesar_opcion_tres(){
-
+    string iata;
+    cout << "Ingrese el codigo IATA del aeropuerto que desea eliminar:";
+    cin >> iata;
+    diccionario->remove(iata); // borra los aeropuertos pero solo los que se agregaron en la lectura, cuando intento borrar uno de los agregados manualmente por el usuario no me deja -Francisco
 }
 
 void Menu::procesar_opcion_cuatro(){
