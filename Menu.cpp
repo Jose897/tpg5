@@ -31,10 +31,14 @@ bool Menu::opcion_valida(int entrada){
 
 void Menu::procesar_opcion_uno(){
     string iata;
-    cout << "Ingrese el codigo IATA del Aeropuerto: ";
+    cout << "Ingrese el codigo IATA del Aeropuerto:";
     cin >> iata;
-    // no estaria entendiendo como obtener datos del arbol -Francisco
-    cout << diccionario->search(iata);
+    if (diccionario->search(iata) == 1){
+        diccionario->obtener_valor(iata);
+    }
+    else{
+        cout << iata << " no se encuentra en la base de datos" << endl;
+    }
 }
 
 void Menu::procesar_opcion_dos(){

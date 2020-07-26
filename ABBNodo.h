@@ -53,7 +53,7 @@ T BSTNode<T>::get_data()
 template <class T>
 Aeropuertos* BSTNode<T>::get_valor()
 {
-    return this->valor;
+    return valor;
 }
 
 template <class T>

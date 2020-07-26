@@ -15,6 +15,7 @@ private:
     // methods
     BSTNode<T>* insert(BSTNode<T>* node, T data, Aeropuertos* valor);
     void print_in_order(BSTNode<T> * node);
+    void obtener_valor(BSTNode<T> * node, T data);
     BSTNode<T>* search(BSTNode<T>* node, T data);
     T find_min(BSTNode<T>* node);
     T find_max(BSTNode<T>* node);
@@ -37,7 +38,7 @@ public:
     // Prints all the data stored in the BST, sorted from the
     // smallest value to the greatest value.
     void print_in_order();
-
+    void obtener_valor(T data);
     // Finds a given value in the BST. If the key exists it returns
     // TRUE, otherwise it returns FALSE.
     bool search(T data);
@@ -112,6 +113,30 @@ template <class T>
 void BST<T>::print_in_order()
 {
     this->print_in_order(this->root);
+}
+
+template <class T>
+void BST<T>::obtener_valor(BSTNode<T>* node, T data)
+{
+    if (node == NULL || node->get_data() == data) {
+        std::cout << "\nClave = " << node->get_data() << endl;
+        std::cout << "\nValor = " << endl;
+        node->get_valor()->mostrar();
+    }
+    else if (data > node->get_data()){
+        obtener_valor(node->get_right(), data);
+    }
+
+    else {
+        obtener_valor(node->get_left(), data);
+    }
+
+}
+
+template <class T>
+void BST<T>::obtener_valor(T data)
+{
+    this->obtener_valor(this->root, data);
 }
 
 template <class T>
