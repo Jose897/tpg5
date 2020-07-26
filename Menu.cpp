@@ -6,7 +6,7 @@ Menu::Menu(BST<string>* &diccionario){
 void Menu::mostrar_menu() {
     int opcion;
     while (!salir) {
-        cout << "1.Consultar un aeropuerto" << endl;
+        cout << "1. Consultar un aeropuerto" << endl;
         cout << "2. Agregar aueropuerto " << endl;
         cout << "3. Eliminar un aeropuerto" << endl;
         cout << "4. Mostrar todos los aeropuertos" << endl;

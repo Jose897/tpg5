@@ -281,8 +281,8 @@ BSTNode<T> * BST<T>::remove(BSTNode<T>* node, T data)
     {
         if (node->isLeaf())
         {
-            delete node->get_valor();
             delete node;
+            node = NULL;
         }
         else if (node->rightChildOnly())
         {
@@ -291,7 +291,6 @@ BSTNode<T> * BST<T>::remove(BSTNode<T>* node, T data)
             // Bypass node
             BSTNode<T>* aux = node;
             node = node->get_right();
-            delete aux->get_valor();
             delete aux;
         }
         else if (node->leftChildOnly())
@@ -301,7 +300,6 @@ BSTNode<T> * BST<T>::remove(BSTNode<T>* node, T data)
             // Bypass node
             BSTNode<T>* aux = node;
             node = node->get_left();
-            delete aux->get_valor();
             delete aux;
         }
 
