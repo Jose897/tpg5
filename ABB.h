@@ -102,7 +102,7 @@ void BST<T>::print_in_order(BSTNode<T>* node)
     {
         print_in_order(node->get_left());
         std::cout<<"\nClave = "<< node->get_data()<<endl;
-        std::cout<<"\nValor = ";
+        std::cout<<"\nValor = " << endl;
         node->get_valor()->mostrar();
         print_in_order(node->get_right());
     }

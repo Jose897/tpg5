@@ -1,4 +1,7 @@
 #include "Menu.h"
+Menu::Menu(BST<string>* &diccionario){
+    this->diccionario = diccionario;
+}
 
 void Menu::mostrar_menu() {
     int opcion;
@@ -26,13 +29,45 @@ bool Menu::opcion_valida(int entrada){
     return !(entrada < 1 || entrada > 5);
 }
 
-void Menu::procesar_opcion_uno(){}
+void Menu::procesar_opcion_uno(){
+    string iata;
+    cout << "Ingrese el codigo IATA del Aeropuerto: ";
+    cin >> iata;
+    // no estaria entendiendo como obtener datos del arbol -Francisco
+    cout << diccionario->search(iata);
+}
 
-void Menu::procesar_opcion_dos(){}
+void Menu::procesar_opcion_dos(){
+    string iata, nombre, ciudad, pais;
+    float superficie;
+    int terminales, nacionales, internacionales;
+    cout << "Ingrese IATA: " << endl;
+    cin >> iata;
+    cout << "Ingrese nombre: " << endl;
+    cin >> nombre;
+    cout << "Ingrese ciudad: " << endl;
+    cin >> ciudad;
+    cout << "Ingrese pais: " << endl;
+    cin >> pais;
+    cout << "Ingrese superficie: " << endl;
+    cin >> superficie;
+    cout << "Ingrese terminales: " << endl;
+    cin >> terminales;
+    cout << "Ingrese nacinoales: " << endl;
+    cin >> nacionales;
+    cout << "Ingrese internacionales: " << endl;
+    cin >> internacionales;
+    Aeropuertos *aero = new Aeropuertos(nombre, ciudad, pais, superficie, terminales, nacionales, internacionales);
+    diccionario->insert(iata, aero);
+}
 
-void Menu::procesar_opcion_tres(){}
+void Menu::procesar_opcion_tres(){
 
-void Menu::procesar_opcion_cuatro(){}
+}
+
+void Menu::procesar_opcion_cuatro(){
+    diccionario->print_in_order();
+}
 
 void Menu::procesar_opcion(int opcion){
 
