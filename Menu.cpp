@@ -73,8 +73,13 @@ void Menu::procesar_opcion_tres(){
     string iata;
     cout << "Ingrese el codigo IATA del aeropuerto que desea eliminar:";
     cin >> iata;
-    diccionario->remove(iata);
-    cout << iata << " fue sido eliminado con exito";
+    if(diccionario->search(iata) == 1){
+        diccionario->remove(iata);
+        cout << iata << "fue eliminado con exito." << endl;
+    }
+    else{
+        cout << iata << "no se pudo eliminar ya que no se encuentra en la base de datos." << endl;
+    }
 }
 
 void Menu::procesar_opcion_cuatro(){
