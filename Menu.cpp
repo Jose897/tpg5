@@ -75,10 +75,10 @@ void Menu::procesar_opcion_tres(){
     cin >> iata;
     if(diccionario->search(iata) == 1){
         diccionario->remove(iata);
-        cout << iata << "fue eliminado con exito." << endl;
+        cout << iata << " fue eliminado con exito." << endl;
     }
     else{
-        cout << iata << "no se pudo eliminar ya que no se encuentra en la base de datos." << endl;
+        cout << iata << " no se pudo eliminar ya que no se encuentra en la base de datos." << endl;
     }
 }
 
