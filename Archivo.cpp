@@ -7,7 +7,6 @@ Archivo:: ~Archivo() {
 }
 
 void Archivo::lectura_aeropuertos(const string nombre_archivo, BST<string>* &diccionario){
-
     string linea;
     try{
         ifstream archivo(nombre_archivo);

@@ -265,6 +265,7 @@ BSTNode<T> * BST<T>::remove(BSTNode<T>* node, T data)
         {
             delete node->get_valor();
             delete node;
+            node = NULL;
         }
         else if (node->rightChildOnly())
         {
