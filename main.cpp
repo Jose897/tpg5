@@ -1,16 +1,27 @@
-/*
- * main.cpp
- *
- *  Created on: 24 jul. 2020
- *      Author: Santi
- */
+#include "Archivo.h"
+
+const string NOMBRE_ARCHIVO_AEROPUERTO = "aeropuertos.txt";
+const string NOMBRE_ARCHIVO_VUELOS = "vuelos.txt";
 
 
 
-int main(){
-
-
-
-	return 0;
+using namespace std;
+int main()
+{
+    /*
+    ==============EJEMPLO PARA VER COMO FUNCIONA EL DICCIONARIO EN EL ABB=================
+    COMENTARIOS: Hay que revisar como eliminar elementos, con el remove solo me setea la clave en 0.
+    Tambien ver como setear nuevas claves e interactuar para en una clave poner mas valores o eliminar algunos.
+    El programa pierde memoria.*/
+    /*El programa pierde memoria.*/
+    BST<string>* bst = new BST<string>();
+    Archivo archivo;
+    archivo.lectura_aeropuertos(NOMBRE_ARCHIVO_AEROPUERTO, bst);
+    archivo.lectura_vuelos(NOMBRE_ARCHIVO_VUELOS);
+    Menu menu(bst);
+    menu.mostrar_menu();
+    //bst -> remove(7); Esta linea no funciona correctamente por lo mencionado en los comentarios
+    delete bst;
+    return 0;
 }
 
