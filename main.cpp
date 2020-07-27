@@ -1,4 +1,5 @@
 #include "Archivo.h"
+#include "Menu.h"
 
 const string NOMBRE_ARCHIVO_AEROPUERTO = "aeropuertos.txt";
 const string NOMBRE_ARCHIVO_VUELOS = "vuelos.txt";
