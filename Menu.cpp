@@ -9,11 +9,12 @@ void Menu::mostrar_menu(){
     while (!salir) {
         cout << endl;
         cout << "================================== MENU ==================================" << endl;
-        cout << "1.Consultar un aeropuerto" << endl;
+        cout << "1. Consultar un aeropuerto" << endl;
         cout << "2. Agregar aueropuerto" << endl;
         cout << "3. Eliminar un aeropuerto" << endl;
         cout << "4. Mostrar todos los aeropuertos" << endl;
-        cout << "5. Salir" << endl;
+        cout << "5. Mostrar arbol a lo ancho" << endl;
+        cout << "6. Salir" << endl;
         cout << "Ingrese su opcion " << endl << flush;
         do {
             cin >> opcion;
@@ -29,7 +30,7 @@ void Menu::mostrar_menu(){
 }
 
 bool Menu::opcion_valida(int entrada){
-    return !(entrada < 1 || entrada > 5);
+    return !(entrada < 1 || entrada > 6);
 }
 
 void Menu::procesar_opcion_uno(){
@@ -72,13 +73,15 @@ void Menu::procesar_opcion_tres(){
     string iata;
     cout << "Ingrese el codigo IATA del aeropuerto que desea eliminar:";
     cin >> iata;
-    diccionario->remove(iata); // borra los aeropuertos pero solo los que se agregaron en la lectura, cuando intento borrar uno de los agregados manualmente por el usuario no me deja -Francisco
+    diccionario->remove(iata);
+    cout << iata << " fue sido eliminado con exito";
 }
 
 void Menu::procesar_opcion_cuatro(){
     diccionario->print_in_order();
 }
-
+void Menu::procesar_opcion_cinco(){
+}
 void Menu::procesar_opcion(int opcion){
 
     switch(opcion){
@@ -95,6 +98,9 @@ void Menu::procesar_opcion(int opcion){
             procesar_opcion_cuatro();
             break;
         case 5:
+            procesar_opcion_cinco();
+            break;
+        case 6:
             cout << endl << "Gracias por utilizar el programa. Hasta luego." << endl;
             salir = true;
             break;

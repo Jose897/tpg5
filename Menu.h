@@ -20,6 +20,7 @@ public:
     void procesar_opcion_dos();         //Se le debe pasar un puntero al arbol
     void procesar_opcion_tres();        //Se le debe pasar un puntero al arbol
     void procesar_opcion_cuatro();      //Se le debe pasar un puntero al arbol
+    void procesar_opcion_cinco();      //Se le debe pasar un puntero al arbol
 };
 
 #endif //TPG5_MENU_H
