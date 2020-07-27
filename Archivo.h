@@ -18,7 +18,7 @@ public:
     Archivo();
 
 void lectura_aeropuertos(const string nombre_archivo, BST<string>* &diccionario);
-
+void lectura_vuelos(const string);
 // Destructor
     // PRE: Ninguna
     // POST: destruye el objeto

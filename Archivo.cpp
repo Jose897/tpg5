@@ -32,3 +32,27 @@ void Archivo::lectura_aeropuertos(const string nombre_archivo, BST<string>* &dic
         cout << "Ha ocurrido una excepcion del tipo '" << e << "'." << endl;
     }
 }
+
+void Archivo::lectura_vuelos(const string nombre_archivo){
+    string linea;
+    try{
+        ifstream archivo(nombre_archivo);
+        if(archivo.is_open()){
+            while(getline(archivo, linea)){
+                string iata_partida, iata_destino;
+                float precio, tiempo;
+                stringstream ss(linea);
+                ss >> iata_partida >> iata_destino >> precio >> tiempo;
+                // Falta hacer que  el precio siempre tome con 3 decimales
+                cout << iata_partida << " " <<iata_destino << " " << precio << " " << tiempo << endl; // cout de prueba
+            }
+            archivo.close();
+        }
+        else{
+            throw EXCEPCION;
+        }
+    }
+    catch(const string e){
+        cout << "Ha ocurrido una excepcion del tipo '" << e << "'." << endl;
+    }
+}
