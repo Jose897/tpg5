@@ -23,7 +23,6 @@ private:
     T predecessor(BSTNode<T>* node);
     BSTNode<T>* remove(BSTNode<T>* node, T data);
     void delete_all(BSTNode<T>* node);
-    void borrar_valores(BSTNode<T> * node);
 
 public:
     //methods
@@ -63,7 +62,6 @@ public:
 
     // Deletes all the nodes in the BST
     void delete_all();
-    void borrar_valores();
     ~BST<T>();
 
 };
@@ -137,22 +135,6 @@ template <class T>
 void BST<T>::obtener_valor(T data)
 {
     this->obtener_valor(this->root, data);
-}
-
-template <class T>
-void BST<T>::borrar_valores(BSTNode<T>* node)
-{
-    if (node != NULL)
-    {
-        borrar_valores(node->get_left());
-        delete node->get_valor();
-    }
-}
-
-template <class T>
-void BST<T>::borrar_valores()
-{
-    this->borrar_valores(this->root);
 }
 
 template <class T>
@@ -351,6 +333,7 @@ void BST<T>::delete_all(BSTNode<T>* node)
         return;
     this->delete_all(node->get_left());
     this->delete_all(node->get_right());
+    delete node->get_valor();
     delete node;
 }
 
@@ -363,7 +346,6 @@ void BST<T>::delete_all()
 template <class T>
 BST<T>::~BST<T>()
 {
-    this->borrar_valores();
     this->delete_all();
 }
 
