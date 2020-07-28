@@ -17,22 +17,10 @@ bool Dijkstra::vacio(){
 int Dijkstra::tamanio(){
 }
 
-Vertice * Dijkstra::obtener_vertice(std::string cod_partida, std::string cod_destino){
+void obtener_camino_minimo(int){
 }
 
-void Dijkstra::insertar_vertice(std::string cod_partida, std::string cod_destino){
-}
-
-void Dijkstra::insertar_arista(Vertice *partida, Vertice *destino, float horas){
-}
-
-void Dijkstra::insertar_arista(Vertice *partida, Vertice *destino, int costo){
-}
-
-void Dijkstra::lista_adyacentes(){
-}
-
-void Dijkstra::eliminar_arista(Vertice *origen, Vertice *destino){
+void obtener_camino_minimo(float){
 }
 
 Dijkstra::~Dijkstra(){
