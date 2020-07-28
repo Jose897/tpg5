@@ -14,7 +14,12 @@ void Menu::mostrar_menu(){
         cout << "3. Eliminar un aeropuerto" << endl;
         cout << "4. Mostrar todos los aeropuertos" << endl;
         cout << "5. Mostrar arbol a lo ancho" << endl;
-        cout << "6. Salir" << endl;
+	cout << endl;
+        cout << "->Vuelos:" << endl;
+        cout << "6. Vuelo minimo por costo" << endl;
+        cout << "7. Vuelo minimo por duracion" << endl;
+	cout << endl;
+        cout << "0. Salir" << endl;
         cout << "Ingrese su opcion " << endl << flush;
         do {
             cin >> opcion;
@@ -30,7 +35,7 @@ void Menu::mostrar_menu(){
 }
 
 bool Menu::opcion_valida(int entrada){
-    return !(entrada < 1 || entrada > 6);
+    return !(entrada < 0 || entrada > 7);
 }
 
 void Menu::procesar_opcion_uno(){
@@ -87,9 +92,21 @@ void Menu::procesar_opcion_cuatro(){
 }
 void Menu::procesar_opcion_cinco(){
 }
+
+void Menu::procesar_opcion_seis(){
+}
+
+void Menu::procesar_opcion_siete(){
+}
+
+
 void Menu::procesar_opcion(int opcion){
 
     switch(opcion){
+	case 0:
+            cout << endl << "Gracias por utilizar el programa. Hasta luego." << endl;
+            salir = true;
+            break;
         case 1:
             procesar_opcion_uno();
             break;
@@ -106,8 +123,10 @@ void Menu::procesar_opcion(int opcion){
             procesar_opcion_cinco();
             break;
         case 6:
-            cout << endl << "Gracias por utilizar el programa. Hasta luego." << endl;
-            salir = true;
+            procesar_opcion_seis();
+            break;
+        case 7:
+            procesar_opcion_siete();
             break;
     }
 }
