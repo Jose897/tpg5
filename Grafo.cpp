@@ -77,29 +77,24 @@ void Grafo::insertar_vertice(std::string cod)
 	}
 }
 
-void Grafo::insertar_arista(Vertice *partida, Vertice *destino, float horas)
+void Grafo::insertar_arista(Vertice *partida, Vertice *destino, int costo, float horas)
 {
+	//Usar setters
 	Arista *nueva = new Arista;
-		nueva -> peso = horas;
-		nueva -> sig = NULL;
-		nueva -> ady = NULL;
-}
-
-void Grafo::insertar_arista(Vertice *partida, Vertice *destino, int costo)
-{
-	Arista *nueva = new Arista;
-	nueva -> peso = costo;
+	nueva -> costo = costo;
 	nueva -> sig = NULL;
 	nueva -> ady = NULL;
+	nueva -> horas = horas;
 
 	Arista *aux;
 
-	aux = partida -> ady;
+	aux = partida -> obtener_adyacente();
 
 	if(aux == NULL)
 	{
-		partida -> ady = nueva;
-		destino -> sig = nueva;
+		//Usar setters
+		partida -> obtener_adyacente() = nueva;
+		destino -> obtener_siguiente() = nueva;
 	}
 	else
 	{ 	//Obtener siguiente para arista
@@ -107,8 +102,8 @@ void Grafo::insertar_arista(Vertice *partida, Vertice *destino, int costo)
 		{
 			aux = aux -> obtener_siguiente();
 		}
-		aux -> sig = nueva;
-		nueva -> ady = destino;
+		aux -> obtener_siguiente() = nueva;
+		nueva -> obtener_adyacente() = destino;
 	}
 }
 
@@ -117,7 +112,7 @@ void Grafo::lista_adyacentes()
 	Vertice *ver_aux;
 	Arista *ari_aux;
 
-	ver_aux * h;
+	ver_aux = h;
 
 	while(ver_aux != NULL)
 	{
@@ -146,7 +141,7 @@ void Grafo::eliminar_arista(Vertice *origen, Vertice *destino)
 	}
 	else if(actual -> obtener_adyacente() == destino)
 	{
-		origen -> obtener_adyacente()  = actual -> obtener_siguiente();
+		origen -> obtener_adyacente() = actual -> obtener_siguiente();
 		delete actual;
 	}
 	else
@@ -221,12 +216,12 @@ void Grafo::anular()
 	}
 }
 
-void Grafo::recorrido_ancho()
+void Grafo::recorrido_ancho(Vertice *)
 {
 
 }
 
-void Grafo::recorrido_profundidad()
+void Grafo::recorrido_profundidad(Vertice *)
 {
 
 }
