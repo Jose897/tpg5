@@ -37,14 +37,14 @@ int Grafo::tamanio()
 	return cont;
 }
 
-Vertice * Grafo::obtener_vertice(std::string cod_partida, std::string cod_destino)
+Vertice * Grafo::obtener_vertice(std::string cod_ver)
 {
 	//Recorrer el grafo y preguntar si el vertice que estamos recoriendo tiene los codigos
 	Vertice *aux;
 	aux = h;
 	while(aux != NULL)
 	{
-		if(aux -> cod_partida == cod_partida)
+		if(aux -> obtener_cod_vertice() == cod_ver)
 		{
 			return aux;
 		}
@@ -53,12 +53,11 @@ Vertice * Grafo::obtener_vertice(std::string cod_partida, std::string cod_destin
 	return NULL;
 }
 
-void Grafo::insertar_vertice(std::string cod_partida, std::string cod_destino)
+void Grafo::insertar_vertice(std::string cod)
 {
 	//Usar setter para los poner los datos
 	Vertice *nuevo = new Vertice;
-	nuevo -> cod_partida = cod_partida;
-	nuevo -> cod_destino = cod_destino;
+	nuevo -> cod_vertice = cod;
 	nuevo -> sig = NULL;
 	nuevo -> ady = NULL;
 
@@ -122,11 +121,11 @@ void Grafo::lista_adyacentes()
 
 	while(ver_aux != NULL)
 	{
-		std::cout << ver_aux -> obtener_cod_partida() << "->";
+		std::cout << ver_aux -> obtener_cod_vertice() << "->";
 		ari_aux = ver_aux -> obtener_adyacente();
 		while(ari_aux != NULL)
 		{
-			std::cout << ari_aux -> obtener_adyacente() -> obtener_cod_destino() << "->";
+			std::cout << ari_aux -> obtener_adyacente() -> obtener_cod_vertice() << "->";
 			ari_aux = ari_aux -> obtener_siguiente();
 		}
 		ver_aux = ver_aux -> obtener_siguiente();
@@ -171,7 +170,46 @@ void Grafo::eliminar_arista(Vertice *origen, Vertice *destino)
 	}
 }
 
-Grafo::~Grafo()
+void Grafo::eliminar_vertice(Vertice *vert)
+{
+	Vertice *actual, *anterior;
+	Arista *aux;
+
+	actual = h;
+	while(actual != NULL)
+	{
+		aux = actual -> obtener_adyacente();
+		while(aux != NULL)
+		{
+			if(aux -> obtener_adyacente() == vert)
+			{
+				eliminar_arista(actual, aux -> obtener_adyacente());
+				break;
+			}
+			aux = aux -> obtener_siguiente();
+		}
+		actual = actual -> obtener_siguiente();
+	}
+
+	actual = h;
+	if(h == vert)
+	{
+		h = h -> obtener_siguiente();
+		delete actual;
+	}
+	else
+	{
+		while(actual != vert)
+		{
+			anterior = actual;
+			actual = actual -> obtener_siguiente();
+		}
+		anterior -> obtener_siguiente() = actual -> obtener_siguiente();
+		delete actual;
+	}
+}
+
+void Grafo::anular()
 {
 	Vertice *aux;
 
@@ -181,5 +219,15 @@ Grafo::~Grafo()
 		h = h -> obtener_siguiente();
 		delete aux;
 	}
+}
+
+void Grafo::recorrido_ancho()
+{
+
+}
+
+void Grafo::recorrido_profundidad()
+{
+
 }
 

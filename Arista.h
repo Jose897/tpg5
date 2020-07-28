@@ -23,9 +23,8 @@ class Arista {
 		unsigned peso;
 
 	public:
-		Arista();
 		Arista * obtener_siguiente();
-		~Arista();
+		Vertice * obtener_adyacente();
 };
 
 #endif /* ARISTA_H_ */

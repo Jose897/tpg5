@@ -7,20 +7,13 @@
 
 #include "Arista.h"
 
-Arista::Arista()
-{
-	sig = NULL;
-	ady = NULL;
-	peso = 0;
-}
 
 Arista * Arista::obtener_siguiente()
 {
 	return sig;
 }
 
-Arista::~Arista()
+Vertice * Arista::obtener_adyacente()
 {
-	// TODO Auto-generated destructor stub
+	return ady;
 }
-

@@ -21,15 +21,18 @@ class Grafo {
 		Grafo();
 		bool vacio();
 		int tamanio();
-		Vertice *obtener_vertice(std::string cod_partida, std::string cod_destino);
+		Vertice * obtener_vertice(std::string cod);
 		//Peso por costo
 		void insertar_arista(Vertice *partida, Vertice *destino, int costo);
 		//Peso por tiempo
 		void insertar_arista(Vertice *partida, Vertice *destino, float horas);
-		void insertar_vertice(std::string cod_partida, std::string cod_destin);
+		void insertar_vertice(std::string cod);
 		void lista_adyacentes();
 		void eliminar_arista(Vertice *partida, Vertice *destino);
-		~Grafo();
+		void eliminar_vertice(Vertice *vert);
+		void anular();
+		void recorrido_ancho();
+		void recorrido_profundidad();
 };
 
 #endif /* GRAFO_H_ */
