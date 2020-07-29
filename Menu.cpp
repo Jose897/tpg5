@@ -1,13 +1,16 @@
 #include "Menu.h"
 
-Menu::Menu(BST<string>* &diccionario, Grafo * _G){
+Menu::Menu(BST<string>* &diccionario, Grafo * _G)
+{
     this->diccionario = diccionario;
     G = _G;
 }
 
-void Menu::mostrar_menu(){
+void Menu::mostrar_menu()
+{
     int opcion;
-    while (!salir) {
+    while (!salir)
+    {
         cout << endl;
         cout << "================================== MENU ==================================" << endl;
         cout << "1. Consultar un aeropuerto" << endl;
@@ -22,24 +25,31 @@ void Menu::mostrar_menu(){
 	cout << endl;
         cout << "0. Salir" << endl;
         cout << "Ingrese su opcion: " << endl << flush;
-        do {
+        do
+        {
             cin >> opcion;
-            if (cin.good() && opcion_valida(opcion)) {
+            if (cin.good() && opcion_valida(opcion))
+            {
                 procesar_opcion(opcion);
-            } else {
+            }
+            else
+            {
                 cin.clear();
                 cin.ignore();
                 cout << "Por favor ingrese una opcion valida: " << endl;
             }
-        }while (!opcion_valida(opcion));
+        }
+        while (!opcion_valida(opcion));
     }
 }
 
-bool Menu::opcion_valida(int entrada){
+bool Menu::opcion_valida(int entrada)
+{
     return !(entrada < 0 || entrada > 7);
 }
 
-void Menu::procesar_opcion_uno(){
+void Menu::procesar_opcion_uno()
+{
     string iata;
     cout << "Ingrese el codigo IATA del Aeropuerto:";
     cin >> iata;
@@ -51,7 +61,8 @@ void Menu::procesar_opcion_uno(){
     }
 }
 
-void Menu::procesar_opcion_dos(){
+void Menu::procesar_opcion_dos()
+{
     string iata, nombre, ciudad, pais;
     float superficie;
     int terminales, nacionales, internacionales;
@@ -75,30 +86,35 @@ void Menu::procesar_opcion_dos(){
     diccionario->insert(iata, aero);
 }
 
-void Menu::procesar_opcion_tres(){
+void Menu::procesar_opcion_tres()
+{
     string iata;
     cout << "Ingrese el codigo IATA del aeropuerto que desea eliminar:";
     cin >> iata;
-    if(diccionario->search(iata) == 1){
+    if(diccionario->search(iata) == 1)
+    {
         diccionario->remove(iata);
         cout << iata << " fue eliminado con exito." << endl;
     }
-    else{
+    else
+    {
         cout << iata << " no se pudo eliminar ya que no se encuentra en la base de datos." << endl;
     }
 }
 
-void Menu::procesar_opcion_cuatro(){
+void Menu::procesar_opcion_cuatro()
+{
     diccionario->print_in_order();
 }
-void Menu::procesar_opcion_cinco(){
+void Menu::procesar_opcion_cinco()
+{
+
 }
 
-void Menu::procesar_opcion_seis(){
-	system("cls");
+void Menu::procesar_opcion_seis()
+{
     string origen, destino;
 
-    system("cls");
     if(G->vacio())
     {
         cout<<"El grafo esta vacio"<<endl;
@@ -123,11 +139,10 @@ void Menu::procesar_opcion_seis(){
     cin.get();
 }
 
-void Menu::procesar_opcion_siete(){
-	system("cls");
+void Menu::procesar_opcion_siete()
+{
     string origen, destino;
 
-    system("cls");
     if(G->vacio())
     {
         cout<<"El grafo esta vacio"<<endl;
@@ -153,9 +168,11 @@ void Menu::procesar_opcion_siete(){
 }
 
 
-void Menu::procesar_opcion(int opcion){
+void Menu::procesar_opcion(int opcion)
+{
 
-    switch(opcion){
+    switch(opcion)
+    {
 	case 0:
             cout << endl << "Gracias por utilizar el programa. Hasta luego." << endl;
             salir = true;

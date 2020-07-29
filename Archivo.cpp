@@ -3,15 +3,20 @@ const string EXCEPCION = "Error al encontrar el archivo solicitado";
 
 Archivo::Archivo() {}
 
-Archivo:: ~Archivo() {
+Archivo:: ~Archivo()
+{
+
 }
 
-void Archivo::lectura_aeropuertos(const string nombre_archivo, BST<string>* &diccionario){
+void Archivo::lectura_aeropuertos(const string nombre_archivo, BST<string>* &diccionario)
+{
     string linea;
-    try{
+    try
+    {
         ifstream archivo(nombre_archivo);
         if(archivo.is_open()){
-            while(getline(archivo, linea)){
+            while(getline(archivo, linea))
+            {
                 string iata, nombre, ciudad, pais;
                 float superficie;
                 int terminales, nacionales, internacionales;
@@ -23,21 +28,27 @@ void Archivo::lectura_aeropuertos(const string nombre_archivo, BST<string>* &dic
             }
             archivo.close();
         }
-        else{
+        else
+        {
             throw EXCEPCION;
         }
     }
-    catch(const string e){
+    catch(const string e)
+    {
         cout << "Ha ocurrido una excepcion del tipo '" << e << "'." << endl;
     }
 }
 
-void Archivo::lectura_vuelos(const string nombre_archivo, Grafo * G){
+void Archivo::lectura_vuelos(const string nombre_archivo, Grafo * G)
+{
     string linea;
-    try{
+    try
+    {
         ifstream archivo(nombre_archivo);
-        if(archivo.is_open()){
-            while(getline(archivo, linea)){
+        if(archivo.is_open())
+        {
+            while(getline(archivo, linea))
+            {
                 string iata_partida, iata_destino;
                 int precio;
                 float tiempo;
@@ -49,11 +60,13 @@ void Archivo::lectura_vuelos(const string nombre_archivo, Grafo * G){
             }
             archivo.close();
         }
-        else{
+        else
+        {
             throw EXCEPCION;
         }
     }
-    catch(const string e){
+    catch(const string e)
+    {
         cout << "Ha ocurrido una excepcion del tipo '" << e << "'." << endl;
     }
 }

@@ -67,22 +67,27 @@ public:
 };
 
 template <class T>
-BST<T>::BST() {
+BST<T>::BST()
+{
     this->root = NULL;
 }
 
 template <class T>
-BSTNode<T>* BST<T>::insert(BSTNode<T>* node, T data, Aeropuertos* valor) {
+BSTNode<T>* BST<T>::insert(BSTNode<T>* node, T data, Aeropuertos* valor)
+{
 
-    if (node == NULL) {
+    if (node == NULL)
+    {
         node = new BSTNode<T>(data, valor);
     }
 
-    else if (data > node->get_data()) {
+    else if (data > node->get_data())
+    {
         node->set_right(insert(node->get_right(), data, valor), node);
     }
 
-    else {
+    else
+    {
         node->set_left(insert(node->get_left(), data, valor), node);
     }
     return node;
@@ -116,16 +121,19 @@ void BST<T>::print_in_order()
 template <class T>
 void BST<T>::obtener_valor(BSTNode<T>* node, T data)
 {
-    if (node == NULL || node->get_data() == data) {
+    if (node == NULL || node->get_data() == data)
+    {
         std::cout << "\nClave = " << node->get_data() << endl;
         std::cout << "\nValor = " << endl;
         node->get_valor()->mostrar();
     }
-    else if (data > node->get_data()){
+    else if (data > node->get_data())
+    {
         obtener_valor(node->get_right(), data);
     }
 
-    else {
+    else
+    {
         obtener_valor(node->get_left(), data);
     }
 
@@ -201,7 +209,8 @@ T BST<T>::successor(BSTNode<T>* node)
     BSTNode<T>* successor = NULL;
     BSTNode<T>* ancestor = this->root;
     while(ancestor != node) {
-        if(node->get_data() < ancestor->get_data()) {
+        if(node->get_data() < ancestor->get_data())
+        {
             successor = ancestor;
             ancestor = ancestor->get_left();
         }
@@ -231,8 +240,10 @@ T BST<T>::predecessor(BSTNode<T> * node)
 
     BSTNode<T>* successor = NULL;
     BSTNode<T>* ancestor = this->root;
-    while(ancestor != node) {
-        if(node->get_data() > ancestor->get_data()) {
+    while(ancestor != node)
+    {
+        if(node->get_data() > ancestor->get_data())
+        {
             successor = ancestor; // so far this is the deepest node for which current node is in left
             ancestor = ancestor->get_right();
         }
@@ -318,7 +329,8 @@ void BST<T>::remove(T data)
 }
 
 template <class T>
-BSTNode<T>* BST<T>::get_root(){
+BSTNode<T>* BST<T>::get_root()
+{
     return this->root;
 }
 
