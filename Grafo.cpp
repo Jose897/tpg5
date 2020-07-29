@@ -195,7 +195,7 @@ void Grafo::eliminar_vertice(Vertice *vert)
 	}
 }
 
-void Grafo::anular()
+void Grafo::anular_vertice()
 {
 	Vertice *aux;
 
@@ -207,12 +207,12 @@ void Grafo::anular()
 	}
 }
 
-void Grafo::recorrido_ancho(Vertice *)
+void Grafo::recorrido_peso_costo(Vertice *)
 {
 
 }
 
-void Grafo::recorrido_profundidad(Vertice *)
+void Grafo::recorrido_peso_horas(Vertice *)
 {
 
 }

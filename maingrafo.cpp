@@ -47,8 +47,8 @@ int main()
         cout<<"5. Eliminar vertice"<<endl;
         cout<<"6. Eliminar arista"<<endl;
         cout<<"7. Anular"<<endl;
-        cout<<"8. Recorrido en anchura"<<endl;
-        cout<<"9. Recorrido en profundidad"<<endl;
+        cout<<"8. Recorrido por peso costo"<<endl;
+        cout<<"9. Recorrido por peso horas"<<endl;
         cout<<"10. Salir"<<endl;
         cout<<endl<<"Elija una opcion: ";
         cin>>opc;

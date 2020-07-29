@@ -58,15 +58,15 @@ class Grafo {
 		//Metodo anular
 		//PRE:
 		//POST: eliminar memoria dinamica
-		void anular();
+		void anular_vertice();
 		//Metodo recorrido_ancho
 		//PRE:
 		//POST:
-		void recorrido_ancho(Vertice *);
+		void recorrido_peso_costo(Vertice *);
 		//Metodo recorrido_profundidad
 		//PRE:
 		//POST:
-		void recorrido_profundidad(Vertice *);
+		void recorrido_peso_horas(Vertice *);
 };
 
 #endif /* GRAFO_H_ */
