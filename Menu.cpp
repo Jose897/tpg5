@@ -1,7 +1,8 @@
 #include "Menu.h"
 
-Menu::Menu(BST<string>* &diccionario){
+Menu::Menu(BST<string>* &diccionario, Grafo * _G){
     this->diccionario = diccionario;
+    G = _G;
 }
 
 void Menu::mostrar_menu(){
@@ -20,7 +21,7 @@ void Menu::mostrar_menu(){
         cout << "7. Vuelo minimo por duracion" << endl;
 	cout << endl;
         cout << "0. Salir" << endl;
-        cout << "Ingrese su opcion " << endl << flush;
+        cout << "Ingrese su opcion: " << endl << flush;
         do {
             cin >> opcion;
             if (cin.good() && opcion_valida(opcion)) {
@@ -94,9 +95,61 @@ void Menu::procesar_opcion_cinco(){
 }
 
 void Menu::procesar_opcion_seis(){
+	system("cls");
+    string origen, destino;
+
+    system("cls");
+    if(G->vacio())
+    {
+        cout<<"El grafo esta vacio"<<endl;
+    }
+    else
+    {
+        cout<<"Ingrese el nombre del codigo de origen: ";
+        cin.ignore();
+        getline(cin, origen, '\n');
+        cout<<"Ingrese el nombre del codigo de destino destino: ";
+        getline(cin, destino, '\n');
+
+        if(G->obtener_vertice(origen) == NULL || G->obtener_vertice(destino) == NULL)
+        {
+            cout<<"Uno de los vertices no es valido"<<endl;
+        }
+        else
+        {	//Camino minimo por costo
+           	//G.Dijkstracosto()
+        }
+    }
+    cin.get();
 }
 
 void Menu::procesar_opcion_siete(){
+	system("cls");
+    string origen, destino;
+
+    system("cls");
+    if(G->vacio())
+    {
+        cout<<"El grafo esta vacio"<<endl;
+    }
+    else
+    {
+        cout<<"Ingrese el nombre del codigo de origen: ";
+        cin.ignore();
+        getline(cin, origen, '\n');
+        cout<<"Ingrese el nombre del codigo de destino destino: ";
+        getline(cin, destino, '\n');
+
+        if(G->obtener_vertice(origen) == NULL || G->obtener_vertice(destino) == NULL)
+        {
+            cout<<"Uno de los vertices no es valido"<<endl;
+        }
+        else
+        {	//Camino minimo por duracion
+            //G.Dijkstraduracion()
+        }
+    }
+    cin.get();
 }
 
 

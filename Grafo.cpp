@@ -203,17 +203,12 @@ void Grafo::anular_vertice()
 	{
 		aux = h;
 		h = h -> obtener_siguiente();
+		eliminar_vertice(aux);
 		delete aux;
 	}
 }
 
-void Grafo::recorrido_peso_costo(Vertice *)
+Grafo::~Grafo()
 {
-
+	anular_vertice();
 }
-
-void Grafo::recorrido_peso_horas(Vertice *)
-{
-
-}
-

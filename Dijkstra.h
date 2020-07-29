@@ -19,9 +19,12 @@ class Dijkstra {
 
 	public:
 		Dijkstra();
+		~Dijkstra();
 		bool vacio();
 		int tamanio();
 		void obtener_camino_minimo(int);
 		void obtener_camino_minimo(float);
+
+};
 
 #endif /* DIJKSTRA_H_ */
