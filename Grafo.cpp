@@ -98,27 +98,6 @@ void Grafo::insertar_arista(Vertice *partida, Vertice *destino, int costo, float
 	}
 }
 
-void Grafo::lista_adyacentes()
-{
-	Vertice *ver_aux;
-	Arista *ari_aux;
-
-	ver_aux = h;
-
-	while(ver_aux != NULL)
-	{
-		std::cout << ver_aux -> obtener_cod_vertice() << "->";
-		ari_aux = ver_aux -> obtener_adyacente();
-		while(ari_aux != NULL)
-		{
-			std::cout << ari_aux -> obtener_adyacente() -> obtener_cod_vertice() << "->";
-			ari_aux = ari_aux -> obtener_siguiente();
-		}
-		ver_aux = ver_aux -> obtener_siguiente();
-		std::cout << std::endl;
-	}
-}
-
 void Grafo::eliminar_arista(Vertice *origen, Vertice *destino)
 {
 	Arista *actual, *anterior;
