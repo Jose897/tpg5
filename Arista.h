@@ -20,11 +20,15 @@ class Arista {
 
 		Arista *sig;
 		Vertice *ady;
-		unsigned peso;
+		int costo;
+		float horas;
 
 	public:
+		Arista(Vertice *, Arista *, int, float);
 		Arista * obtener_siguiente();
 		Vertice * obtener_adyacente();
+		void setear_vertice(Vertice *);
+		void setear_arista(Arista *);
 };
 
 #endif /* ARISTA_H_ */

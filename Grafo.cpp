@@ -53,13 +53,10 @@ Vertice * Grafo::obtener_vertice(std::string cod_ver)
 	return NULL;
 }
 
-void Grafo::insertar_vertice(std::string cod)
+void Grafo::insertar_vertice(std::string cod_ver)
 {
-	//Usar setter para los poner los datos
-	Vertice *nuevo = new Vertice;
-	nuevo -> cod_vertice = cod;
-	nuevo -> sig = NULL;
-	nuevo -> ady = NULL;
+	//Usar constructor con parametros
+	Vertice *nuevo = new Vertice(NULL, NULL, cod_ver);
 
 	if(vacio())
 	{
@@ -73,19 +70,13 @@ void Grafo::insertar_vertice(std::string cod)
 		{
 			aux = aux -> obtener_siguiente();
 		}
-		aux -> sig = nuevo;
+		aux->setear_vertice(nuevo);
 	}
 }
 
 void Grafo::insertar_arista(Vertice *partida, Vertice *destino, int costo, float horas)
 {
-	//Usar setters
-	Arista *nueva = new Arista;
-	nueva -> costo = costo;
-	nueva -> sig = NULL;
-	nueva -> ady = NULL;
-	nueva -> horas = horas;
-
+	Arista *nueva = new Arista(NULL, NULL, costo, horas);
 	Arista *aux;
 
 	aux = partida -> obtener_adyacente();
@@ -93,8 +84,8 @@ void Grafo::insertar_arista(Vertice *partida, Vertice *destino, int costo, float
 	if(aux == NULL)
 	{
 		//Usar setters
-		partida -> obtener_adyacente() = nueva;
-		destino -> obtener_siguiente() = nueva;
+		partida->setear_arista(nueva); //De vertice
+		nueva->setear_vertice(destino); //De arista
 	}
 	else
 	{ 	//Obtener siguiente para arista
@@ -102,8 +93,8 @@ void Grafo::insertar_arista(Vertice *partida, Vertice *destino, int costo, float
 		{
 			aux = aux -> obtener_siguiente();
 		}
-		aux -> obtener_siguiente() = nueva;
-		nueva -> obtener_adyacente() = destino;
+		aux->setear_arista(nueva);
+		nueva->setear_vertice(destino);
 	}
 }
 
@@ -141,7 +132,7 @@ void Grafo::eliminar_arista(Vertice *origen, Vertice *destino)
 	}
 	else if(actual -> obtener_adyacente() == destino)
 	{
-		origen -> obtener_adyacente() = actual -> obtener_siguiente();
+		origen->setear_arista(actual -> obtener_siguiente());
 		delete actual;
 	}
 	else
@@ -151,7 +142,7 @@ void Grafo::eliminar_arista(Vertice *origen, Vertice *destino)
 			if(actual -> obtener_adyacente() == destino)
 			{
 				band = 1;
-				anterior -> obtener_siguiente() = actual -> obtener_siguiente();
+				anterior->setear_arista(actual -> obtener_siguiente());
 				delete actual;
 				break;
 			}
@@ -199,7 +190,7 @@ void Grafo::eliminar_vertice(Vertice *vert)
 			anterior = actual;
 			actual = actual -> obtener_siguiente();
 		}
-		anterior -> obtener_siguiente() = actual -> obtener_siguiente();
+		anterior->setear_vertice(actual->obtener_siguiente());
 		delete actual;
 	}
 }

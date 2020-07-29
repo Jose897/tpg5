@@ -20,13 +20,14 @@ class Vertice {
 		Vertice *sig;
 		Arista *ady;
 		std::string cod_vertice;
-		int costo;
-		float horas_vuelo;
 
 	public:
+		Vertice(Vertice *, Arista *, std::string);
 		Vertice * obtener_siguiente();
 		Arista * obtener_adyacente();
 		std::string obtener_cod_vertice();
+		void setear_arista(Arista *);
+		void setear_vertice(Vertice *);
 };
 
 #endif /* VERTICE_H_ */
