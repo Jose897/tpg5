@@ -16,13 +16,15 @@ int main()
     El programa pierde memoria.*/
     /*El programa pierde memoria.*/
     BST<string>* bst = new BST<string>();
+    Grafo * G = new Grafo();
     Archivo archivo;
     archivo.lectura_aeropuertos(NOMBRE_ARCHIVO_AEROPUERTO, bst);
-    archivo.lectura_vuelos(NOMBRE_ARCHIVO_VUELOS);
-    Menu menu(bst);
+    archivo.lectura_vuelos(NOMBRE_ARCHIVO_VUELOS, G);
+    Menu menu(bst, G);
     menu.mostrar_menu();
     //bst -> remove(7); Esta linea no funciona correctamente por lo mencionado en los comentarios
     delete bst;
+    delete G;
     return 0;
 }
 

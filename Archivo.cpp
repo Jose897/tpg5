@@ -42,7 +42,7 @@ void Archivo::lectura_vuelos(const string nombre_archivo){
                 float precio, tiempo;
                 stringstream ss(linea);
                 ss >> iata_partida >> iata_destino >> precio >> tiempo;
-                precio = precio/1000;
+                // Falta hacer que  el precio siempre tome con 3 decimales
                 cout << iata_partida << " " <<iata_destino << " " << precio << " " << tiempo << endl; // cout de prueba
             }
             archivo.close();
