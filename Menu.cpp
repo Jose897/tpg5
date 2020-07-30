@@ -134,6 +134,12 @@ void Menu::procesar_opcion_seis()
         else
         {	//Camino minimo por costo
            	//G.Dijkstracosto()
+		//         int o float
+		//Dijkstra<int>*(G,origen,destino);
+		//dijkstra->resultado(); //devuelve un puntero a Pila
+		//
+		//
+		//
         }
     }
     cin.get();
