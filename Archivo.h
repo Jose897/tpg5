@@ -7,7 +7,6 @@
 #include "ABBNodo.h"
 #include "ABB.h"
 #include "Aeropuertos.h"
-#include "Grafo.h"
 using namespace std;
 class Archivo{
 private:
@@ -18,7 +17,7 @@ public:
     // POST: construye objeto vacio
     Archivo();
     void lectura_aeropuertos(const string nombre_archivo, BST<string>* &diccionario);
-    void lectura_vuelos(const string, Grafo *);
+    void lectura_vuelos(const string);
 // Destructor
     // PRE: Ninguna
     // POST: destruye el objeto

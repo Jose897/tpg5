@@ -43,6 +43,10 @@ class Grafo {
 		//PRE: recibir punteros hacia los vertices validos
 		//POST: crear una Arista con sus conecciones
 		void insertar_arista(Vertice *partida, Vertice *destino, int costo, float horas);
+		//Metodo lista_adyacentes
+		//PRE: Grafo no vacio
+		//POST: imprimir las conecciones entre los vertices
+		void lista_adyacentes();
 		//Metodo eliminar_arista
 		//PRE: recibir punteros a los vertices no nulos
 		//POST: elminar la arista que conectas a los vertices
@@ -51,10 +55,18 @@ class Grafo {
 		//PRE: recibir un puntero al vertice que se quiere eliminar
 		//POST: Eliminar dicho vertice y sus conecciones
 		void eliminar_vertice(Vertice *vert);
-		//Destructor
+		//Metodo anular
 		//PRE:
-		//POST: Eliminar memoria dinamica
-		~Grafo();
+		//POST: eliminar memoria dinamica
+		void anular_vertice();
+		//Metodo recorrido_ancho
+		//PRE:
+		//POST:
+		void recorrido_peso_costo(Vertice *);
+		//Metodo recorrido_profundidad
+		//PRE:
+		//POST:
+		void recorrido_peso_horas(Vertice *);
 };
 
 #endif /* GRAFO_H_ */

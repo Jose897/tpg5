@@ -57,41 +57,35 @@ Aeropuertos* BSTNode<T>::get_valor()
 }
 
 template <class T>
-void BSTNode<T>::set_right(BSTNode<T>* right, BSTNode<T>* parent)
-{
+void BSTNode<T>::set_right(BSTNode<T>* right, BSTNode<T>* parent){
     this->right = right;
     this->parent = parent;
 }
 
 template <class T>
-void BSTNode<T>::set_right(BSTNode<T>* right)
-{
+void BSTNode<T>::set_right(BSTNode<T>* right){
     this->right = right;
 }
 
 template <class T>
-void BSTNode<T>::set_left(BSTNode<T>* left, BSTNode<T>* parent)
-{
+void BSTNode<T>::set_left(BSTNode<T>* left, BSTNode<T>* parent){
     this->left = left;
     this->parent = parent;
 }
 
 template <class T>
-void BSTNode<T>::set_parent(BSTNode<T> *parent)
-{
+void BSTNode<T>::set_parent(BSTNode<T> *parent) {
     this->parent = parent;
 }
 
 template <class T>
-void BSTNode<T>::set_data(T data)
-{
+void BSTNode<T>::set_data(T data) {
     this->data = data;
 }
 
 
 template <class T>
-void BSTNode<T>::set_left(BSTNode<T>* left)
-{
+void BSTNode<T>::set_left(BSTNode<T>* left){
     this->left = left;
 }
 
@@ -114,20 +108,17 @@ BSTNode<T>* BSTNode<T>::get_parent()
 }
 
 template <class T>
-bool BSTNode<T>::isLeaf()
-{
+bool BSTNode<T>::isLeaf() {
     return (this->get_left() == NULL && this->get_right() == NULL);
 }
 
 template <class T>
-bool BSTNode<T>::rightChildOnly()
-{
+bool BSTNode<T>::rightChildOnly() {
     return (this->get_left() == NULL && this->get_right() != NULL);
 }
 
 template <class T>
-bool BSTNode<T>::leftChildOnly()
-{
+bool BSTNode<T>::leftChildOnly() {
     return (this->get_left() != NULL && this->get_right() == NULL);
 }
 
