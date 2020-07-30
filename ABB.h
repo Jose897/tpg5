@@ -4,7 +4,6 @@
 #include "ABBNodo.h"
 #include "Aeropuertos.h"
 #include<iostream>
-#include <queue>
 
 template <class T>
 class BST
@@ -16,7 +15,6 @@ private:
     // methods
     BSTNode<T>* insert(BSTNode<T>* node, T data, Aeropuertos* valor);
     void print_in_order(BSTNode<T> * node);
-    void print_ancho(BSTNode<T> * node);
     void obtener_valor(BSTNode<T> * node, T data);
     BSTNode<T>* search(BSTNode<T>* node, T data);
     T find_min(BSTNode<T>* node);
@@ -39,7 +37,6 @@ public:
     // Prints all the data stored in the BST, sorted from the
     // smallest value to the greatest value.
     void print_in_order();
-    void print_ancho();
     void obtener_valor(T data);
     // Finds a given value in the BST. If the key exists it returns
     // TRUE, otherwise it returns FALSE.
@@ -114,38 +111,6 @@ template <class T>
 void BST<T>::print_in_order()
 {
     this->print_in_order(this->root);
-}
-
-template <class T>
-void BST<T>::print_ancho(BSTNode<T>* node) {
-    queue < BSTNode<T> * > cola;
-    cola.push(node);
-    while (true) {
-        int tamanio_cola = cola.size();
-        if (tamanio_cola == 0) {
-            break;
-        }
-        int i = 0;
-        while (i < tamanio_cola) {
-            BSTNode<T> * n = cola.front();
-            cout << n->get_data() << " ";
-            if (n->get_left() != NULL) {
-                cola.push(n->get_left());
-            }
-            if (n->get_right() != NULL) {
-                cola.push(n->get_right());
-            }
-            cola.pop();
-            i++;
-        }
-        cout << endl;
-    }
-}
-
-template <class T>
-void BST<T>::print_ancho()
-{
-    this->print_ancho(this->root);
 }
 
 template <class T>

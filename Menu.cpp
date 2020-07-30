@@ -91,7 +91,6 @@ void Menu::procesar_opcion_cuatro(){
     diccionario->print_in_order();
 }
 void Menu::procesar_opcion_cinco(){
-    diccionario->print_ancho();
 }
 
 void Menu::procesar_opcion_seis(){
