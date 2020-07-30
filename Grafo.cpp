@@ -174,7 +174,7 @@ void Grafo::eliminar_vertice(Vertice *vert)
 	}
 }
 
-void Grafo::anular_vertice()
+Grafo::~Grafo()
 {
 	Vertice *aux;
 
@@ -185,9 +185,4 @@ void Grafo::anular_vertice()
 		eliminar_vertice(aux);
 		delete aux;
 	}
-}
-
-Grafo::~Grafo()
-{
-	anular_vertice();
 }
