@@ -39,9 +39,9 @@ int Grafo::tamanio()
 
 Vertice * Grafo::obtener_vertice(std::string cod_ver)
 {
-	//Recorrer el grafo y preguntar si el vertice que estamos recoriendo tiene los codigos
 	Vertice *aux;
 	aux = h;
+
 	while(aux != NULL)
 	{
 		if(aux -> obtener_cod_vertice() == cod_ver)
@@ -55,7 +55,6 @@ Vertice * Grafo::obtener_vertice(std::string cod_ver)
 
 void Grafo::insertar_vertice(std::string cod_ver)
 {
-	//Usar constructor con parametros
 	Vertice *nuevo = new Vertice(NULL, NULL, cod_ver);
 
 	if(vacio())
@@ -83,12 +82,11 @@ void Grafo::insertar_arista(Vertice *partida, Vertice *destino, int costo, float
 
 	if(aux == NULL)
 	{
-		//Usar setters
-		partida->setear_arista(nueva); //De vertice
-		nueva->setear_vertice(destino); //De arista
+		partida->setear_arista(nueva);
+		nueva->setear_vertice(destino);
 	}
 	else
-	{ 	//Obtener siguiente para arista
+	{
 		while(aux -> obtener_siguiente() != NULL)
 		{
 			aux = aux -> obtener_siguiente();
@@ -101,7 +99,7 @@ void Grafo::insertar_arista(Vertice *partida, Vertice *destino, int costo, float
 void Grafo::eliminar_arista(Vertice *origen, Vertice *destino)
 {
 	Arista *actual, *anterior;
-	int band = 0;
+	bool band = false;
 
 	actual =  origen -> obtener_adyacente();
 
@@ -120,7 +118,7 @@ void Grafo::eliminar_arista(Vertice *origen, Vertice *destino)
 		{
 			if(actual -> obtener_adyacente() == destino)
 			{
-				band = 1;
+				band = true;
 				anterior->setear_arista(actual -> obtener_siguiente());
 				delete actual;
 				break;
@@ -128,7 +126,7 @@ void Grafo::eliminar_arista(Vertice *origen, Vertice *destino)
 			anterior = actual;
 			actual = actual -> obtener_siguiente();
 		}
-		if(band == 0)
+		if(band == false)
 		{
 			std::cout << "Esos dos vertices no estan conectados" << std::endl;
 		}
@@ -174,7 +172,7 @@ void Grafo::eliminar_vertice(Vertice *vert)
 	}
 }
 
-void Grafo::anular_vertice()
+Grafo::~Grafo()
 {
 	Vertice *aux;
 
@@ -185,9 +183,4 @@ void Grafo::anular_vertice()
 		eliminar_vertice(aux);
 		delete aux;
 	}
-}
-
-Grafo::~Grafo()
-{
-	anular_vertice();
 }

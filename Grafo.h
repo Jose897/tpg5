@@ -51,10 +51,6 @@ class Grafo {
 		//PRE: recibir un puntero al vertice que se quiere eliminar
 		//POST: Eliminar dicho vertice y sus conecciones
 		void eliminar_vertice(Vertice *vert);
-		//Metodo anular
-		//PRE:
-		//POST: eliminar memoria dinamica
-		void anular_vertice();
 		//Destructor
 		//PRE:
 		//POST: Eliminar memoria dinamica
