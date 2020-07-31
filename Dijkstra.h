@@ -9,6 +9,9 @@
 #define DIJKSTRA_H_
 
 #include "Grafo.h"
+#include "Lista.h"
+#include "Nodo.h"
+#include "Etiqueta.h"
 #include <iostream>
 
 // 
