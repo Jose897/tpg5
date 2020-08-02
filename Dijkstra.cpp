@@ -85,7 +85,7 @@ cout<<"guardar secuencia en lista resultado"<<endl;
 
 
 //procesar int costo
-int Dijkstra::procesar(){
+void Dijkstra::procesar_costo(){
 	int i;
 	Vertice*verticeA;
 	Vertice*verticeB;
@@ -134,6 +134,8 @@ int Dijkstra::procesar(){
 	}
 
 }
+
+
 Lista<Vertice*>* Dijkstra::obtener_lista_resultado(){
 	return lista_resultado;
 }

@@ -123,7 +123,7 @@ void Menu::procesar_opcion_seis(){
 			cout<<"primero "<<endl;
 			dijkstra.inicializar(h, origen, destino);
 			cout<<"primero "<<endl;
-			dijkstra.procesar();
+			dijkstra.procesar_costo();
 			cout<<"primero "<<endl;
 			Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
 			cout<<"primero "<<endl;

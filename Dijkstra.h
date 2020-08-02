@@ -31,7 +31,8 @@ class Dijkstra {
 		
 		void borrar_lista_resultado();
 		void guardar_secuencia_lista_resultado(Vertice*);
-		int procesar();
+		void procesar_costo();
+		//void procesar_duracion();
 		~Dijkstra();
 		//int procesar(duracion);
 		Lista<Vertice*>* obtener_lista_resultado();
