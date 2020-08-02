@@ -74,7 +74,7 @@ void Grafo::insertar_vertice(std::string cod_ver)
 	}
 }
 
-void Grafo::insertar_arista(Vertice *partida, Vertice *destino, int costo, float horas)
+void Grafo::insertar_arista(Vertice *partida, Vertice *destino, long int costo, float horas)
 {
 	Arista *nueva = new Arista(NULL, NULL, costo, horas);
 	Arista *aux;

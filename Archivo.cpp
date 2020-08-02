@@ -32,17 +32,26 @@ void Archivo::lectura_aeropuertos(const string nombre_archivo, BST<string>* &dic
     }
 }
 
-void Archivo::lectura_vuelos(const string nombre_archivo){
+void Archivo::lectura_vuelos(const string nombre_archivo, Grafo*h){
     string linea;
+
     try{
         ifstream archivo(nombre_archivo);
         if(archivo.is_open()){
             while(getline(archivo, linea)){
                 string iata_partida, iata_destino;
-                float precio, tiempo;
+                long int precio;
+		float tiempo;
                 stringstream ss(linea);
                 ss >> iata_partida >> iata_destino >> precio >> tiempo;
-                precio = precio/1000;
+                //precio = precio/1000;
+		if( h->obtener_vertice(iata_partida) == 0 ){
+			h->insertar_vertice(iata_partida);
+		}
+		if( h->obtener_vertice(iata_destino) == 0 ){
+			h->insertar_vertice(iata_destino);
+		}
+		h->insertar_arista( h->obtener_vertice(iata_partida), h->obtener_vertice(iata_destino), precio, tiempo);
                 cout << iata_partida << " " <<iata_destino << " " << precio << " " << tiempo << endl; // cout de prueba
             }
             archivo.close();

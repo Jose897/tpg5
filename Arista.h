@@ -20,7 +20,7 @@ class Arista {
 
 		Arista *sig;
 		Vertice *ady;
-		int costo;
+		long int costo;
 		float horas;
 
 	public:
@@ -28,7 +28,7 @@ class Arista {
 		//PRE:
 		//POST: crear clase arista con punteros a NULL,
 		//el costo y las horas respectivos
-		Arista(Vertice *, Arista *, int, float);
+		Arista(Vertice *, Arista *, long int, float);
 		//Metodo obtener_siguiente
 		//PRE:
 		//POST: retornar el puntero siguiente a la Arista

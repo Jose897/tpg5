@@ -42,7 +42,7 @@ class Grafo {
 		//Metodo insertar_arista
 		//PRE: recibir punteros hacia los vertices validos
 		//POST: crear una Arista con sus conecciones
-		void insertar_arista(Vertice *partida, Vertice *destino, int costo, float horas);
+		void insertar_arista(Vertice *partida, Vertice *destino, long int costo, float horas);
 		//Metodo lista_adyacentes
 		//PRE: Grafo no vacio
 		//POST: imprimir las conecciones entre los vertices

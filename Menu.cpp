@@ -1,7 +1,8 @@
 #include "Menu.h"
 
-Menu::Menu(BST<string>* &diccionario){
+Menu::Menu(BST<string>* &diccionario,Grafo*h){
     this->diccionario = diccionario;
+    this->h = h;
 }
 
 void Menu::mostrar_menu(){
@@ -95,9 +96,11 @@ void Menu::procesar_opcion_cinco(){
 }
 
 void Menu::procesar_opcion_seis(){
+	cout<<" proceso 6 \n";
 }
 
 void Menu::procesar_opcion_siete(){
+	cout<<" proceso 7 \n";
 }
 
 

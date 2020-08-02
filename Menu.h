@@ -1,8 +1,8 @@
 #ifndef TPG5_MENU_H
 #define TPG5_MENU_H
 #include "ABB.h"
-//#include "Dijkstra"
-//#include "Grafo.h"
+//#include "Dijkstra.h"
+#include "Grafo.h"
 #include<iostream>
 
 using namespace std;
@@ -12,9 +12,10 @@ class Menu{
 private:
     bool salir = false;
     BST<string>* diccionario;
+    Grafo*h;
 
 public:
-    Menu(BST<string>* &diccionario);
+    Menu(BST<string>* &diccionario,Grafo*h);
     void mostrar_menu();
     bool opcion_valida(int entrada);
     void procesar_opcion(int opcion);   //Se le debe pasar un puntero al arbol

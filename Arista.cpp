@@ -7,7 +7,7 @@
 
 #include "Arista.h"
 
-Arista::Arista(Vertice * ver, Arista * ari, int _costo, float _horas)
+Arista::Arista(Vertice * ver, Arista * ari, long int _costo, float _horas)
 {
 	ady = ver;
 	sig = ari;
