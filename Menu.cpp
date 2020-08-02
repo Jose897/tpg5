@@ -99,6 +99,7 @@ void Menu::procesar_opcion_cinco(){
 }
 
 void Menu::procesar_opcion_seis(){
+	long int total=0;
 	string origen, destino;
 
 	if(h->vacio()){
@@ -133,13 +134,15 @@ void Menu::procesar_opcion_seis(){
 			
 			if(!lista->lista_vacia()){	
 				for(unsigned i=1; i < lista->obtener_tamanio() ; i++){
+					//cout<<"tamanio lista : "<<lista->obtener_tamanio();
 					verticeA = lista->obtener_dato(i);
 					verticeB = lista->obtener_dato(i+1);
 					cout<<" "<<verticeA->obtener_cod_vertice();
-					cout<<" --("<<h->obtener_costo(verticeA,verticeB);
+					total = total + h->obtener_costo(verticeA,verticeB);
+					cout<<" -->($ "<<h->obtener_costo(verticeA,verticeB);
 					
 					if(verticeB->obtener_cod_vertice() == destino ){
-						cout<<")-> "<<verticeB<<endl;
+						cout<<")--> "<<verticeB->obtener_cod_vertice()<<"      total :$ "<<total<<endl;
 					}else{
 						cout<<")->";
 					}
