@@ -105,20 +105,48 @@ void Menu::procesar_opcion_seis(){
 		cout<<"El grafo esta vacio"<<endl;
 	}else{
 		cout<<"Ingrese origen"<<endl;
-		cin.ignore();
-		getline(cin, origen);
+		//cin.ignore();
+		//getline(cin, origen);
+		cin>>origen;
 		cout<<endl;
 		cout<<"Ingrese destino"<<endl;
-		getline(cin, destino);
+		//getline(cin, destino);
+		cin>>destino;
 		cout<<endl;
 
-		if( h->obtener_vertice(origen)==NULL || h->obtener_vertice(destino) ){
+		if( h->obtener_vertice(origen) == NULL || h->obtener_vertice(destino) == NULL ){
 			cout<<"Uno de los vertices no es valido"<<endl;
 		
 		}else{   //camino minimo costo
 			Dijkstra dijkstra;
+			cout<<"primero "<<endl;
 			dijkstra.inicializar(h, origen, destino);
+			cout<<"primero "<<endl;
 			dijkstra.procesar();
+			cout<<"primero "<<endl;
+			Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
+			cout<<"primero "<<endl;
+			Vertice* verticeA;
+			cout<<"primero "<<endl;
+			Vertice* verticeB;
+			cout<<"primero "<<endl;
+			
+			if(!lista->lista_vacia()){	
+				for(unsigned i=1; i < lista->obtener_tamanio() ; i++){
+					verticeA = lista->obtener_dato(i);
+					verticeB = lista->obtener_dato(i+1);
+					cout<<" "<<verticeA->obtener_cod_vertice();
+					cout<<" --("<<h->obtener_costo(verticeA,verticeB);
+					
+					if(verticeB->obtener_cod_vertice() == destino ){
+						cout<<")-> "<<verticeB<<endl;
+					}else{
+						cout<<")->";
+					}
+				}
+			}else{
+				cout<<"No hay ruta"<<endl;
+			}
 		}
 	}
 }

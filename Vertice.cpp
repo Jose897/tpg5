@@ -79,10 +79,12 @@ int Vertice::obtener_cant_ady(){
 Vertice* Vertice::obtener_vertice_ady(int pos){
 	int i;
 	Arista* aux;
+	
 	aux = ady;
-	for(i = 1; i<= pos ; i++){
+	for(i = 1; i < pos ; i++){
 		aux = aux->obtener_siguiente();
 	}
+
 	return aux->obtener_adyacente();
 }
 
