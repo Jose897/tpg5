@@ -8,90 +8,113 @@
 #include "Dijkstra.h"
 
 Dijkstra::Dijkstra(){
-	h = NULL;
+	g = 0;
+	lista_pri=0;
+	lista_Resultado=0;
 }
 
-bool Dijkstra::vacio(){
+void Dijkstra::inicializar(Grafo*g,string origen, string destino){
+	Vertice* aux;
+	Lista<Vertice*> lista_prioridad();
+	int i;
+	this->g=g;
+	this->origen=origen;
+	this->destino=destino;
+	lista_prioridad=0;
+	lista_Resultado=0;
+	aux = g;
+	for( i=0; i<= g->tamanio() ;i++){
+		aux->cambiar_vicitado(false);
+		aux->cambiar_predecesor('-');
+		aux->cambiar_acumulador_costo(-1);
+		aux->cambiar_acumulador_duracion(-1);
+		aux=aux->obtener_siguiente();
+	}
+	aux=g->obtener_vertice(origen); 
+	//gregar metodo a Grafo, obtener un puntero a Vertice origen
+	lista_prioridad.insertar(aux);
 }
 
-int Dijkstra::tamanio(){
-}
-
-void obtener_camino_minimo_costo(Grafo*g,string origen,string destino){
-
-	string A,B,Z;
-	int interacion=0;
-	int acumulador;
-	int l=0;
+Vertice*obtener_minimo_costo_en_lista(){
+	Vertice*aux;
+	int i;
+	int menor;
+	unsigned posicion;
 	
-	A=origen;
-	Z=destino;
-
-	//Vertice* verticeZ=g->obtener_vertice(Z);
-	Lista<Etiqueta*> lista = new Lista<Etiqueta*>;
-	
-	Vertice* verticeA = g->obtener_vertice(A);
-	Vertice* verticeB;
-	Etiqueta<int>* etiquetaA = new Etiqueta<int>(0,'-',A,iteracion);
-
-	lista->insertar(etiquetaA);
-
-	Etiqueta<int>* etiquetaLista;
-
-	while(!lista->lista_vacia()){
-		
-		etiquetaA = lista->buscar_dato(1);
-		for(int k=2; k <= lista->obtener_tamanio() ;k++){
-			etiquetaLista = lista->buscar_dato(k);
-			if(etiquetaA->obtener_acumulador < etiquetaLista->obtener_acumulador()){
-				etiquetaA=etiquetaLista;
-				l++;
-			}	
+	menor=lista_prioridad.obtener_dato(1)->obtenercosto();
+	posicion = 1;
+	for(i=1; i <= lista_prioridad.obtener_tamanio() ;i++){
+		aux = lista_prioridad.obtener_dato(i);
+		if(aux->obtener_costo() < menor ){
+			menor=aux->obtener_costo();
+			posicion = i;
 		}
-		lista_resultado->insertar(etiquetaA);
-		lista->desapilar(l);
-		verticeA=g->obtener_vertice(etiquetaA->obtener_cod());
+	}
+	return lista_prioridad.obtener_dato(posicion);
+}
 
-		for(int i=0; i<=verticeA->obtener_cant_ady(); i++){
-			verticeB = verticeA->obtener_ady(i);
-			B=verticeB->obtener_cod();
-			if(!verticeB->obtener_vicitado()){
-				acumulador = etiquetaA->obtener_acumulador() + g->btener_costo(A,B);
-				Etiqueta<int>* etiquetaB = new Etiqueta<int>(acumulador,A,B,verticeB->obtener_cant_ady(),iteracion);
-				
-				if(Z==B){
-					for(int m=0;m<=lista_resultado->obtener_tamanio();m++){
-						etiquetaResultado=lista_resultado->obtener_dato(m);
-						if(etiquetaResultado->cod==Z){
-							if(etiquetaResultado->obtener_acumulador > etiquetaB->obtener_acumulador()){
-								listaResultado->borrar_dato(m);
-							}
-						}
+void borrar_lista_resultado(){
+	unsigned i;
 
-					}
-					listaResultado->insertar(etiquetaB);
+	for(i; i <= lista_resultado.obtener_tamanio() ; i++){
+		lista_resultado.borrar_dato(i);
+	}
+}
+
+void guardar_secuencia_lista_resultado(verticeB){
+	Vertice*verticeAux;
+	string predecesorAux;
+	
+	verticeAux=verticeB;
+
+	while(verticeAux->obtener_cod_vertice() != origen ){
+		lista_resultado.insertar(verticeAux);
+		predecesorAux = verticeAux->obtener_predecesor();
+		verticeAux=g->obtener_vertice(predecesorAux);
+	}
+	
+	lista_resultado.insertar(verticeAux);
+}
+
+//procesar int costo
+int Dijkstra::procesar(){
+	Vertice*verticeA;
+	Vertice*verticeB;
+
+	while(!lista_prioridad.lista_vacia()){
+		//metodo Dijkstra obtener minimo de la lista_pri  --OK
+		verticeA=obtener_minimo_costo_en_lista();
+		verticeA->cambiar_vicitado(true);
+		//metodo grafo pide vertice responde, 
+		//int cant_ady en vertice , atributo del mismo
+		//obtener la cantidad de adyacentes que tiene el vertice
+		for(i=0; i<=verticeA->obtener_cant_ady() ;i++){
+			//obtener adyacente numero 1 - 2- 3 ...
+			verticeB=verticeA->obtener_ady(i);
+			//vicitado metodo-grafo, vertice-return-atributo
+			if(!verticeB->vicitado()){
+				//obtener_costo;metodo grafo(A,B) costo?
+				if( (verticeB->obtener_cod_vertice==destino) && (verticeB->obtener_costo() > verticeA->obtener_costo()+ g->obtener_costo(verticeA->obtener_cod_vertice() ,verticeB->obtener_cod_vertice()) ) ){
+					//metodo Dijkstra para borrar toda la lista_pri con un for   --OK
+					borrar_lista_resultado();
 				}
 
-				for(int j=0; j<=lista->obtener_tamanio() ;j++){
-					etiquetaLista = lista->buscar_dato(j);
-					if(etiquetaLista->obtener_acumulador() < etiquetaB->obtener_acumulador()){
-						delete etiquetaB;
+				if(verticeB->obtener_costo()> || ){
+					verticeB->cambiar_costo(verticeA->obtener_costo+g->obtener_costo(verticeA->obtener_cod_vertice(),verticeB->obtener_cod_vertice()));
+					//atributo vertice predecesor
+					verticeB->cambiar_predecesor(verticeA->obtener_cod_vertice());
+					if(verticeB->obtener_cod_vertice()==destino){
+						//metodo Dijkstra barrer secuencia   --OK
+						guardar_secuencia_lista_resultado(verticeB);
 					}else{
-						if(etiquetaLista-obtener_acumulador() > etiquetaB->obtener_acumulador()){
-							lista->borrar_dato(j);
-						}
-						lista->insertar(etiquetaB);
+						//adicionar a la lista_pri
+						lista_prioridad.insertar(verticeB);
 					}
-
-
-				}//fin_for2
+				}
 			}
-		}//fin_for1
-		VerticeA->marcar_visitado();
+		
+		}	
 	}
-
-
-
 
 }
 
