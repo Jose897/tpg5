@@ -47,6 +47,8 @@ class Arista {
 		void setear_arista(Arista *);
 
 		long int obtener_costo();
+
+		//void aumentar_cant_ady();
 };
 
 #endif /* ARISTA_H_ */

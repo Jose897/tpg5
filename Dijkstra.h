@@ -29,9 +29,10 @@ class Dijkstra {
 		void inicializar(Grafo*,string,string);
 		Vertice*obtener_minimo_costo_en_lista();
 		void borrar_lista_resultado();
-		void guardar_secuencia_lista_resultado();
+		void guardar_secuencia_lista_resultado(Vertice*);
 		int procesar();
+		~Dijkstra();
 		//int procesar(duracion);
 		//Lista<...>* mostrar();
-
+};
 #endif /* DIJKSTRA_H_ */

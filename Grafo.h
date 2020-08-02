@@ -69,6 +69,8 @@ class Grafo {
 		void recorrido_peso_horas(Vertice *);
 
 		long int obtener_costo(Vertice*,Vertice*);
+
+		Vertice* obtener_primer_vertice();
 };
 
 #endif /* GRAFO_H_ */

@@ -22,7 +22,7 @@ class Vertice {
 		std::string cod_vertice;
 		//atributos para dijkstra
 		bool vicitado;
-		string predecesor;
+		std::string predecesor;
 		long int acumuladorCosto;
 		float acumuladorDuracion;
 		int cant_ady;
@@ -57,7 +57,7 @@ class Vertice {
 
 		void cambiar_vicitado(bool);
 
-		void cambiar_predecesor(string);
+		void cambiar_predecesor(std::string);
 
 		void cambiar_acumulador_costo(long int);
 
@@ -72,6 +72,8 @@ class Vertice {
 		Vertice* obtener_vertice_ady(int);
 
 		bool obtener_vicitado();
+
+		std::string obtener_predecesor();
 
 
 };

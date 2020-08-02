@@ -78,8 +78,9 @@ void Grafo::insertar_arista(Vertice *partida, Vertice *destino, long int costo, 
 {
 	Arista *nueva = new Arista(NULL, NULL, costo, horas);
 	Arista *aux;
+	
 	//para can_ady
-	aux->aumentar_cant_ady();
+	partida->aumentar_cant_ady();
 	aux = partida -> obtener_adyacente();
 	
 	if(aux == NULL)
@@ -218,15 +219,15 @@ void Grafo::recorrido_peso_horas(Vertice *)
 
 }
 long int Grafo::obtener_costo(Vertice* verticeA, Vertice* verticeB){
-	string A,B;
+	std::string A,B;
 	int j=1;
-	bool encntrado=false;
+	bool encontrado=false;
 	B = verticeB->obtener_cod_vertice();
 	
 	Arista*aristaAux;
-	aristaAux = verticeA->obtener_adyacente;
+	aristaAux = verticeA->obtener_adyacente();
 
-	while(!encontrado || j <= verticeA->obtener_cant_ady()){
+	while( (!encontrado) || (j <= verticeA->obtener_cant_ady()) ){
 		A = aristaAux->obtener_adyacente()->obtener_cod_vertice();
 		if(A == B){
 			encontrado=true;
@@ -240,4 +241,8 @@ long int Grafo::obtener_costo(Vertice* verticeA, Vertice* verticeB){
 	}else{
 		return 0;
 	}
+}
+
+Vertice* Grafo::obtener_primer_vertice(){
+	return h;
 }

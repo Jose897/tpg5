@@ -51,7 +51,7 @@ void Vertice::cambiar_vicitado(bool siono){
 	vicitado = siono;
 }
 
-void Vertice::cambiar_predecesor(string codPredecesor){
+void Vertice::cambiar_predecesor(std::string codPredecesor){
 	predecesor = codPredecesor;
 }
 
@@ -77,6 +77,7 @@ int Vertice::obtener_cant_ady(){
 }
 
 Vertice* Vertice::obtener_vertice_ady(int pos){
+	int i;
 	Arista* aux;
 	aux = ady;
 	for(i = 1; i<= pos ; i++){
@@ -88,19 +89,9 @@ Vertice* Vertice::obtener_vertice_ady(int pos){
 bool Vertice::obtener_vicitado(){
 	return vicitado;
 }
+
+std::string Vertice::obtener_predecesor(){
+	return predecesor;
+}
+
 ////////////////////
-void Vertice::cambiar_vicitado(bool siono){
-	vicitado = siono
-}
-void Vertice::cambiar_vicitado(bool siono){
-	vicitado = siono
-}
-void Vertice::cambiar_vicitado(bool siono){
-	vicitado = siono
-}
-void Vertice::cambiar_vicitado(bool siono){
-	vicitado = siono
-}
-void Vertice::cambiar_vicitado(bool siono){
-	vicitado = siono
-}

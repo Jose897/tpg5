@@ -1,6 +1,6 @@
 #include "Menu.h"
 //borrar - prueba
-#include "Vertice.h"i
+#include "Vertice.h"
 #include "Dijkstra.h"
 
 Menu::Menu(BST<string>* &diccionario,Grafo*h){
@@ -106,9 +106,11 @@ void Menu::procesar_opcion_seis(){
 	}else{
 		cout<<"Ingrese origen"<<endl;
 		cin.ignore();
-		getline(cin, origen, "\n");
+		getline(cin, origen);
+		cout<<endl;
 		cout<<"Ingrese destino"<<endl;
-		getline(cin, destino, "\n");
+		getline(cin, destino);
+		cout<<endl;
 
 		if( h->obtener_vertice(origen)==NULL || h->obtener_vertice(destino) ){
 			cout<<"Uno de los vertices no es valido"<<endl;
