@@ -1,4 +1,7 @@
 #include "Menu.h"
+//borrar - prueba
+#include "Vertice.h"i
+#include "Dijkstra.h"
 
 Menu::Menu(BST<string>* &diccionario,Grafo*h){
     this->diccionario = diccionario;
@@ -96,11 +99,44 @@ void Menu::procesar_opcion_cinco(){
 }
 
 void Menu::procesar_opcion_seis(){
-	cout<<" proceso 6 \n";
+	string origen, destino;
+
+	if(h->vacio()){
+		cout<<"El grafo esta vacio"<<endl;
+	}else{
+		cout<<"Ingrese origen"<<endl;
+		cin.ignore();
+		getline(cin, origen, "\n");
+		cout<<"Ingrese destino"<<endl;
+		getline(cin, destino, "\n");
+
+		if( h->obtener_vertice(origen)==NULL || h->obtener_vertice(destino) ){
+			cout<<"Uno de los vertices no es valido"<<endl;
+		
+		}else{   //camino minimo costo
+			Dijkstra dijkstra;
+			dijkstra.inicializar(h, origen, destino);
+			dijkstra.procesar();
+		}
+	}
 }
 
 void Menu::procesar_opcion_siete(){
 	cout<<" proceso 7 \n";
+	Vertice* vertice;
+	
+	vertice = h->obtener_vertice("EZE");
+	cout<<" EZE : "<<vertice->obtener_cod_vertice()<<endl;
+	
+	vertice=h->obtener_vertice("MIA");
+	cout<<" EZE : "<<vertice->obtener_cod_vertice()<<endl;
+	
+	vertice=h->obtener_vertice("FCO");
+	cout<<" EZE : "<<vertice->obtener_cod_vertice()<<endl;
+
+	vertice=h->obtener_vertice("TXL");
+	cout<<" EZE : "<<vertice->obtener_cod_vertice()<<endl;
+
 }
 
 

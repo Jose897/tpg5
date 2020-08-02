@@ -9,21 +9,22 @@
 
 Dijkstra::Dijkstra(){
 	g = 0;
-	lista_pri=0;
+	lista_prioridad=0;
 	lista_Resultado=0;
 }
 
 void Dijkstra::inicializar(Grafo*g,string origen, string destino){
 	Vertice* aux;
 	Lista<Vertice*> lista_prioridad();
+	Lista<Vertice*> lista_resultado();
 	int i;
 	this->g=g;
 	this->origen=origen;
 	this->destino=destino;
-	lista_prioridad=0;
-	lista_Resultado=0;
+	this->lista_prioridad = lista_prioridad;
+	this->lista_Resultado = lista_resultado;
 	aux = g;
-	for( i=0; i<= g->tamanio() ;i++){
+	for( i=1; i<= g->tamanio() ;i++){
 		aux->cambiar_vicitado(false);
 		aux->cambiar_predecesor('-');
 		aux->cambiar_acumulador_costo(-1);
@@ -35,33 +36,33 @@ void Dijkstra::inicializar(Grafo*g,string origen, string destino){
 	lista_prioridad.insertar(aux);
 }
 
-Vertice*obtener_minimo_costo_en_lista(){
+Vertice* Dijkstra::obtener_minimo_costo_en_lista(){
 	Vertice*aux;
 	int i;
 	int menor;
 	unsigned posicion;
 	
-	menor=lista_prioridad.obtener_dato(1)->obtenercosto();
+	menor=lista_prioridad.obtener_dato(1)->obtener_acumuladorCosto();
 	posicion = 1;
 	for(i=1; i <= lista_prioridad.obtener_tamanio() ;i++){
 		aux = lista_prioridad.obtener_dato(i);
-		if(aux->obtener_costo() < menor ){
-			menor=aux->obtener_costo();
+		if(aux->obtener_acumuladorCosto() < menor ){
+			menor=aux->obtener_acumuladorCosto();
 			posicion = i;
 		}
 	}
 	return lista_prioridad.obtener_dato(posicion);
 }
 
-void borrar_lista_resultado(){
+void Dijkstra::borrar_lista_resultado(){
 	unsigned i;
 
-	for(i; i <= lista_resultado.obtener_tamanio() ; i++){
+	for(i=1; i <= lista_resultado.obtener_tamanio() ; i++){
 		lista_resultado.borrar_dato(i);
 	}
 }
 
-void guardar_secuencia_lista_resultado(verticeB){
+void Dijkstra::guardar_secuencia_lista_resultado(verticeB){
 	Vertice*verticeAux;
 	string predecesorAux;
 	
@@ -78,6 +79,7 @@ void guardar_secuencia_lista_resultado(verticeB){
 
 //procesar int costo
 int Dijkstra::procesar(){
+	int i;
 	Vertice*verticeA;
 	Vertice*verticeB;
 
@@ -88,22 +90,22 @@ int Dijkstra::procesar(){
 		//metodo grafo pide vertice responde, 
 		//int cant_ady en vertice , atributo del mismo
 		//obtener la cantidad de adyacentes que tiene el vertice
-		for(i=0; i<=verticeA->obtener_cant_ady() ;i++){
+		for(i=1; i<=verticeA->obtener_cant_ady() ;i++){
 			//obtener adyacente numero 1 - 2- 3 ...
-			verticeB=verticeA->obtener_ady(i);
+			verticeB=verticeA->obtener_vertice_ady(i);
 			//vicitado metodo-grafo, vertice-return-atributo
 			if(!verticeB->vicitado()){
 				//obtener_costo;metodo grafo(A,B) costo?
-				if( (verticeB->obtener_cod_vertice==destino) && (verticeB->obtener_costo() > verticeA->obtener_costo()+ g->obtener_costo(verticeA->obtener_cod_vertice() ,verticeB->obtener_cod_vertice()) ) ){
+				if( (verticeB->obtener_cod_vertice==destino) && (verticeB->obtener_acumuladorCosto() > verticeA->obtener_acumuladorCosto()+ g->obtener_costo(verticeA, verticeB) ){
 					//metodo Dijkstra para borrar toda la lista_pri con un for   --OK
 					borrar_lista_resultado();
 				}
 
-				if(verticeB->obtener_costo()> || ){
-					verticeB->cambiar_costo(verticeA->obtener_costo+g->obtener_costo(verticeA->obtener_cod_vertice(),verticeB->obtener_cod_vertice()));
+				if( (verticeB->obtener_acumuladorCosto() >= verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, VerticeB)) || (verticeB->obtener_acumuladorCosto()== -1 ) ){
+					verticeB->cambiar_acumulador_costo(verticeA->obtener_acumuladorCosto + g->obtener_costo(verticeA, verticeB));
 					//atributo vertice predecesor
 					verticeB->cambiar_predecesor(verticeA->obtener_cod_vertice());
-					if(verticeB->obtener_cod_vertice()==destino){
+					if(verticeB->obtener_cod_vertice() == destino){
 						//metodo Dijkstra barrer secuencia   --OK
 						guardar_secuencia_lista_resultado(verticeB);
 					}else{
@@ -117,10 +119,10 @@ int Dijkstra::procesar(){
 	}
 
 }
-
+/*
 void obtener_camino_minimo(float){
 }
-
+*/
 Dijkstra::~Dijkstra(){
 {
 

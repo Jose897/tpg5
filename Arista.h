@@ -45,6 +45,8 @@ class Arista {
 		//PRE:
 		//POST: setea el puntero a la Arista siguiente
 		void setear_arista(Arista *);
+
+		long int obtener_costo();
 };
 
 #endif /* ARISTA_H_ */

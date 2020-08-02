@@ -34,3 +34,7 @@ void Arista::setear_arista(Arista * ari)
 {
 	sig = ari;
 }
+
+long int Arista::obtener_costo(){
+	return costo;
+}

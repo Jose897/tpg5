@@ -12,6 +12,13 @@ Vertice::Vertice(Vertice * ver, Arista * ari, std::string cod)
 	sig = ver;
 	ady = ari;
 	cod_vertice = cod;
+	//atributos para Dijkstra
+	vicitado=false;
+	predecesor="-";
+	acumuladorCosto = -1;
+	acumuladorDuracion = -1;
+	cant_ady = 0;
+
 }
 
 Vertice* Vertice::obtener_siguiente()
@@ -37,4 +44,63 @@ void Vertice::setear_arista(Arista * ari)
 void Vertice::setear_vertice(Vertice * ver)
 {
 	sig = ver;
+}
+
+//para Dijkstra
+void Vertice::cambiar_vicitado(bool siono){
+	vicitado = siono;
+}
+
+void Vertice::cambiar_predecesor(string codPredecesor){
+	predecesor = codPredecesor;
+}
+
+void Vertice::cambiar_acumulador_costo(long int precio){
+	acumuladorCosto = precio;
+}
+
+void Vertice::cambiar_acumulador_duracion(float hora){
+	acumuladorDuracion = hora;
+}
+
+//
+long int Vertice::obtener_acumuladorCosto(){
+	return acumuladorCosto;
+}
+
+void Vertice::aumentar_cant_ady(){
+	cant_ady++;
+}
+
+int Vertice::obtener_cant_ady(){
+	return cant_ady;
+}
+
+Vertice* Vertice::obtener_vertice_ady(int pos){
+	Arista* aux;
+	aux = ady;
+	for(i = 1; i<= pos ; i++){
+		aux = aux->obtener_siguiente();
+	}
+	return aux->obtener_adyacente();
+}
+
+bool Vertice::obtener_vicitado(){
+	return vicitado;
+}
+////////////////////
+void Vertice::cambiar_vicitado(bool siono){
+	vicitado = siono
+}
+void Vertice::cambiar_vicitado(bool siono){
+	vicitado = siono
+}
+void Vertice::cambiar_vicitado(bool siono){
+	vicitado = siono
+}
+void Vertice::cambiar_vicitado(bool siono){
+	vicitado = siono
+}
+void Vertice::cambiar_vicitado(bool siono){
+	vicitado = siono
 }
