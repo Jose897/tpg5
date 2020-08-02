@@ -28,11 +28,11 @@ class Dijkstra {
 		Dijkstra();
 		void inicializar(Grafo*,string,string);
 		Vertice* obtener_minimo_costo_en_lista();
-		
+		Vertice* obtener_minimo_duracion_en_lista();
 		void borrar_lista_resultado();
 		void guardar_secuencia_lista_resultado(Vertice*);
 		void procesar_costo();
-		//void procesar_duracion();
+		void procesar_duracion();
 		~Dijkstra();
 		//int procesar(duracion);
 		Lista<Vertice*>* obtener_lista_resultado();

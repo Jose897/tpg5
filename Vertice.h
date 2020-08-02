@@ -65,6 +65,8 @@ class Vertice {
 
 		long int obtener_acumuladorCosto();
 
+		float obtener_acumuladorDuracion();
+
 		void aumentar_cant_ady();
 
 		int obtener_cant_ady();

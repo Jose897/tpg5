@@ -70,6 +70,8 @@ class Grafo {
 
 		long int obtener_costo(Vertice*,Vertice*);
 
+		float obtener_duracion(Vertice*,Vertice*);
+
 		Vertice* obtener_primer_vertice();
 };
 

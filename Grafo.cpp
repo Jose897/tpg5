@@ -243,6 +243,31 @@ long int Grafo::obtener_costo(Vertice* verticeA, Vertice* verticeB){
 	}
 }
 
+float Grafo::obtener_duracion(Vertice* verticeA, Vertice* verticeB){
+	std::string A,B;
+	int j=1;
+	bool encontrado=false;
+	B = verticeB->obtener_cod_vertice();
+	
+	Arista*aristaAux;
+	aristaAux = verticeA->obtener_adyacente();
+
+	while( (!encontrado) || (j <= verticeA->obtener_cant_ady()) ){
+		A = aristaAux->obtener_adyacente()->obtener_cod_vertice();
+		if(A == B){
+			encontrado=true;
+		}else{
+			aristaAux = aristaAux->obtener_siguiente();
+		}
+		j++;
+	}
+	if(encontrado){
+		return aristaAux->obtener_duracion();
+	}else{
+		return 0;
+	}
+}
+
 Vertice* Grafo::obtener_primer_vertice(){
 	return h;
 }

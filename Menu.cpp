@@ -170,6 +170,60 @@ void Menu::procesar_opcion_siete(){
 	vertice=h->obtener_vertice("TXL");
 	cout<<" EZE : "<<vertice->obtener_cod_vertice()<<endl;
 
+	float total=0;
+	string origen, destino;
+
+	if(h->vacio()){
+		cout<<"El grafo esta vacio"<<endl;
+	}else{
+		cout<<"Ingrese origen"<<endl;
+		//cin.ignore();
+		//getline(cin, origen);
+		cin>>origen;
+		cout<<endl;
+		cout<<"Ingrese destino"<<endl;
+		//getline(cin, destino);
+		cin>>destino;
+		cout<<endl;
+
+		if( h->obtener_vertice(origen) == NULL || h->obtener_vertice(destino) == NULL ){
+			cout<<"Uno de los vertices no es valido"<<endl;
+		
+		}else{   //camino minimo duracion
+			Dijkstra dijkstra;
+			cout<<"primero "<<endl;
+			dijkstra.inicializar(h, origen, destino);
+			cout<<"primero "<<endl;
+			dijkstra.procesar_duracion();
+			cout<<"primero "<<endl;
+			Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
+			cout<<"primero "<<endl;
+			Vertice* verticeA;
+			cout<<"primero "<<endl;
+			Vertice* verticeB;
+			cout<<"primero "<<endl;
+			
+			if(!lista->lista_vacia()){	
+				for(unsigned i=1; i < lista->obtener_tamanio() ; i++){
+					//cout<<"tamanio lista : "<<lista->obtener_tamanio();
+					verticeA = lista->obtener_dato(i);
+					verticeB = lista->obtener_dato(i+1);
+					cout<<" "<<verticeA->obtener_cod_vertice();
+					total = total + h->obtener_duracion(verticeA,verticeB);
+					cout<<" -->("<<h->obtener_duracion(verticeA,verticeB);
+					
+					if(verticeB->obtener_cod_vertice() == destino ){
+						cout<<"hs)--> "<<verticeB->obtener_cod_vertice()<<"      total : "<<total<<" hs"<<endl;
+					}else{
+						cout<<"hs)->";
+					}
+				}
+			}else{
+				cout<<"No hay ruta"<<endl;
+			}
+		}
+	}
+
 }
 
 

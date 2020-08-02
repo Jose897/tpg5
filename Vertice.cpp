@@ -68,6 +68,9 @@ long int Vertice::obtener_acumuladorCosto(){
 	return acumuladorCosto;
 }
 
+float Vertice::obtener_acumuladorDuracion(){
+	return acumuladorDuracion;
+}
 void Vertice::aumentar_cant_ady(){
 	cant_ady++;
 }

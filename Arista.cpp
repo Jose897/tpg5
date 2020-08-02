@@ -38,3 +38,6 @@ void Arista::setear_arista(Arista * ari)
 long int Arista::obtener_costo(){
 	return costo;
 }
+float Arista::obtener_duracion(){
+	return horas;
+}

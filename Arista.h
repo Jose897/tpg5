@@ -48,6 +48,8 @@ class Arista {
 
 		long int obtener_costo();
 
+		float obtener_duracion();
+
 		//void aumentar_cant_ady();
 };
 
