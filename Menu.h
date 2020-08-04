@@ -10,7 +10,7 @@ using namespace std;
 class Menu{
 
 private:
-    bool salir = false;
+    bool salir;
     BST<string>* diccionario;
     Grafo*h;
 

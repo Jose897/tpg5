@@ -34,7 +34,9 @@ class Dijkstra {
 		void procesar_costo();
 		void procesar_duracion();
 		~Dijkstra();
-		//int procesar(duracion);
+		//
+		//
+		//
 		Lista<Vertice*>* obtener_lista_resultado();
 };
 #endif /* DIJKSTRA_H_ */
