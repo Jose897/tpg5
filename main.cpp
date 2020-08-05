@@ -24,6 +24,7 @@ int main()
     menu.mostrar_menu();
     //bst -> remove(7); Esta linea no funciona correctamente por lo mencionado en los comentarios
     delete bst;
+    delete h;
     return 0;
 }
 

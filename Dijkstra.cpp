@@ -172,5 +172,6 @@ Lista<Vertice*>* Dijkstra::obtener_lista_resultado(){
 	return lista_resultado;
 }
 Dijkstra::~Dijkstra(){
-	//eliminar
+	delete lista_prioridad;
+	delete lista_resultado;
 }
