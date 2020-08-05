@@ -25,7 +25,7 @@ void Menu::mostrar_menu(){
         cout << "7. Vuelo minimo por duracion" << endl;
 	cout << endl;
         cout << "0. Salir" << endl;
-        cout << "Ingrese su opcion " << endl << flush;
+        cout << "Ingrese su opcion: " << endl << flush;
         do {
             cin >> opcion;
             if (cin.good() && opcion_valida(opcion)) {

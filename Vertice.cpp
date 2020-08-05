@@ -47,7 +47,7 @@ void Vertice::setear_vertice(Vertice * ver)
 }
 
 //para Dijkstra
-void Vertice::cambiar_vicitado(bool siono){
+void Vertice::cambiar_visitado(bool siono){
 	vicitado = siono;
 }
 
@@ -64,11 +64,11 @@ void Vertice::cambiar_acumulador_duracion(float hora){
 }
 
 //
-long int Vertice::obtener_acumuladorCosto(){
+long int Vertice::obtener_acumulador_costo(){
 	return acumuladorCosto;
 }
 
-float Vertice::obtener_acumuladorDuracion(){
+float Vertice::obtener_acumulador_duracion(){
 	return acumuladorDuracion;
 }
 void Vertice::aumentar_cant_ady(){
@@ -91,7 +91,7 @@ Vertice* Vertice::obtener_vertice_ady(int pos){
 	return aux->obtener_adyacente();
 }
 
-bool Vertice::obtener_vicitado(){
+bool Vertice::obtener_visitado(){
 	return vicitado;
 }
 

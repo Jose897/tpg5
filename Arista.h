@@ -45,11 +45,11 @@ class Arista {
 		//PRE:
 		//POST: setea el puntero a la Arista siguiente
 		void setear_arista(Arista *);
-		//
+		//Metodo obtener_costo
 		//PRE: constructor ejecutado
 		//POST: devuelve el costo del atributo
 		long int obtener_costo();
-		//
+		//Metodo obtener_duracion
 		//PRE: constructor ejecutado
 		//POST: devuelve la duracion del atributo
 		float obtener_duracion();

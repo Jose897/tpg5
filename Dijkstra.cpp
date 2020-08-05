@@ -25,7 +25,7 @@ void Dijkstra::inicializar(Grafo*h,string origen, string destino){
 	this->lista_resultado = lista_resultado;
 	aux = g->obtener_primer_vertice();
 	for( i=1; i<= g->tamanio() ;i++){
-		aux->cambiar_vicitado(false);
+		aux->cambiar_visitado(false);
 		aux->cambiar_predecesor("-");
 		aux->cambiar_acumulador_costo(0);
 		aux->cambiar_acumulador_duracion(0);
@@ -41,12 +41,12 @@ Vertice* Dijkstra::obtener_minimo_costo_en_lista(){
 	long int menor;
 	unsigned posicion;
 	
-	menor=lista_prioridad->obtener_dato(1)->obtener_acumuladorCosto();
+	menor=lista_prioridad->obtener_dato(1)->obtener_acumulador_costo();
 	posicion = 1;
 	for(i=1; i <= lista_prioridad->obtener_tamanio() ;i++){
 		aux = lista_prioridad->obtener_dato(i);
-		if(aux->obtener_acumuladorCosto() < menor ){
-			menor=aux->obtener_acumuladorCosto();
+		if(aux->obtener_acumulador_costo() < menor ){
+			menor=aux->obtener_acumulador_costo();
 			posicion = i;
 		}
 	}
@@ -89,13 +89,13 @@ void Dijkstra::procesar_camino_minimo_por_costo(){
 
 	while(!lista_prioridad->lista_vacia()){
 		verticeA=obtener_minimo_costo_en_lista();
-		verticeA->cambiar_vicitado(true);
+		verticeA->cambiar_visitado(true);
 
 		for(i=1; i<=verticeA->obtener_cant_ady() ;i++){
 			verticeB = verticeA->obtener_vertice_ady(i);
-			if(!verticeB->obtener_vicitado()){
-				costoAB = verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, verticeB);
-				costoB = verticeB->obtener_acumuladorCosto();
+			if(!verticeB->obtener_visitado()){
+				costoAB = verticeA->obtener_acumulador_costo() + g->obtener_costo(verticeA, verticeB);
+				costoB = verticeB->obtener_acumulador_costo();
 				if( (verticeB->obtener_cod_vertice() == destino) && ( costoB  > costoAB ) ){
 					borrar_lista_resultado();
 				}
@@ -120,12 +120,12 @@ Vertice* Dijkstra::obtener_minimo_duracion_en_lista(){
 	float menor;
 	unsigned posicion;
 	
-	menor=lista_prioridad->obtener_dato(1)->obtener_acumuladorDuracion();
+	menor=lista_prioridad->obtener_dato(1)->obtener_acumulador_duracion();
 	posicion = 1;
 	for(i=1; i <= lista_prioridad->obtener_tamanio() ;i++){
 		aux = lista_prioridad->obtener_dato(i);
-		if(aux->obtener_acumuladorDuracion() < menor ){
-			menor=aux->obtener_acumuladorDuracion();
+		if(aux->obtener_acumulador_duracion() < menor ){
+			menor=aux->obtener_acumulador_duracion();
 			posicion = i;
 		}
 	}
@@ -143,13 +143,13 @@ void Dijkstra::procesar_camino_minimo_por_duracion(){
 
 	while(!lista_prioridad->lista_vacia()){
 		verticeA=obtener_minimo_duracion_en_lista();
-		verticeA->cambiar_vicitado(true);
+		verticeA->cambiar_visitado(true);
 
 		for(i=1; i<=verticeA->obtener_cant_ady() ;i++){
 			verticeB = verticeA->obtener_vertice_ady(i);
-			if(!verticeB->obtener_vicitado()){
-				duracionAB = verticeA->obtener_acumuladorDuracion() + g->obtener_duracion(verticeA,verticeB) ;
-				duracionB = verticeB->obtener_acumuladorDuracion();
+			if(!verticeB->obtener_visitado()){
+				duracionAB = verticeA->obtener_acumulador_duracion() + g->obtener_duracion(verticeA,verticeB) ;
+				duracionB = verticeB->obtener_acumulador_duracion();
 				if( (verticeB->obtener_cod_vertice() == destino) && (duracionB > duracionAB ) ){
 					borrar_lista_resultado();
 				}
