@@ -67,11 +67,17 @@ class Grafo {
 		//PRE:
 		//POST:
 		void recorrido_peso_horas(Vertice *);
-
+		//
+		//PRE: parametros validos
+		//POST: devuelve el costo de la arista que une a los parametros
 		long int obtener_costo(Vertice*,Vertice*);
-
+		//
+		//PRE: parametros validos
+		//POST:  devuelve la duracion de la arista que une a los parametros
 		float obtener_duracion(Vertice*,Vertice*);
-
+		//
+		//PRE: Grafo no vacio
+		//POST: devuelve el primer vertice 
 		Vertice* obtener_primer_vertice();
 };
 

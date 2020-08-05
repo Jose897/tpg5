@@ -119,7 +119,7 @@ void Menu::procesar_opcion_seis(){
 		}else{   //camino minimo costo
 			Dijkstra dijkstra;
 			dijkstra.inicializar(h, origen, destino);
-			dijkstra.procesar_costo();
+			dijkstra.procesar_camino_minimo_por_costo();
 			Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
 			Vertice* verticeA;
 			Vertice* verticeB;
@@ -169,7 +169,7 @@ void Menu::procesar_opcion_siete(){
 		}else{   //camino minimo duracion
 			Dijkstra dijkstra;
 			dijkstra.inicializar(h, origen, destino);
-			dijkstra.procesar_duracion();
+			dijkstra.procesar_camino_minimo_por_duracion();
 			Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
 			Vertice* verticeA;
 			Vertice* verticeB;

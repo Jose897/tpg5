@@ -52,7 +52,6 @@ void Archivo::lectura_vuelos(const string nombre_archivo, Grafo*h){
 			h->insertar_vertice(iata_destino);
 		}
 		h->insertar_arista( h->obtener_vertice(iata_partida), h->obtener_vertice(iata_destino), precio, tiempo);
-                cout << iata_partida << " " <<iata_destino << " " << precio << " " << tiempo << endl; // cout de prueba
             }
             archivo.close();
         }

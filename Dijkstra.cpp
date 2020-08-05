@@ -81,33 +81,36 @@ void Dijkstra::guardar_secuencia_lista_resultado(Vertice* verticeB){
 	lista_resultado->insertar(verticeAux);
 }
 
-void Dijkstra::procesar_costo(){
+void Dijkstra::procesar_camino_minimo_por_costo(){
 	int i;
+	long int costoAB, costoB;
 	Vertice*verticeA;
 	Vertice*verticeB;
+
 	while(!lista_prioridad->lista_vacia()){
 		verticeA=obtener_minimo_costo_en_lista();
 		verticeA->cambiar_vicitado(true);
+
 		for(i=1; i<=verticeA->obtener_cant_ady() ;i++){
 			verticeB = verticeA->obtener_vertice_ady(i);
 			if(!verticeB->obtener_vicitado()){
-				if( (verticeB->obtener_cod_vertice() == destino) && (verticeB->obtener_acumuladorCosto() > verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, verticeB) ) ){
+				costoAB = verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, verticeB);
+				costoB = verticeB->obtener_acumuladorCosto();
+				if( (verticeB->obtener_cod_vertice() == destino) && ( costoB  > costoAB ) ){
 					borrar_lista_resultado();
 				}
-
-				if( verticeB->obtener_acumuladorCosto() == 0 ){
+				if( costoB  == 0 && verticeB->obtener_cod_vertice() != destino ){
 					lista_prioridad->insertar(verticeB);
-				}
-
-				if( (verticeB->obtener_acumuladorCosto() >= (verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, verticeB))) || (verticeB->obtener_acumuladorCosto()== 0 ) ){
-					verticeB->cambiar_acumulador_costo(verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, verticeB));
+				}	
+				if( ( costoB >= costoAB ) || ( costoB == 0 ) ){
+					verticeB->cambiar_acumulador_costo( costoAB );
 					verticeB->cambiar_predecesor(verticeA->obtener_cod_vertice());
 					if(verticeB->obtener_cod_vertice() == destino){
 						guardar_secuencia_lista_resultado(verticeB);
 					}
 				}
 			}	
-		}	
+		}
 	}
 }
 
@@ -132,29 +135,29 @@ Vertice* Dijkstra::obtener_minimo_duracion_en_lista(){
 	return aux;
 }
 
-void Dijkstra::procesar_duracion(){
+void Dijkstra::procesar_camino_minimo_por_duracion(){
 	int i;
-	float duracionA, duracionB;
+	float duracionAB, duracionB;
 	Vertice*verticeA;
 	Vertice*verticeB;
+
 	while(!lista_prioridad->lista_vacia()){
 		verticeA=obtener_minimo_duracion_en_lista();
-		
 		verticeA->cambiar_vicitado(true);
+
 		for(i=1; i<=verticeA->obtener_cant_ady() ;i++){
 			verticeB = verticeA->obtener_vertice_ady(i);
 			if(!verticeB->obtener_vicitado()){
-				if( (verticeB->obtener_cod_vertice() == destino) && (verticeB->obtener_acumuladorDuracion() > verticeA->obtener_acumuladorDuracion()+ g->obtener_duracion(verticeA, verticeB) ) ){
+				duracionAB = verticeA->obtener_acumuladorDuracion() + g->obtener_duracion(verticeA,verticeB) ;
+				duracionB = verticeB->obtener_acumuladorDuracion();
+				if( (verticeB->obtener_cod_vertice() == destino) && (duracionB > duracionAB ) ){
 					borrar_lista_resultado();
 				}
-				
-				if( verticeB->obtener_acumuladorDuracion() == 0 ){
+				if( ( duracionB == 0 ) && ( verticeB->obtener_cod_vertice() != destino ) ){
 					lista_prioridad->insertar(verticeB);
 				}
-				duracionA = verticeA->obtener_acumuladorDuracion() + g->obtener_duracion(verticeA,verticeB) ;
-				duracionB = verticeB->obtener_acumuladorDuracion();
-				if( ( duracionB >= duracionA ) || (verticeB->obtener_acumuladorDuracion() == 0 ) ){
-					verticeB->cambiar_acumulador_duracion(verticeA->obtener_acumuladorDuracion() + g->obtener_duracion(verticeA, verticeB));
+				if( ( duracionB >= duracionAB ) || ( duracionB == 0 ) ){
+					verticeB->cambiar_acumulador_duracion(duracionAB);
 					verticeB->cambiar_predecesor(verticeA->obtener_cod_vertice());
 					if(verticeB->obtener_cod_vertice() == destino){
 						guardar_secuencia_lista_resultado(verticeB);

@@ -24,8 +24,8 @@ public:
     void procesar_opcion_tres();        //Se le debe pasar un puntero al arbol
     void procesar_opcion_cuatro();      //Se le debe pasar un puntero al arbol
     void procesar_opcion_cinco();      //Se le debe pasar un puntero al arbol
-    void procesar_opcion_seis();      //Se le debe pasar un puntero al arbol
-    void procesar_opcion_siete();      //Se le debe pasar un puntero al arbol
+    void procesar_opcion_seis();       //Grafo: camino minimo por costo
+    void procesar_opcion_siete();      //Grafo: camino minimo por duracion
 };
 
 #endif //TPG5_MENU_H
