@@ -185,6 +185,7 @@ void Menu::procesar_opcion_siete(){
 					if(verticeB->obtener_cod_vertice() == destino ){
 						cout<<"hs)--> "<<verticeB->obtener_cod_vertice()<<"      total : "<<total<<" hs"<<endl;
 						i++;
+						total = 0;
 					}else{
 						cout<<"hs)->";
 					}

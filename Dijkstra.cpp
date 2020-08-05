@@ -32,13 +32,12 @@ void Dijkstra::inicializar(Grafo*h,string origen, string destino){
 		aux=aux->obtener_siguiente();
 	}
 	aux=g->obtener_vertice(origen); 
-	//gregar metodo a Grafo, obtener un puntero a Vertice origen
 	lista_prioridad->insertar(aux);
 }
 
 Vertice* Dijkstra::obtener_minimo_costo_en_lista(){
 	Vertice*aux;
-	int i;
+	unsigned i;
 	long int menor;
 	unsigned posicion;
 	
@@ -68,7 +67,6 @@ void Dijkstra::borrar_lista_resultado(){
 }
 
 void Dijkstra::guardar_secuencia_lista_resultado(Vertice* verticeB){
-cout<<"guardar secuencia en lista resultado"<<endl;
 	Vertice*verticeAux;
 	string predecesorAux;
 	
@@ -83,34 +81,17 @@ cout<<"guardar secuencia en lista resultado"<<endl;
 	lista_resultado->insertar(verticeAux);
 }
 
-
-//procesar int costo
 void Dijkstra::procesar_costo(){
 	int i;
 	Vertice*verticeA;
 	Vertice*verticeB;
-//	cout<<" procesar\n";
 	while(!lista_prioridad->lista_vacia()){
-		//metodo Dijkstra obtener minimo de la lista_pri  --OK
 		verticeA=obtener_minimo_costo_en_lista();
-		
 		verticeA->cambiar_vicitado(true);
-		//metodo grafo pide vertice responde, 
-		//int cant_ady en vertice , atributo del mismo
-		//obtener la cantidad de adyacentes que tiene el vertice
-//		cout<<"entro al while\n";
 		for(i=1; i<=verticeA->obtener_cant_ady() ;i++){
-			//obtener adyacente numero 1 - 2- 3 ...
-//			cout<<"entro en for "<<verticeA->obtener_cant_ady()<<endl;
 			verticeB = verticeA->obtener_vertice_ady(i);
-//			cout<<"verticeB "<<verticeB->obtener_cod_vertice()<<endl ;
-			//vicitado metodo-grafo, vertice-return-atributo
 			if(!verticeB->obtener_vicitado()){
-//				cout<<" no vicitado \n";
-				//obtener_costo;metodo grafo(A,B) costo?
 				if( (verticeB->obtener_cod_vertice() == destino) && (verticeB->obtener_acumuladorCosto() > verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, verticeB) ) ){
-//				cout<<" borrar lista_resultado \n";
-					//metodo Dijkstra para borrar toda la lista_pri con un for   --OK
 					borrar_lista_resultado();
 				}
 
@@ -119,29 +100,20 @@ void Dijkstra::procesar_costo(){
 				}
 
 				if( (verticeB->obtener_acumuladorCosto() >= (verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, verticeB))) || (verticeB->obtener_acumuladorCosto()== 0 ) ){
-//				cout<<" cambiar acumulador costo \n";
 					verticeB->cambiar_acumulador_costo(verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, verticeB));
-					//atributo vertice predecesor
 					verticeB->cambiar_predecesor(verticeA->obtener_cod_vertice());
 					if(verticeB->obtener_cod_vertice() == destino){
-//				cout<<" llego a destino\n";
-						//metodo Dijkstra barrer secuencia   --OK
 						guardar_secuencia_lista_resultado(verticeB);
-					}else{
-//				cout<<" insertar en lista \n";
-						//adicionar a la lista_pri
-						//lista_prioridad->insertar(verticeB);
 					}
 				}
 			}	
 		}	
 	}
-
 }
-//////////////////////
+
 Vertice* Dijkstra::obtener_minimo_duracion_en_lista(){
 	Vertice*aux;
-	int i;
+	unsigned i;
 	float menor;
 	unsigned posicion;
 	
@@ -154,6 +126,7 @@ Vertice* Dijkstra::obtener_minimo_duracion_en_lista(){
 			posicion = i;
 		}
 	}
+
 	aux = lista_prioridad->obtener_dato(posicion);
 	lista_prioridad->borrar_dato(posicion);
 	return aux;
@@ -161,46 +134,30 @@ Vertice* Dijkstra::obtener_minimo_duracion_en_lista(){
 
 void Dijkstra::procesar_duracion(){
 	int i;
+	float duracionA, duracionB;
 	Vertice*verticeA;
 	Vertice*verticeB;
-	cout<<" procesar\n";
 	while(!lista_prioridad->lista_vacia()){
-		//metodo Dijkstra obtener minimo de la lista_pri  --OK
 		verticeA=obtener_minimo_duracion_en_lista();
 		
 		verticeA->cambiar_vicitado(true);
-		//metodo grafo pide vertice responde, 
-		//int cant_ady en vertice , atributo del mismo
-		//obtener la cantidad de adyacentes que tiene el vertice
-		cout<<"entro al while\n";
 		for(i=1; i<=verticeA->obtener_cant_ady() ;i++){
-			//obtener adyacente numero 1 - 2- 3 ...
-			cout<<"entro en for "<<verticeA->obtener_cant_ady()<<endl;
 			verticeB = verticeA->obtener_vertice_ady(i);
-			cout<<"verticeB "<<verticeB->obtener_cod_vertice()<<endl ;
-			//vicitado metodo-grafo, vertice-return-atributo
 			if(!verticeB->obtener_vicitado()){
-				cout<<" no vicitado \n";
-				//obtener_costo;metodo grafo(A,B) costo?
 				if( (verticeB->obtener_cod_vertice() == destino) && (verticeB->obtener_acumuladorDuracion() > verticeA->obtener_acumuladorDuracion()+ g->obtener_duracion(verticeA, verticeB) ) ){
-//				cout<<" borrar lista_resultado \n";
-					//metodo Dijkstra para borrar toda la lista_pri con un for   --OK
 					borrar_lista_resultado();
 				}
-
-				if( (verticeB->obtener_acumuladorDuracion() >= (verticeA->obtener_acumuladorDuracion() + g->obtener_duracion(verticeA, verticeB))) || (verticeB->obtener_acumuladorDuracion()== 0 ) ){
-//				cout<<" cambiar acumulador costo \n";
+				
+				if( verticeB->obtener_acumuladorDuracion() == 0 ){
+					lista_prioridad->insertar(verticeB);
+				}
+				duracionA = verticeA->obtener_acumuladorDuracion() + g->obtener_duracion(verticeA,verticeB) ;
+				duracionB = verticeB->obtener_acumuladorDuracion();
+				if( ( duracionB >= duracionA ) || (verticeB->obtener_acumuladorDuracion() == 0 ) ){
 					verticeB->cambiar_acumulador_duracion(verticeA->obtener_acumuladorDuracion() + g->obtener_duracion(verticeA, verticeB));
-					//atributo vertice predecesor
 					verticeB->cambiar_predecesor(verticeA->obtener_cod_vertice());
 					if(verticeB->obtener_cod_vertice() == destino){
-//				cout<<" llego a destino\n";
-						//metodo Dijkstra barrer secuencia   --OK
 						guardar_secuencia_lista_resultado(verticeB);
-					}else{
-//				cout<<" insertar en lista \n";
-						//adicionar a la lista_pri
-						lista_prioridad->insertar(verticeB);
 					}
 				}
 			}	
@@ -211,11 +168,6 @@ void Dijkstra::procesar_duracion(){
 Lista<Vertice*>* Dijkstra::obtener_lista_resultado(){
 	return lista_resultado;
 }
-/*
-void obtener_camino_minimo(float){
-}
-*/
 Dijkstra::~Dijkstra(){
 	//eliminar
 }
-
