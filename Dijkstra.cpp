@@ -39,7 +39,7 @@ void Dijkstra::inicializar(Grafo*h,string origen, string destino){
 Vertice* Dijkstra::obtener_minimo_costo_en_lista(){
 	Vertice*aux;
 	int i;
-	int menor;
+	long int menor;
 	unsigned posicion;
 	
 	menor=lista_prioridad->obtener_dato(1)->obtener_acumuladorCosto();
@@ -108,10 +108,14 @@ void Dijkstra::procesar_costo(){
 			if(!verticeB->obtener_vicitado()){
 //				cout<<" no vicitado \n";
 				//obtener_costo;metodo grafo(A,B) costo?
-				if( (verticeB->obtener_cod_vertice() == destino) && (verticeB->obtener_acumuladorCosto() > verticeA->obtener_acumuladorCosto()+ g->obtener_costo(verticeA, verticeB) ) ){
+				if( (verticeB->obtener_cod_vertice() == destino) && (verticeB->obtener_acumuladorCosto() > verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, verticeB) ) ){
 //				cout<<" borrar lista_resultado \n";
 					//metodo Dijkstra para borrar toda la lista_pri con un for   --OK
 					borrar_lista_resultado();
+				}
+
+				if( verticeB->obtener_acumuladorCosto() == 0 ){
+					lista_prioridad->insertar(verticeB);
 				}
 
 				if( (verticeB->obtener_acumuladorCosto() >= (verticeA->obtener_acumuladorCosto() + g->obtener_costo(verticeA, verticeB))) || (verticeB->obtener_acumuladorCosto()== 0 ) ){
@@ -126,7 +130,7 @@ void Dijkstra::procesar_costo(){
 					}else{
 //				cout<<" insertar en lista \n";
 						//adicionar a la lista_pri
-						lista_prioridad->insertar(verticeB);
+						//lista_prioridad->insertar(verticeB);
 					}
 				}
 			}	

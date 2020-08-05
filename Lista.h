@@ -125,9 +125,12 @@ void Lista<Dato>::borrar_dato(unsigned pos)
         }
         else
         {
-            for (unsigned cont = 0; (cont < pos-1 && aux->obtener_siguiente()); cont++)
-                aux = aux->obtener_siguiente();
-            aux->asignar_siguiente(aux->obtener_siguiente());
+	    Nodo<Dato>* pant;
+            for (unsigned cont = 0; (cont < pos-1 && aux->obtener_siguiente()); cont++){
+                    pant = aux;
+		    aux = aux->obtener_siguiente();
+	    }
+            pant->asignar_siguiente(aux->obtener_siguiente());
         }
         delete aux;
         tam--;
