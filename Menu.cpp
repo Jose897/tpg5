@@ -1,7 +1,6 @@
 #include "Menu.h"
 //borrar - prueba
-#include "Vertice.h"
-#include "Dijkstra.h"
+
 
 Menu::Menu(BST<string>* &diccionario,Grafo*h){
     this->diccionario = diccionario;
@@ -19,11 +18,11 @@ void Menu::mostrar_menu(){
         cout << "3. Eliminar un aeropuerto" << endl;
         cout << "4. Mostrar todos los aeropuertos" << endl;
         cout << "5. Mostrar arbol a lo ancho" << endl;
-	cout << endl;
+	    cout << endl;
         cout << "->Vuelos:" << endl;
         cout << "6. Vuelo minimo por costo" << endl;
         cout << "7. Vuelo minimo por duracion" << endl;
-	cout << endl;
+	    cout << endl;
         cout << "0. Salir" << endl;
         cout << "Ingrese su opcion: " << endl << flush;
         do {
@@ -203,7 +202,7 @@ void Menu::procesar_opcion_siete(){
 void Menu::procesar_opcion(int opcion){
 
     switch(opcion){
-	case 0:
+	    case 0:
             cout << endl << "Gracias por utilizar el programa. Hasta luego." << endl;
             salir = true;
             break;

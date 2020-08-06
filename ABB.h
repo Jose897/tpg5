@@ -9,10 +9,10 @@ template <class T>
 class BST
 {
 private:
-    // attributes
+    // atributos
     BSTNode<T>* root;
 
-    // methods
+    // metodos
     BSTNode<T>* insert(BSTNode<T>* node, T data, Aeropuertos* valor);
     void print_in_order(BSTNode<T> * node);
     void print_ancho(BSTNode<T> * node);
@@ -26,20 +26,29 @@ private:
     void delete_all(BSTNode<T>* node);
 
 public:
-    //methods
+    //metodos
 
-    // Creates an empty tree
+    //PRE:--
+    //POST: Crea un arbol vacio
     BST();
 
-     // Adds a new node to the actual BST. If its the tree is empty
-     // the node inserted will be the root
+    //PRE:
+    //POST: Inserta un nodo en el arbol, si esta vacio el nodo sera la raiz
     void insert(T data, Aeropuertos* valor);
 
-    // Prints all the data stored in the BST, sorted from the
-    // smallest value to the greatest value.
+    //PRE: Arbol creado
+    //POST: Imprime todos los datos del BST de mas chico a mas grande
     void print_in_order();
+
+    //PRE: Arbol creado
+    //POST: Imprime el arbol a lo ancho por niveles
     void print_ancho();
+
+    //PRE:
+    //POST:
     void obtener_valor(T data);
+
+
     // Finds a given value in the BST. If the key exists it returns
     // TRUE, otherwise it returns FALSE.
     bool search(T data);
@@ -56,14 +65,18 @@ public:
     // Finds the predecessor of a given data value.
     T predecessor(T data);
 
-    // Removes a given data from the BST
+    //PRE: Dato este en el arbol
+    //POST: Borra un dato del arbol
     void remove(T data);
 
     BSTNode<T>* get_root();
     bool empty();
 
-    // Deletes all the nodes in the BST
+    //PRE: Arbol creado
+    //POST: borra todos los nodos
     void delete_all();
+
+    //destructor
     ~BST<T>();
 
 };
