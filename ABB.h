@@ -32,7 +32,7 @@ public:
     //POST: Crea un arbol vacio
     BST();
 
-    //PRE:
+    //PRE: Arbol creado
     //POST: Inserta un nodo en el arbol, si esta vacio el nodo sera la raiz
     void insert(T data, Aeropuertos* valor);
 
@@ -43,14 +43,11 @@ public:
     //PRE: Arbol creado
     //POST: Imprime el arbol a lo ancho por niveles
     void print_ancho();
-
-    //PRE:
-    //POST:
+    //PRE: Arbol creado
+    //POST: Muestra la clave y el valor asociado del codigo IATA que se pasa como parametro
     void obtener_valor(T data);
-
-
-    // Finds a given value in the BST. If the key exists it returns
-    // TRUE, otherwise it returns FALSE.
+    //PRE: Arbol creado
+    //POST: Si la clave existe, devuelve TRUE, de lo contrario, devuelve FALSE.
     bool search(T data);
 
     // Finds the minimum value that exist in the BST.
@@ -64,7 +61,6 @@ public:
 
     // Finds the predecessor of a given data value.
     T predecessor(T data);
-
     //PRE: Dato este en el arbol
     //POST: Borra un dato del arbol
     void remove(T data);
@@ -76,7 +72,7 @@ public:
     //POST: borra todos los nodos
     void delete_all();
 
-    //destructor
+    //Destructor
     ~BST<T>();
 
 };
