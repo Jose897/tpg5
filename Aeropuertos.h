@@ -38,10 +38,10 @@ class Aeropuertos{
         // PRE: -
         // POST: Devuelve la cantidad de destinos nacionales
         int obtener_destinos_nacionales();
-        // PRE: Objeto Aeropuerto creado
+        // PRE: -
         // POST: Devuelve la cantidad de destinos internacionales
         int obtener_destinos_internacionales();
-        // PRE: Objeto Aeropuerto creado
+        // PRE: -
         // POST: Muestra los datos del objeto de forma ordenada
         void mostrar();
 };
