@@ -8,24 +8,53 @@
 using namespace std;
 
 class Menu{
-
-private:
-    bool salir;
-    BST<string>* diccionario;
-    Grafo*h;
-
-public:
-    Menu(BST<string>* &diccionario,Grafo*h);
-    void mostrar_menu();
-    bool opcion_valida(int entrada);
-    void procesar_opcion(int opcion);   //Se le debe pasar un puntero al arbol
-    void procesar_opcion_uno();         //Se le debe pasar un puntero al arbol
-    void procesar_opcion_dos();         //Se le debe pasar un puntero al arbol
-    void procesar_opcion_tres();        //Se le debe pasar un puntero al arbol
-    void procesar_opcion_cuatro();      //Se le debe pasar un puntero al arbol
-    void procesar_opcion_cinco();      //Se le debe pasar un puntero al arbol
-    void procesar_opcion_seis();       //Grafo: camino minimo por costo
-    void procesar_opcion_siete();      //Grafo: camino minimo por duracion
+    private:
+        bool salir;
+        BST<string>* diccionario;
+        Grafo*h;
+    public:
+        // Constructor
+        // PRE: -
+        // POST: Crea el objeto Menu
+        Menu(BST<string>* &diccionario,Grafo*h);
+        // Muestra el menu con las opciones disponibles para elegir
+        // PRE: -
+        // POST: -
+        void mostrar_menu();
+        // PRE: La opcion debe ser un entero
+        // POST: Devuelve true si la opcion es mayor o igual a 0 y menor o igual a 7
+        bool opcion_valida(int entrada);
+        // PRE: La opcion debe ser un entero
+        // POST: -
+        void procesar_opcion(int opcion);
+        // Se encarga de la opcion 1 del menu
+        // PRE: -
+        // POST: -
+        void procesar_opcion_uno();
+        // Se encarga de la opcion 2 del menu
+        // PRE: -
+        // POST: -
+        void procesar_opcion_dos();
+        // Se encarga de la opcion 3 del menu
+        // PRE: -
+        // POST: -
+        void procesar_opcion_tres();
+        // Se encarga de la opcion 4 del menu
+        // PRE: -
+        // POST: -
+        void procesar_opcion_cuatro();
+        // Se encarga de la opcion 5 del menu
+        // PRE: -
+        // POST: -
+        void procesar_opcion_cinco();
+        // Se encarga de la opcion 6 del menu
+        // PRE: -
+        // POST: -
+        void procesar_opcion_seis();
+        // Se encarga de la opcion 7 del menu
+        // PRE: -
+        // POST: -
+        void procesar_opcion_siete();
 };
 
 #endif //TPG5_MENU_H
