@@ -13,17 +13,17 @@ private:
     BSTNode<T>* root;
 
     // metodos
-    BSTNode<T>* insertar(BSTNode<T>* node, T data, Aeropuertos* valor);
-    void imprimir_en_orden(BSTNode<T> * node);
-    void imprimir_ancho(BSTNode<T> * node);
-    void mostrar_elemento(BSTNode<T> * node, T data);
-    BSTNode<T>* buscar(BSTNode<T>* node, T data);
-    T buscar_min(BSTNode<T>* node);
-    T buscar_max(BSTNode<T>* node);
-    T siguiente(BSTNode<T>* node);
-    T anterior(BSTNode<T>* node);
-    BSTNode<T>* eliminar(BSTNode<T>* node, T data);
-    void eliminar_todos(BSTNode<T>* node);
+    BSTNode<T>* insertar(BSTNode<T>* nodo, T data, Aeropuertos* valor);
+    void imprimir_en_orden(BSTNode<T> * nodo);
+    void imprimir_ancho(BSTNode<T> * nodo);
+    void mostrar_elemento(BSTNode<T> * nodo, T data);
+    BSTNode<T>* buscar(BSTNode<T>* nodo, T data);
+    T buscar_min(BSTNode<T>* nodo);
+    T buscar_max(BSTNode<T>* nodo);
+    T siguiente(BSTNode<T>* nodo);
+    T anterior(BSTNode<T>* nodo);
+    BSTNode<T>* eliminar(BSTNode<T>* nodo, T data);
+    void eliminar_todos(BSTNode<T>* nodo);
 
 public:
     //metodos
@@ -74,20 +74,20 @@ BST<T>::BST() {
 }
 
 template <class T>
-BSTNode<T>* BST<T>::insertar(BSTNode<T>* node, T data, Aeropuertos* valor) {
+BSTNode<T>* BST<T>::insertar(BSTNode<T>* nodo, T data, Aeropuertos* valor) {
 
-    if (node == NULL) {
-        node = new BSTNode<T>(data, valor);
+    if (nodo == NULL) {
+        nodo = new BSTNode<T>(data, valor);
     }
 
-    else if (data > node->get_data()) {
-        node->set_right(insertar(node->get_right(), data, valor), node);
+    else if (data > nodo->obtener_clave()) {
+        nodo->set_right(insertar(nodo->obtener_derecho(), data, valor), nodo);
     }
 
     else {
-        node->set_left(insertar(node->get_left(), data, valor), node);
+        nodo->set_left(insertar(nodo->obtener_izquierdo(), data, valor), nodo);
     }
-    return node;
+    return nodo;
 }
 
 template <class T>
@@ -97,15 +97,14 @@ void BST<T>::insertar(T data, Aeropuertos* valor)
 }
 
 template <class T>
-void BST<T>::imprimir_en_orden(BSTNode<T>* node)
+void BST<T>::imprimir_en_orden(BSTNode<T>* nodo)
 {
-    if (node != NULL)
-    {
-        imprimir_en_orden(node->get_left());
-        std::cout<<"\nClave = "<< node->get_data()<<endl;
-        std::cout<<"\nValor = " << endl;
-        node->get_valor()->mostrar();
-        imprimir_en_orden(node->get_right());
+    if (nodo != NULL){
+        imprimir_en_orden(nodo->obtener_izquierdo());
+        cout << "\nClave = " << nodo->obtener_clave() << endl;
+        cout<<"\nValor = " << endl;
+        nodo->obtener_valor()->mostrar();
+        imprimir_en_orden(nodo->obtener_derecho());
     }
 }
 
@@ -116,9 +115,9 @@ void BST<T>::imprimir_en_orden()
 }
 
 template <class T>
-void BST<T>::imprimir_ancho(BSTNode<T>* node) {
+void BST<T>::imprimir_ancho(BSTNode<T>* nodo) {
     queue < BSTNode<T> * > cola;
-    cola.push(node);
+    cola.push(nodo);
     while (true) {
         int tamanio_cola = cola.size();
         if (tamanio_cola == 0) {
@@ -127,12 +126,12 @@ void BST<T>::imprimir_ancho(BSTNode<T>* node) {
         int i = 0;
         while (i < tamanio_cola) {
             BSTNode<T> * n = cola.front();
-            cout << n->get_data() << " ";
-            if (n->get_left() != NULL) {
-                cola.push(n->get_left());
+            cout << n->obtener_clave() << " ";
+            if (n->obtener_izquierdo() != NULL) {
+                cola.push(n->obtener_izquierdo());
             }
-            if (n->get_right() != NULL) {
-                cola.push(n->get_right());
+            if (n->obtener_derecho() != NULL) {
+                cola.push(n->obtener_derecho());
             }
             cola.pop();
             i++;
@@ -149,19 +148,21 @@ void BST<T>::imprimir_ancho()
 
 
 template <class T>
-void BST<T>::mostrar_elemento(BSTNode<T>* node, T data)
+void BST<T>::mostrar_elemento(BSTNode<T>* nodo, T data)
 {
-    if (node == NULL || node->get_data() == data) {
-        std::cout << "\nClave = " << node->get_data() << endl;
-        std::cout << "\nValor = " << endl;
-        node->get_valor()->mostrar();
+    if (nodo == NULL || nodo->obtener_clave() == data)
+    {
+        cout << "\nClave = " << nodo->obtener_clave() << endl;
+        cout << "\nValor = " << endl;
+        nodo->obtener_valor()->mostrar();
     }
-    else if (data > node->get_data()){
-        mostrar_elemento(node->get_right(), data);
+    else if (data > nodo->obtener_clave()){
+
+        mostrar_elemento(nodo->obtener_derecho(), data);
     }
 
     else {
-        mostrar_elemento(node->get_left(), data);
+        mostrar_elemento(nodo->obtener_izquierdo(), data);
     }
 
 }
@@ -173,15 +174,15 @@ void BST<T>::mostrar_elemento(T data)
 }
 
 template <class T>
-BSTNode<T>* BST<T>::buscar(BSTNode<T>* node, T data)
+BSTNode<T>* BST<T>::buscar(BSTNode<T>* nodo, T data)
 {
-    if (node == NULL || node->get_data() == data)
-        return node;
+    if (nodo == NULL || nodo->obtener_clave() == data)
+        return nodo;
 
-    if (data > node->get_data())
-        return buscar(node->get_right(), data);
+    if (data > nodo->obtener_clave())
+        return buscar(nodo->obtener_derecho(), data);
 
-    return buscar(node->get_left(), data);
+    return buscar(nodo->obtener_izquierdo(), data);
 }
 
 template <class T>
@@ -193,78 +194,77 @@ bool BST<T>::buscar(T data)
 }
 
 template <class T>
-T BST<T>::buscar_min(BSTNode<T>* node)
+T BST<T>::buscar_min(BSTNode<T>* nodo)
 {
-    if(node == NULL)
+    if(nodo == NULL)
         return NULL;
-    else if(node->get_left() == NULL)
-        return node->get_data();
+    else if(nodo->obtener_izquierdo() == NULL)
+        return nodo->obtener_clave();
     else
-        return buscar_min(node->get_left());
+        return buscar_min(nodo->obtener_izquierdo());
 }
 
 
 template <class T>
-T BST<T>::buscar_max(BSTNode<T>* node)
+T BST<T>::buscar_max(BSTNode<T>* nodo)
 {
-    if(node == NULL)
+    if(nodo == NULL)
         return NULL;
-    else if(node->get_right() == NULL)
-        return node->get_data();
+    else if(nodo->obtener_derecho() == NULL)
+        return nodo->obtener_clave();
     else
-        return buscar_max(node->get_right());
+        return buscar_max(nodo->obtener_derecho());
 }
 
 
 template <class T>
-T BST<T>::siguiente(BSTNode<T>* node)
+T BST<T>::siguiente(BSTNode<T>* nodo)
 {
-    if (node->get_right() != NULL)
+    if (nodo->obtener_derecho() != NULL)
     {
-        return buscar_min(node->get_right());
+        return buscar_min(nodo->obtener_derecho());
     }
     BSTNode<T>* successor = NULL;
     BSTNode<T>* ancestor = this->root;
-    while(ancestor != node) {
-        if(node->get_data() < ancestor->get_data()) {
+    while(ancestor != nodo) {
+        if(nodo->obtener_clave() < ancestor->obtener_clave()) {
             successor = ancestor;
-            ancestor = ancestor->get_left();
+            ancestor = ancestor->obtener_izquierdo();
         }
         else
-            ancestor = ancestor->get_right();
+            ancestor = ancestor->obtener_derecho();
     }
-    return successor->get_data();
+    return successor->obtener_clave();
 }
 
 template <class T>
 T BST<T>::siguiente(T data)
 {
     BSTNode<T>* data_node = this->buscar(this->root, data);
-    // Return the key. If the key is not found or successor is not found, return -1
     if(data_node == NULL)
          return NULL;
     else return siguiente(data_node);
 }
 
 template <class T>
-T BST<T>::anterior(BSTNode<T> * node)
+T BST<T>::anterior(BSTNode<T> * nodo)
 {
-    if (node->get_left() != NULL)
+    if (nodo->obtener_izquierdo() != NULL)
     {
-        return buscar_max(node->get_left());
+        return buscar_max(nodo->obtener_izquierdo());
     }
 
     BSTNode<T>* successor = NULL;
     BSTNode<T>* ancestor = this->root;
-    while(ancestor != node) {
-        if(node->get_data() > ancestor->get_data()) {
+    while(ancestor != nodo) {
+        if(nodo->obtener_clave() > ancestor->obtener_clave()) {
             successor = ancestor; // so far this is the deepest node for which current node is in left
-            ancestor = ancestor->get_right();
+            ancestor = ancestor->obtener_derecho();
         }
         else
-            ancestor = ancestor->get_left();
+            ancestor = ancestor->obtener_izquierdo();
     }
-    return successor->get_data();
+    return successor->obtener_clave();
 }
 
 template <class T>
@@ -278,38 +278,38 @@ T BST<T>::anterior(T data)
 }
 
 template <class T>
-BSTNode<T> * BST<T>::eliminar(BSTNode<T>* node, T data)
+BSTNode<T> * BST<T>::eliminar(BSTNode<T>* nodo, T data)
 {
     // The given node is not found in BST
-    if (node == NULL)
-        return node;
+    if (nodo == NULL)
+        return nodo;
 
-    if (node->get_data() == data)
+    if (nodo->obtener_clave() == data)
     {
-        if (node->isLeaf())
+        if (nodo->es_hoja())
         {
-            delete node->get_valor();
-            delete node;
-            node = NULL;
+            delete nodo->obtener_valor();
+            delete nodo;
+            nodo = NULL;
         }
-        else if (node->rightChildOnly())
+        else if (nodo->hijo_derecho())
         {
             // The only child will be connected to the parent's of node directly
-            node->get_right()->set_parent(node->get_parent());
+            nodo->obtener_derecho()->set_parent(nodo->obtener_padre());
             // Bypass node
-            BSTNode<T>* aux = node;
-            node = node->get_right();
-            delete aux->get_valor();
+            BSTNode<T>* aux = nodo;
+            nodo = nodo->obtener_derecho();
+            delete aux->obtener_valor();
             delete aux;
         }
-        else if (node->leftChildOnly())
+        else if (nodo->hijo_izquierdo())
         {
             // The only child will be connected to the parent's of node directly
-            node->get_left()->set_parent(node->get_parent());
+            nodo->obtener_izquierdo()->set_parent(nodo->obtener_padre());
             // Bypass node
-            BSTNode<T>* aux = node;
-            node = node->get_left();
-            delete aux->get_valor();
+            BSTNode<T>* aux = nodo;
+            nodo = nodo->obtener_izquierdo();
+            delete aux->obtener_valor();
             delete aux;
         }
 
@@ -320,20 +320,20 @@ BSTNode<T> * BST<T>::eliminar(BSTNode<T>* node, T data)
             T successor_data = this->siguiente(data);
 
             // Replace node's key with successor's key
-            node->set_data(successor_data);
+            nodo->set_data(successor_data);
 
             // Delete the old successor's key
-            node->set_right(eliminar(node->get_right(), successor_data));
+            nodo->set_right(eliminar(nodo->obtener_derecho(), successor_data));
         }
     }
 
-    else if (node->get_data() < data)
-        node->set_right(eliminar(node->get_right(), data));
+    else if (nodo->obtener_clave() < data)
+        nodo->set_right(eliminar(nodo->obtener_derecho(), data));
 
     else
-        node->set_left(eliminar(node->get_left(), data));
+        nodo->set_left(eliminar(nodo->obtener_izquierdo(), data));
 
-    return node;
+    return nodo;
 }
 
 template <class T>
@@ -344,14 +344,14 @@ void BST<T>::eliminar(T data)
 
 
 template <class T>
-void BST<T>::eliminar_todos(BSTNode<T>* node)
+void BST<T>::eliminar_todos(BSTNode<T>* nodo)
 {
-    if(node == NULL)
+    if(nodo == NULL)
         return;
-    this->eliminar_todos(node->get_left());
-    this->eliminar_todos(node->get_right());
-    delete node->get_valor();
-    delete node;
+    this->eliminar_todos(nodo->obtener_izquierdo());
+    this->eliminar_todos(nodo->obtener_derecho());
+    delete nodo->obtener_valor();
+    delete nodo;
 }
 
 template <class T>
