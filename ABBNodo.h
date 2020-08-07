@@ -17,20 +17,30 @@ private:
     Aeropuertos* valor;
 
 public:
+    //Constructor
     BSTNode(T data, Aeropuertos* valor);
-    T get_data();
+    // Asigna una clave
     void set_data(T data);
     void set_right(BSTNode<T>* right, BSTNode<T>* parent);
     void set_left(BSTNode<T>* left, BSTNode<T>* parent);
     void set_left(BSTNode<T>* left);
     void set_right(BSTNode<T>* right);
     void set_parent(BSTNode<T>* parent);
+    //Devuelve la clave del diccionario
+    T get_data();
+    //Devuelve el valor asociado a una clave del diccionario
     Aeropuertos* get_valor();           //Nose si esta bien que devuelva un puntero a la clase
+    //Devuelve el hijo derecho
     BSTNode<T>* get_right();
+    //Devuelve el hijo izquierdo
     BSTNode<T>* get_left();
+    //Devuelve el padre
     BSTNode<T>* get_parent();
+    //Devuelve true si es hoja
     bool isLeaf();
+    //Devuelve true si solo tiene hijo derecho
     bool rightChildOnly();
+    //Devuelve true si solo tiene hijo izquierdo
     bool leftChildOnly();
 };
 
