@@ -46,8 +46,8 @@ void Menu::procesar_opcion_uno(){
     string iata;
     cout << "Ingrese el codigo IATA del Aeropuerto:";
     cin >> iata;
-    if (diccionario->search(iata) == 1){
-        diccionario->obtener_valor(iata);
+    if (diccionario->buscar(iata) == 1){
+        diccionario->mostrar_elemento(iata);
     }
     else{
         cout << iata << " no se encuentra en la base de datos" << endl;
@@ -75,15 +75,15 @@ void Menu::procesar_opcion_dos(){
     cout << "Ingrese destinos internacionales: " << endl;
     cin >> internacionales;
     Aeropuertos *aero = new Aeropuertos(nombre, ciudad, pais, superficie, terminales, nacionales, internacionales);
-    diccionario->insert(iata, aero);
+    diccionario->insertar(iata, aero);
 }
 
 void Menu::procesar_opcion_tres(){
     string iata;
     cout << "Ingrese el codigo IATA del aeropuerto que desea eliminar:";
     cin >> iata;
-    if(diccionario->search(iata) == 1){
-        diccionario->remove(iata);
+    if(diccionario->buscar(iata) == 1){
+        diccionario->eliminar(iata);
         cout << iata << " fue eliminado con exito." << endl;
     }
     else{
@@ -92,10 +92,10 @@ void Menu::procesar_opcion_tres(){
 }
 
 void Menu::procesar_opcion_cuatro(){
-    diccionario->print_in_order();
+    diccionario->imprimir_en_orden();
 }
 void Menu::procesar_opcion_cinco(){
-    diccionario->print_ancho();
+    diccionario->imprimir_ancho();
 }
 
 void Menu::procesar_opcion_seis(){

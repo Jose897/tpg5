@@ -18,7 +18,7 @@ void Archivo::lectura_aeropuertos(const string nombre_archivo, BST<string>* &dic
                 stringstream ss(linea);
                 ss >> iata >> nombre >> ciudad >> pais >> superficie >> terminales >> nacionales >> internacionales;
                 Aeropuertos *aero = new Aeropuertos(nombre, ciudad, pais, superficie, terminales, nacionales, internacionales);
-                diccionario->insert(iata, aero);
+                diccionario->insertar(iata, aero);
             }
             archivo.close();
         }
