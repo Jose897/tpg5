@@ -124,7 +124,9 @@ void Menu::procesar_opcion_seis(){
 			Vertice* verticeB;
 			
 			if(!lista->lista_vacia()){	
-				unsigned i=1; 
+				unsigned i=1;
+			       //borrar
+				cout<<"obtener tamanio de lista: "<<lista->obtener_tamanio()<<endl;	
 				while( i < lista->obtener_tamanio() ){
 					verticeA = lista->obtener_dato(i);
 					verticeB = lista->obtener_dato(i+1);

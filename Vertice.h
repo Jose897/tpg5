@@ -56,19 +56,19 @@ class Vertice {
 		//Metodo cambiar_visitado
 		//PRE: objeto creado
 		//POST: cambia el estado del atributo vicitado
-		void cambiar_visitado(bool);
+		void cambiar_visitado( bool );
 		//Metodo cambiar_predecesor
 		//PRE: objeto creado e inicializado
 		//POST: cambia a un  predecesor al objeto
-		void cambiar_predecesor(std::string);
+		void cambiar_predecesor ( std::string );
 		//Metodo cambiar_acumulador_costo
 		//PRE: objeto creado
 		//POST: cambia siempre a un menor costo acumulado
-		void cambiar_acumulador_costo(long int);
+		void cambiar_acumulador_costo( long int );
 		//Metodo cambiar_acumulador_duracion
 		//PRE: objeto creado
 		//POST: cambia siempre a una menor duracion
-		void cambiar_acumulador_duracion(float);
+		void cambiar_acumulador_duracion( float );
 		//Metodo obtener_acumulador_costo
 		//PRE: objeto inicializado
 		//POST: devuelve el menor costo que se acumulo
@@ -88,7 +88,7 @@ class Vertice {
 		//Metodo obtener_vertice_ady
 		//PRE: parametro valido
 		//POST: devuelve el vertice al cual apunta, estan enumerados
-		Vertice* obtener_vertice_ady(int);
+		Vertice* obtener_vertice_ady( int );
 		//Metodo obtener_visitado
 		//PRE: objeto inicializado
 		//POST: devuelve el estado del atributo vicitado

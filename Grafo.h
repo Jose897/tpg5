@@ -9,7 +9,7 @@
 #define GRAFO_H_
 
 #include "Vertice.h"
-#include "iostream"
+#include <iostream>
 
 //Grafo Dinamico
 
@@ -69,12 +69,16 @@ class Grafo {
 		void recorrido_peso_horas(Vertice *);
 		//
 		//PRE: parametros validos
+		//POST: devuelve la direccion de la arista que une a los parametros
+		Arista* obtener_arista( Vertice*, Vertice* );
+		//
+		//PRE: parametros validos
 		//POST: devuelve el costo de la arista que une a los parametros
-		long int obtener_costo(Vertice*,Vertice*);
+		long int obtener_costo( Vertice*, Vertice* );
 		//
 		//PRE: parametros validos
 		//POST:  devuelve la duracion de la arista que une a los parametros
-		float obtener_duracion(Vertice*,Vertice*);
+		float obtener_duracion( Vertice*, Vertice* );
 		//
 		//PRE: Grafo no vacio
 		//POST: devuelve el primer vertice 

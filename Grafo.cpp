@@ -218,50 +218,46 @@ void Grafo::recorrido_peso_horas(Vertice *)
 {
 
 }
-long int Grafo::obtener_costo(Vertice* verticeA, Vertice* verticeB){
-	std::string A,B;
-	int j=1;
-	bool encontrado=false;
+
+Arista* Grafo::obtener_arista( Vertice* verticeA, Vertice* verticeB ){
+	std::string A, B;
+	int j = 1;
+	bool encontrado = false;
 	B = verticeB->obtener_cod_vertice();
 	
-	Arista*aristaAux;
+	Arista* aristaAux;
 	aristaAux = verticeA->obtener_adyacente();
 
-	while( (!encontrado) || (j <= verticeA->obtener_cant_ady()) ){
+	while( ( !encontrado ) || ( j <= verticeA->obtener_cant_ady() ) ){
 		A = aristaAux->obtener_adyacente()->obtener_cod_vertice();
-		if(A == B){
-			encontrado=true;
+		if( A == B ){
+			encontrado = true;
 		}else{
 			aristaAux = aristaAux->obtener_siguiente();
 		}
 		j++;
 	}
-	if(encontrado){
+	if( encontrado ){
+		return aristaAux;
+	}else{
+		return 0;
+	}
+
+}
+long int Grafo::obtener_costo( Vertice* verticeA, Vertice* verticeB ){
+	Arista* aristaAux = obtener_arista( verticeA, verticeB );
+
+	if( aristaAux != 0 ){
 		return aristaAux->obtener_costo();
 	}else{
 		return 0;
 	}
 }
 
-float Grafo::obtener_duracion(Vertice* verticeA, Vertice* verticeB){
-	std::string A,B;
-	int j=1;
-	bool encontrado=false;
-	B = verticeB->obtener_cod_vertice();
-	
-	Arista*aristaAux;
-	aristaAux = verticeA->obtener_adyacente();
+float Grafo::obtener_duracion( Vertice* verticeA, Vertice* verticeB ){
+	Arista* aristaAux = obtener_arista( verticeA, verticeB );
 
-	while( (!encontrado) || (j <= verticeA->obtener_cant_ady()) ){
-		A = aristaAux->obtener_adyacente()->obtener_cod_vertice();
-		if(A == B){
-			encontrado=true;
-		}else{
-			aristaAux = aristaAux->obtener_siguiente();
-		}
-		j++;
-	}
-	if(encontrado){
+	if( aristaAux != 0 ){
 		return aristaAux->obtener_duracion();
 	}else{
 		return 0;

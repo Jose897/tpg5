@@ -21,8 +21,8 @@ class Dijkstra {
 		Grafo* g;
 		string origen;
 		string destino;
-		Lista<Vertice*>*lista_prioridad;
-		Lista<Vertice*>*lista_resultado;
+		Lista<Vertice*>* lista_prioridad;
+		Lista<Vertice*>* lista_resultado;
 
 	public:
 		//
@@ -32,7 +32,7 @@ class Dijkstra {
 		//
 		//PRE: objeto este creado parametros validos
 		//POST: se inicializa los parametros de Dijkstra por default
-		void inicializar(Grafo*,string,string);
+		void inicializar( Grafo*, string, string );
 		//
 		//PRE: objeto creado e inicializado
 		//POST: devuelve el puntero del vertice con menor costo que esta en la lista
@@ -48,7 +48,7 @@ class Dijkstra {
 		//
 		//PRE: objeto creado y se debe procesar un camino minimo (costo/duracion)
 		//POST: guarda en una lista, la secuencia de un/unos posible camino minima
-		void guardar_secuencia_lista_resultado(Vertice*);
+		void guardar_secuencia_lista_resultado( Vertice* );
 		//
 		//PRE: objeto creado e inicializado
 		//POST: crea una lista con el/los camino minimo del Grafo por costo
