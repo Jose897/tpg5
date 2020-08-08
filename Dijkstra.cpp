@@ -71,22 +71,17 @@ void Dijkstra::guardar_secuencia_lista_resultado( Vertice* verticeB ){
 	string predecesorAux;
 	
 	verticeAux = verticeB;
-cout<<"guardar secuencia\n";	
 	if(verticeB->obtener_cod_vertice() == origen && verticeB->obtener_predecesor() == origen ){
 		lista_resultado->insertar( verticeAux );
-		lista_resultado->insertar( verticeAux );
 	}else{
-int i=1;
-	while( verticeAux->obtener_predecesor() != origen ){
+		while( verticeAux->obtener_predecesor() != origen ){
+			lista_resultado->insertar( verticeAux );
+			predecesorAux = verticeAux->obtener_predecesor();
+			verticeAux = g->obtener_vertice( predecesorAux );
+		}	
 		lista_resultado->insertar( verticeAux );
-		predecesorAux = verticeAux->obtener_predecesor();
-		verticeAux = g->obtener_vertice( predecesorAux );
-	cout<<"lista resultado : "<<lista_resultado->obtener_dato(i)->obtener_cod_vertice()<<endl;	
-	i++;
-	}	
-	lista_resultado->insertar( verticeAux );
-	lista_resultado->insertar( g->obtener_vertice( origen ) );
 	}
+	lista_resultado->insertar( g->obtener_vertice( origen ) );
 
 }
 
@@ -97,42 +92,29 @@ void Dijkstra::procesar_camino_minimo_por_costo(){
 	Vertice* verticeB;
 
 	while( !lista_prioridad->lista_vacia() ){
-		cout<<"entro al while\n";
 		verticeA = obtener_minimo_costo_en_lista();
 		verticeA->cambiar_visitado( true );
-cout<<"*****************verticeAAAAAAA: "<<verticeA->obtener_cod_vertice()<<endl;
 		for( i = 1; i <= verticeA->obtener_cant_ady(); i++ ){
-			cout<<"FOR\n";
 			verticeB = verticeA->obtener_vertice_ady( i );
 			if( !verticeB->obtener_visitado() || ( origen == destino) ){
-				cout<<"verticeBBBBBBB: "<<verticeB->obtener_cod_vertice()<<endl;
 				costoAB = verticeA->obtener_acumulador_costo() + g->obtener_costo( verticeA, verticeB );
 				costoB = verticeB->obtener_acumulador_costo();
-				cout<<"antes del if\n";
 				if( ( verticeB->obtener_cod_vertice() == destino ) && ( costoB  > costoAB ) ){
-					cout<<"-----------------------------------------------------borrar lista\n";
 					borrar_lista_resultado();
 				}
-				cout<<"paso 1er if\n";
 				if( ( costoB  == 0 ) && ( verticeB->obtener_cod_vertice() != destino ) ){
-					cout<<"insertar\n";
 					lista_prioridad->insertar(verticeB);
 				}	
-				cout<<"paso 2do if\n";
 				if( ( costoB >= costoAB ) || ( costoB == 0 ) ){
-					cout<<"entro al if 119\n";
 					verticeB->cambiar_acumulador_costo( costoAB );
 					verticeB->cambiar_predecesor( verticeA->obtener_cod_vertice() );
 					if( verticeB->obtener_cod_vertice() == destino ){
-					cout<<"ENCONTRADO\n";
 						guardar_secuencia_lista_resultado( verticeB );
 					}
-				cout<<"paso 3er if\n";
 				}
-				cout<<"paso 4to if\n";
 			}	
-		}cout<<"fin for\n";
-	}cout<<"fin while\n";
+		}
+	}
 }
 
 Vertice* Dijkstra::obtener_minimo_duracion_en_lista(){
@@ -192,6 +174,63 @@ void Dijkstra::procesar_camino_minimo_por_duracion(){
 Lista<Vertice*>* Dijkstra::obtener_lista_resultado(){
 	return lista_resultado;
 }
+
+string Dijkstra::impresion_camino_minimo_por_costo(){
+	unsigned i = 1;
+	long int total = 0;
+	Vertice* verticeA;
+       	Vertice* verticeB;
+	string cadena = "";
+
+	if( !lista_resultado->lista_vacia() ){
+		while( i < lista_resultado->obtener_tamanio() ){
+			verticeA = lista_resultado->obtener_dato( i );
+			verticeB = lista_resultado->obtener_dato( i + 1 );
+			total = total + g->obtener_costo( verticeA, verticeB );
+			cadena = cadena + " " + verticeA->obtener_cod_vertice() + " -->($ " + to_string( g->obtener_costo( verticeA, verticeB ) );
+			if( verticeB->obtener_cod_vertice() == destino ){
+				cadena = cadena + ")--> " + verticeB->obtener_cod_vertice() + "         total: $ " + to_string( total ) + "\n";
+				i++;
+				total = 0;
+			}else{
+				cadena = cadena + ")-->";
+			}
+			i++;
+		}
+	}else{
+		cadena = "No hay ruta \n";
+	}
+	return cadena;
+}
+
+string Dijkstra::impresion_camino_minimo_por_duracion(){
+	unsigned i = 1;
+	float total = 0;
+	Vertice* verticeA;
+       	Vertice* verticeB;
+	string cadena = "";
+
+	if( !lista_resultado->lista_vacia() ){
+		while( i < lista_resultado->obtener_tamanio() ){
+			verticeA = lista_resultado->obtener_dato( i );
+			verticeB = lista_resultado->obtener_dato( i + 1 );
+			total = total + g->obtener_duracion( verticeA, verticeB );
+			cadena = cadena + " " + verticeA->obtener_cod_vertice() + " -->($ " + to_string( g->obtener_duracion( verticeA, verticeB ) );
+			if( verticeB->obtener_cod_vertice() == destino ){
+				cadena = cadena + ")--> " + verticeB->obtener_cod_vertice() + "         total: $ " + to_string( total ) + "\n";
+				i++;
+				total = 0;
+			}else{
+				cadena = cadena + ")-->";
+			}
+			i++;
+		}
+	}else{
+		cadena = "No hay ruta \n";
+	}
+	return cadena;
+}
+
 Dijkstra::~Dijkstra(){
 	delete lista_prioridad;
 	delete lista_resultado;

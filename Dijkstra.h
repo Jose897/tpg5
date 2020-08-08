@@ -12,6 +12,7 @@
 #include "Lista.h"
 #include "Nodo.h"
 #include "Vertice.h"
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -61,6 +62,14 @@ class Dijkstra {
 		//PRE: que se procese un camino minimo (costo/duracion)
 		//POST: devuelve un puntero con la lista de el/los camino minimo
 		Lista<Vertice*>* obtener_lista_resultado();
+		//
+		//PRE: objeto creado
+		//POST: arma una cadena con el resultado del camino minimo
+		string impresion_camino_minimo_por_costo();
+		//
+		//PRE: objeto creado
+		//POST: arma una cedena con el resultado del camino minimo
+		string impresion_camino_minimo_por_duracion();
 		//
 		//PRE: objeto creado
 		//POST: borra el objeto

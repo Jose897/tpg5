@@ -1,6 +1,4 @@
 #include "Menu.h"
-//borrar - prueba
-
 
 Menu::Menu(BST<string>* &diccionario,Grafo*h){
     this->diccionario = diccionario;
@@ -98,108 +96,58 @@ void Menu::procesar_opcion_cinco(){
     diccionario->imprimir_ancho();
 }
 
-void Menu::procesar_opcion_seis(){
-	long int total=0;
-	string origen, destino;
+bool Menu::pedir_datos_validos( string* origen, string* destino ){
+	bool valido = false;
 
 	if(h->vacio()){
 		cout<<"El grafo esta vacio"<<endl;
+		valido = false;
 	}else{
 		cout<<"Ingrese origen"<<endl;
-		cin>>origen;
+		cin>>*origen;
 		cout<<endl;
 		cout<<"Ingrese destino"<<endl;
-		cin>>destino;
+		cin>>*destino;
 		cout<<endl;
 
-		if( h->obtener_vertice(origen) == NULL || h->obtener_vertice(destino) == NULL ){
+		if( h->obtener_vertice(*origen) == NULL || h->obtener_vertice(*destino) == NULL ){
 			cout<<"Uno de los vertices no es valido"<<endl;
+			valido = false;
 		
-		}else{   //camino minimo costo
-			Dijkstra dijkstra;
-			dijkstra.inicializar(h, origen, destino);
-			dijkstra.procesar_camino_minimo_por_costo();
-			Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
-			Vertice* verticeA;
-			Vertice* verticeB;
-			
-			if(!lista->lista_vacia()){	
-				unsigned i=1;
-			       //borrar
-				cout<<"obtener tamanio de lista: "<<lista->obtener_tamanio()<<endl;	
-				while( i < lista->obtener_tamanio() ){
-					verticeA = lista->obtener_dato(i);
-					verticeB = lista->obtener_dato(i+1);
-					cout<<" "<<verticeA->obtener_cod_vertice();
-					total = total + h->obtener_costo(verticeA,verticeB);
-					cout<<" -->($ "<<h->obtener_costo(verticeA,verticeB);
-					
-					if(verticeB->obtener_cod_vertice() == destino ){
-						cout<<")--> "<<verticeB->obtener_cod_vertice()<<"      total :$ "<<total<<endl;
-						i++;
-						total=0;
-					}else{
-						cout<<")->";
-					}
-					i++;
-				}
-			}else{
-				cout<<"No hay ruta"<<endl;
-			}
+		}else{
+			valido = true;
 		}
+	}
+	return valido;
+}
+
+void Menu::procesar_opcion_seis(){
+	string origen, destino;
+	string cadena;
+	Dijkstra dijkstra;
+
+	if( pedir_datos_validos( &origen, &destino ) ){
+		dijkstra.inicializar( h, origen, destino );
+		dijkstra.procesar_camino_minimo_por_costo();
+		Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
+		cadena = dijkstra.impresion_camino_minimo_por_costo();
+		cout<<cadena<<endl;
 	}
 }
 
 void Menu::procesar_opcion_siete(){
-	float total=0;
 	string origen, destino;
-
-	if(h->vacio()){
-		cout<<"El grafo esta vacio"<<endl;
-	}else{
-		cout<<"Ingrese origen"<<endl;
-		cin>>origen;
-		cout<<endl;
-		cout<<"Ingrese destino"<<endl;
-		cin>>destino;
-		cout<<endl;
-
-		if( h->obtener_vertice(origen) == NULL || h->obtener_vertice(destino) == NULL ){
-			cout<<"Uno de los vertices no es valido"<<endl;
-		
-		}else{   //camino minimo duracion
-			Dijkstra dijkstra;
-			dijkstra.inicializar(h, origen, destino);
-			dijkstra.procesar_camino_minimo_por_duracion();
-			Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
-			Vertice* verticeA;
-			Vertice* verticeB;
-			
-			if(!lista->lista_vacia()){	
-				unsigned i=1;
-				while( i < lista->obtener_tamanio() ){
-					verticeA = lista->obtener_dato(i);
-					verticeB = lista->obtener_dato(i+1);
-					cout<<" "<<verticeA->obtener_cod_vertice();
-					total = total + h->obtener_duracion(verticeA,verticeB);
-					cout<<" -->("<<h->obtener_duracion(verticeA,verticeB);
-					if(verticeB->obtener_cod_vertice() == destino ){
-						cout<<"hs)--> "<<verticeB->obtener_cod_vertice()<<"      total : "<<total<<" hs"<<endl;
-						i++;
-						total = 0;
-					}else{
-						cout<<"hs)->";
-					}
-					i++;
-				}
-			}else{
-				cout<<"No hay ruta"<<endl;
-			}
-		}
+	string cadena;
+	Dijkstra dijkstra;
+	
+	if( pedir_datos_validos( &origen, &destino ) ){  
+		dijkstra.inicializar( h, origen, destino );
+		dijkstra.procesar_camino_minimo_por_duracion();
+		Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
+		cadena = dijkstra.impresion_camino_minimo_por_duracion();
+		cout<<cadena<<endl;
 	}
-
 }
-
 
 void Menu::procesar_opcion(int opcion){
 
