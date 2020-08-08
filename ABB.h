@@ -49,11 +49,11 @@ public:
     //PRE: Arbol creado
     //POST: Si la clave existe, devuelve TRUE, de lo contrario, devuelve FALSE.
     bool buscar(T data);
-
-    // Finds the successor of a given data value.
+    //PRE: Arbol creado
+    //POST: Devuelve el predecesor del dato pasado como parametro
     T siguiente(T data);
-
-    // Finds the predecessor of a given data value.
+    //PRE: Arbol creado
+    //POST: Devuelve el sucesor del dato pasado como parametro
     T anterior(T data);
     //PRE: Dato este en el arbol
     //POST: Borra un dato del arbol
