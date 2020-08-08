@@ -97,6 +97,10 @@ class Vertice {
 		//PRE: que el objeto este apuntado por una arista
 		//POST: devuelve el codigo del vertice que precede al objeto
 		std::string obtener_predecesor();
+		//
+		//
+		//
+		~Vertice();
 
 
 };

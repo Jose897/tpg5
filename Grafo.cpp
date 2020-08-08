@@ -271,3 +271,7 @@ float Grafo::obtener_duracion(Vertice* verticeA, Vertice* verticeB){
 Vertice* Grafo::obtener_primer_vertice(){
 	return h;
 }
+
+Grafo::~Grafo(){
+	delete h;
+}

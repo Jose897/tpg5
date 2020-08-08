@@ -41,3 +41,6 @@ long int Arista::obtener_costo(){
 float Arista::obtener_duracion(){
 	return horas;
 }
+Arista::~Arista(){
+	delete sig;
+}

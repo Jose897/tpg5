@@ -53,6 +53,10 @@ class Arista {
 		//PRE: constructor ejecutado
 		//POST: devuelve la duracion del atributo
 		float obtener_duracion();
+		//
+		//PRE:
+		//POST:
+		~Arista();
 };
 
 #endif /* ARISTA_H_ */

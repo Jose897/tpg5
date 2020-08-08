@@ -79,6 +79,10 @@ class Grafo {
 		//PRE: Grafo no vacio
 		//POST: devuelve el primer vertice 
 		Vertice* obtener_primer_vertice();
+		//
+		//
+		//
+		~Grafo();
 };
 
 #endif /* GRAFO_H_ */

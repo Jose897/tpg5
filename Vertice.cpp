@@ -99,4 +99,7 @@ std::string Vertice::obtener_predecesor(){
 	return predecesor;
 }
 
-////////////////////
+Vertice::~Vertice(){
+	delete sig;
+	delete ady;
+}
