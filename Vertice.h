@@ -98,8 +98,8 @@ class Vertice {
 		//POST: devuelve el codigo del vertice que precede al objeto
 		std::string obtener_predecesor();
 		//
-		//
-		//
+		//PRE: objeto creado
+		//POST: borra el puntero ady, luego el puntero sig
 		~Vertice();
 
 

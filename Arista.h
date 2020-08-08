@@ -54,8 +54,8 @@ class Arista {
 		//POST: devuelve la duracion del atributo
 		float obtener_duracion();
 		//
-		//PRE:
-		//POST:
+		//PRE: objeto creado
+		//POST: borra el puntero sig
 		~Arista();
 };
 

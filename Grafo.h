@@ -80,8 +80,8 @@ class Grafo {
 		//POST: devuelve el primer vertice 
 		Vertice* obtener_primer_vertice();
 		//
-		//
-		//
+		//PRE: objeto creado
+		//POST: borra el vertice apuntado por h
 		~Grafo();
 };
 
