@@ -19,28 +19,47 @@ private:
 public:
     //Constructor
     BSTNode(T data, Aeropuertos* valor);
-    // Asigna una clave
+    // PRE: -
+    // POST: Asigna una clave
     void set_data(T data);
+    // PRE: -
+    // POST: Asigna hijo derecho
     void set_right(BSTNode<T>* right, BSTNode<T>* parent);
+    // PRE: -
+    // POST: Asigna hijo izquierdo
     void set_left(BSTNode<T>* left, BSTNode<T>* parent);
+    // PRE: -
+    // POST: Asigna hijo izquierdo
     void set_left(BSTNode<T>* left);
+    // PRE: -
+    // POST: Asigna hijo derecho
     void set_right(BSTNode<T>* right);
+    // PRE: -
+    // POST: Le asigna un padre a un nodo
     void set_parent(BSTNode<T>* parent);
-    //Devuelve la clave del diccionario
+    // PRE: -
+    // POST: Devuelve una clave
     T obtener_clave();
-    //Devuelve el valor asociado a una clave del diccionario
-    Aeropuertos* obtener_valor();           //Nose si esta bien que devuelva un puntero a la clase
-    //Devuelve el hijo derecho
+    // PRE: -
+    // POST: Devuelve el valor asociado a una clave del diccionario
+    Aeropuertos* obtener_valor();
+    // PRE: -
+    // POST: Devuelve el hijo derecho
     BSTNode<T>* obtener_derecho();
-    //Devuelve el hijo izquierdo
+    // PRE: -
+    // POST: Devuelve el hijo izquierdo
     BSTNode<T>* obtener_izquierdo();
-    //Devuelve el padre
+    // PRE: -
+    // POST: Devuelve el padre
     BSTNode<T>* obtener_padre();
-    //Devuelve true si es hoja
+    // PRE: -
+    // POST: Devuelve true si el nodo es hoja
     bool es_hoja();
-    //Devuelve true si solo tiene hijo derecho
+    // PRE: -
+    // POST: Devuelve true si el nodo solo tiene hijo derecho
     bool hijo_derecho();
-    //Devuelve true si solo tiene hijo izquierdo
+    // PRE:
+    // POST: Devuelve true si el nodo solo tiene hijo izquierdo
     bool hijo_izquierdo();
 };
 
