@@ -19,14 +19,11 @@ void Menu::mostrar_menu()
         cout << "2. Agregar aueropuerto" << endl;
         cout << "3. Eliminar un aeropuerto" << endl;
         cout << "4. Mostrar todos los aeropuertos" << endl;
-        cout << "5. Mostrar arbol a lo ancho" << endl;
-	    cout << endl;
+        cout << "5. Mostrar arbol a lo ancho" << endl << endl;
         cout << "->Vuelos:" << endl;
         cout << "6. Vuelo minimo por costo" << endl;
-        cout << "7. Vuelo minimo por duracion" << endl;
-	    cout << endl;
-        cout << "0. Salir" << endl;
-        cout << endl;
+        cout << "7. Vuelo minimo por duracion" << endl << endl;
+        cout << "0. Salir" << endl << endl;
         cout << "Ingrese su opcion: " << endl << flush;
         do
         {
