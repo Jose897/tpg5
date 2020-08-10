@@ -34,7 +34,7 @@ void Menu::mostrar_menu()
 		if(!salir)
 		{
 			cout << endl;
-			system("pause");
+			system("clear");
 		}
             }
             else
