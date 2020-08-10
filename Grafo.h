@@ -60,31 +60,23 @@ class Grafo {
 		//PRE:
 		//POST: eliminar memoria dinamica
 		void anular_vertice();
-		//Metodo recorrido_ancho
-		//PRE:
-		//POST:
-		void recorrido_peso_costo(Vertice *);
-		//Metodo recorrido_profundidad
-		//PRE:
-		//POST:
-		void recorrido_peso_horas(Vertice *);
-		//
+		//Metodo obtener_arista
 		//PRE: parametros validos
 		//POST: devuelve la direccion de la arista que une a los parametros
 		Arista* obtener_arista( Vertice*, Vertice* );
-		//
+		////Metodo obtener_costo
 		//PRE: parametros validos
 		//POST: devuelve el costo de la arista que une a los parametros
 		long int obtener_costo( Vertice*, Vertice* );
-		//
+		////Metodo obtener_duracion
 		//PRE: parametros validos
 		//POST:  devuelve la duracion de la arista que une a los parametros
 		float obtener_duracion( Vertice*, Vertice* );
-		//
+		////Metodo obtener_primer_vertice
 		//PRE: Grafo no vacio
 		//POST: devuelve el primer vertice 
 		Vertice* obtener_primer_vertice();
-		//
+		//Destructor
 		//PRE: objeto creado
 		//POST: borra el vertice apuntado por h
 		~Grafo();

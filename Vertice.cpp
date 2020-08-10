@@ -47,55 +47,68 @@ void Vertice::setear_vertice( Vertice * ver )
 }
 
 //para Dijkstra
-void Vertice::cambiar_visitado( bool siono ){
+void Vertice::cambiar_visitado( bool siono )
+{
 	vicitado = siono;
 }
 
-void Vertice::cambiar_predecesor( std::string codPredecesor ){
+void Vertice::cambiar_predecesor( std::string codPredecesor )
+{
 	predecesor = codPredecesor;
 }
 
-void Vertice::cambiar_acumulador_costo( long int precio ){
+void Vertice::cambiar_acumulador_costo( long int precio )
+{
 	acumuladorCosto = precio;
 }
 
-void Vertice::cambiar_acumulador_duracion( float hora ){
+void Vertice::cambiar_acumulador_duracion( float hora )
+{
 	acumuladorDuracion = hora;
 }
 
 //
-long int Vertice::obtener_acumulador_costo(){
+long int Vertice::obtener_acumulador_costo()
+{
 	return acumuladorCosto;
 }
 
-float Vertice::obtener_acumulador_duracion(){
+float Vertice::obtener_acumulador_duracion()
+{
 	return acumuladorDuracion;
 }
-void Vertice::aumentar_cant_ady(){
+
+void Vertice::aumentar_cant_ady()
+{
 	cant_ady++;
 }
 
-int Vertice::obtener_cant_ady(){
+int Vertice::obtener_cant_ady()
+{
 	return cant_ady;
 }
 
-Vertice* Vertice::obtener_vertice_ady( int pos ){
+Vertice* Vertice::obtener_vertice_ady( int pos )
+{
 	int i;
 	Arista* aux;
 	
 	aux = ady;
-	for( i = 1; i < pos; i++ ){
+	for( i = 1; i < pos; i++ )
+	{
 		aux = aux->obtener_siguiente();
 	}
 
 	return aux->obtener_adyacente();
 }
 
-bool Vertice::obtener_visitado(){
+bool Vertice::obtener_visitado()
+{
 	return vicitado;
 }
 
-std::string Vertice::obtener_predecesor(){
+std::string Vertice::obtener_predecesor()
+{
 	return predecesor;
 }
 

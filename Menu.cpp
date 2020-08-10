@@ -8,9 +8,11 @@ Menu::Menu(BST<string>* diccionario,Grafo*h)
     this->salir = false;
 }
 
-void Menu::mostrar_menu(){
+void Menu::mostrar_menu()
+{
     int opcion;
-    while (!salir) {
+    while (!salir)
+    {
         cout << endl;
         cout << "================================== MENU ==================================" << endl;
         cout << "1. Consultar un aeropuerto" << endl;
@@ -25,21 +27,27 @@ void Menu::mostrar_menu(){
 	    cout << endl;
         cout << "0. Salir" << endl;
         cout << "Ingrese su opcion: " << endl << flush;
-        do {
+        do
+        {
             cin >> opcion;
-            if (cin.good() && opcion_valida(opcion)) {
+            if (cin.good() && opcion_valida(opcion))
+            {
                 procesar_opcion(opcion);
-		if(!salir){
+		if(!salir)
+		{
 			cout<<endl<<"Presione ENTER para continuar"<<endl;
 			system("read pausa");
 		}
-            } else {
+            }
+            else
+            {
                 cin.clear();
                 cin.ignore();
                 cout << "Por favor ingrese una opcion valida: " << endl;
             }
         }while (!opcion_valida(opcion));
     }
+
 }
 
 bool Menu::opcion_valida(int entrada)
@@ -52,6 +60,7 @@ void Menu::procesar_opcion_uno()
     string iata;
     cout << "Ingrese el codigo IATA del Aeropuerto:";
     cin >> iata;
+
     if (diccionario->buscar(iata) == 1)
     {
         diccionario->mostrar_elemento(iata);
@@ -107,6 +116,7 @@ void Menu::procesar_opcion_cuatro()
 {
     diccionario->imprimir_en_orden();
 }
+
 void Menu::procesar_opcion_cinco()
 {
     diccionario->imprimir_ancho();
