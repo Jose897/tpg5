@@ -32,6 +32,7 @@ void Menu::mostrar_menu()
             {
                 limpiar_pantalla();
                 procesar_opcion(opcion);
+		pausa_pantalla();
             }
             else
             {
@@ -42,6 +43,18 @@ void Menu::mostrar_menu()
         }while (!opcion_valida(opcion));
     }
 
+}
+
+void Menu::pausa_pantalla(){
+	if(!salir){
+		#ifdef WINDOWS
+			cout<<"Presionar ENTER para continuar..."<<endl;
+			system("pause");
+		#else
+			cout<<"Presionar ENTER para continuar..."<<endl;
+			system("read pause");
+		#endif
+	}
 }
 
 void Menu::limpiar_pantalla(){

@@ -64,6 +64,10 @@ class Menu{
         // PRE: -
         // POST: -
         void procesar_opcion_siete();
+	//
+	//
+	//
+	void pausa_pantalla();
 };
 
 #endif //TPG5_MENU_H
