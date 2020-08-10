@@ -1,5 +1,6 @@
 #include "Menu.h"
-
+//#include <cstdlib>
+//#include "stdlib.h"
 Menu::Menu(BST<string>* diccionario,Grafo*h){
     this->diccionario = diccionario;
     this->h = h;
@@ -27,6 +28,10 @@ void Menu::mostrar_menu(){
             cin >> opcion;
             if (cin.good() && opcion_valida(opcion)) {
                 procesar_opcion(opcion);
+		if(!salir){
+			cout<<endl<<"Presione ENTER para continuar"<<endl;
+			system("read pausa");
+		}
             } else {
                 cin.clear();
                 cin.ignore();
