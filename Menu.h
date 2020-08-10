@@ -1,5 +1,6 @@
 #ifndef TPG5_MENU_H
 #define TPG5_MENU_H
+
 #include "ABB.h"
 #include "Dijkstra.h"
 #include "Grafo.h"
@@ -31,6 +32,10 @@ class Menu{
         // PRE: -
         // POST: -
         void procesar_opcion_uno();
+        // Se encarga de limpiar la pantalla luego de elegir la opcion
+        // PRE: -
+        // POST: -
+        void limpiar_pantalla();
         // Se encarga de la opcion 2 del menu
         // PRE: -
         // POST: -
