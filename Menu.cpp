@@ -30,12 +30,8 @@ void Menu::mostrar_menu()
             cin >> opcion;
             if (cin.good() && opcion_valida(opcion))
             {
+                clear_screen();
                 procesar_opcion(opcion);
-		if(!salir)
-		{
-			cout << endl;
-			system("clear");
-		}
             }
             else
             {
@@ -46,6 +42,14 @@ void Menu::mostrar_menu()
         }while (!opcion_valida(opcion));
     }
 
+}
+
+void Menu::clear_screen(){
+#ifdef WINDOWS
+    system("cls");
+#else // Assume POSIX
+    system ("clear");
+#endif
 }
 
 bool Menu::opcion_valida(int entrada)
@@ -142,7 +146,7 @@ bool Menu::pedir_datos_validos( string* origen, string* destino )
 		{
 			cout<<"Uno de los vertices no es valido"<<endl;
 			valido = false;
-		
+
 		}
 		else
 		{
@@ -172,7 +176,7 @@ void Menu::procesar_opcion_siete()
 	string origen, destino;
 	string cadena;
 	Dijkstra dijkstra;
-	
+
 	if( pedir_datos_validos( &origen, &destino ) )
 	{
 		dijkstra.inicializar( h, origen, destino );
