@@ -35,8 +35,7 @@ void Menu::mostrar_menu()
                 procesar_opcion(opcion);
 		if(!salir)
 		{
-			cout<<endl<<"Presione ENTER para continuar"<<endl;
-			system("read pausa");
+			system("pause");
 		}
             }
             else
