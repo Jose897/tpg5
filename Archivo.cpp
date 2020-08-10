@@ -57,7 +57,7 @@ void Archivo::lectura_vuelos(const string nombre_archivo)
             {
                 string iata_partida, iata_destino;
                 long int precio;
-		float tiempo;
+                float tiempo;
                 stringstream ss(linea);
                 ss >> iata_partida >> iata_destino >> precio >> tiempo;
                 //precio = precio/1000;

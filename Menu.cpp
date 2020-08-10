@@ -26,6 +26,7 @@ void Menu::mostrar_menu()
         cout << "7. Vuelo minimo por duracion" << endl;
 	    cout << endl;
         cout << "0. Salir" << endl;
+        cout << endl;
         cout << "Ingrese su opcion: " << endl << flush;
         do
         {
@@ -163,7 +164,6 @@ void Menu::procesar_opcion_seis()
 	{
 		dijkstra.inicializar( h, origen, destino );
 		dijkstra.procesar_camino_minimo_por_costo();
-		Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
 		cadena = dijkstra.impresion_camino_minimo_por_costo();
 		cout<<cadena<<endl;
 	}
@@ -179,7 +179,6 @@ void Menu::procesar_opcion_siete()
 	{
 		dijkstra.inicializar( h, origen, destino );
 		dijkstra.procesar_camino_minimo_por_duracion();
-		Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
 		cadena = dijkstra.impresion_camino_minimo_por_duracion();
 		cout<<cadena<<endl;
 	}
