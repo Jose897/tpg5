@@ -16,7 +16,7 @@ class Menu{
         // Constructor
         // PRE: -
         // POST: Crea el objeto Menu
-        Menu(BST<string>* &diccionario,Grafo*h);
+        Menu(BST<string>* diccionario,Grafo*h);
         // Muestra el menu con las opciones disponibles para elegir
         // PRE: -
         // POST: -

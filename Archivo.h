@@ -14,14 +14,20 @@
 using namespace std;
 
 class Archivo{
+    private:
+
+    BST<string>* bst;
+
+
     public:
+
         // Constructor
         // PRE: Ninguna
         // POST: construye objeto vacio
         Archivo();
         // PRE: Ninguna
         // POST: Carga el diccionario con los datos de los aeropuertos y el codigo IATA como clave
-        void lectura_aeropuertos(const string nombre_archivo, BST<string>* &diccionario);
+        void lectura_aeropuertos(const string nombre_archivo);
         // PRE: Ninguna
         // POST: Carga el grafo con los datos de los vuelos
         void lectura_vuelos(const string,Grafo*h);
@@ -29,6 +35,8 @@ class Archivo{
         // PRE: Ninguna
         // POST: destruye el objeto
         ~Archivo();
+
+        BST<string>* obtener_diccionario();
 };
 
 #endif //TPG5_ARCHIVO_H

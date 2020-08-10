@@ -1,12 +1,15 @@
 #include "Archivo.h"
 const string EXCEPCION = "Error al encontrar el archivo solicitado";
 
-Archivo::Archivo() {}
-
-Archivo:: ~Archivo() {
+Archivo::Archivo() {
+    bst = new BST<string>();
 }
 
-void Archivo::lectura_aeropuertos(const string nombre_archivo, BST<string>* &diccionario){
+Archivo:: ~Archivo() {
+    delete bst;
+}
+
+void Archivo::lectura_aeropuertos(const string nombre_archivo){
     string linea;
     try{
         ifstream archivo(nombre_archivo);
@@ -18,7 +21,7 @@ void Archivo::lectura_aeropuertos(const string nombre_archivo, BST<string>* &dic
                 stringstream ss(linea);
                 ss >> iata >> nombre >> ciudad >> pais >> superficie >> terminales >> nacionales >> internacionales;
                 Aeropuertos *aero = new Aeropuertos(nombre, ciudad, pais, superficie, terminales, nacionales, internacionales);
-                diccionario->insertar(iata, aero);
+                bst->insertar(iata, aero);
             }
             archivo.close();
         }
@@ -61,4 +64,8 @@ void Archivo::lectura_vuelos(const string nombre_archivo, Grafo*h){
     catch(const string e){
         cout << "Ha ocurrido una excepcion del tipo '" << e << "'." << endl;
     }
+}
+
+BST<string> * Archivo::obtener_diccionario(){
+    return bst;
 }

@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-Menu::Menu(BST<string>* &diccionario,Grafo*h){
+Menu::Menu(BST<string>* diccionario,Grafo*h){
     this->diccionario = diccionario;
     this->h = h;
     this->salir = false;
