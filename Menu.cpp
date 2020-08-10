@@ -30,7 +30,7 @@ void Menu::mostrar_menu()
             cin >> opcion;
             if (cin.good() && opcion_valida(opcion))
             {
-                clear_screen();
+                limpiar_pantalla();
                 procesar_opcion(opcion);
             }
             else
@@ -44,7 +44,7 @@ void Menu::mostrar_menu()
 
 }
 
-void Menu::clear_screen(){
+void Menu::limpiar_pantalla(){
 #ifdef WINDOWS
     system("cls");
 #else // Assume POSIX
