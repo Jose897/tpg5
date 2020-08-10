@@ -47,10 +47,10 @@ class Menu{
         // PRE: -
         // POST: -
         void procesar_opcion_cinco();
-	//
-	//PRE: pasar dos string por parametro
-	//POST: valida datos ingresados
-	bool pedir_datos_validos( string*, string* );
+        //
+        //PRE: pasar dos string por parametro
+        //POST: valida datos ingresados
+        bool pedir_datos_validos( string*, string* );
         // Se encarga de la opcion 6 del menu
         // PRE: -
         // POST: -

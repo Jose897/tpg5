@@ -14,7 +14,9 @@
 
 class Arista;
 
-class Vertice {
+class Vertice
+{
+
 	private:
 
 		Vertice* sig;
@@ -25,7 +27,6 @@ class Vertice {
 		long int acumuladorCosto;
 		float acumuladorDuracion;
 		int cant_ady;
-
 
 	public:
 		//Constructor con parametros

@@ -268,6 +268,7 @@ Vertice* Grafo::obtener_primer_vertice(){
 	return h;
 }
 
-Grafo::~Grafo(){
+Grafo::~Grafo()
+{
 	delete h;
 }

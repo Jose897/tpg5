@@ -1,7 +1,8 @@
 #include "Menu.h"
-//#include <cstdlib>
-//#include "stdlib.h"
-Menu::Menu(BST<string>* diccionario,Grafo*h){
+class Dijkstra;
+
+Menu::Menu(BST<string>* diccionario,Grafo*h)
+{
     this->diccionario = diccionario;
     this->h = h;
     this->salir = false;
@@ -41,23 +42,28 @@ void Menu::mostrar_menu(){
     }
 }
 
-bool Menu::opcion_valida(int entrada){
+bool Menu::opcion_valida(int entrada)
+{
     return !(entrada < 0 || entrada > 7);
 }
 
-void Menu::procesar_opcion_uno(){
+void Menu::procesar_opcion_uno()
+{
     string iata;
     cout << "Ingrese el codigo IATA del Aeropuerto:";
     cin >> iata;
-    if (diccionario->buscar(iata) == 1){
+    if (diccionario->buscar(iata) == 1)
+    {
         diccionario->mostrar_elemento(iata);
     }
-    else{
+    else
+    {
         cout << iata << " no se encuentra en la base de datos" << endl;
     }
 }
 
-void Menu::procesar_opcion_dos(){
+void Menu::procesar_opcion_dos()
+{
     string iata, nombre, ciudad, pais;
     float superficie;
     int terminales, nacionales, internacionales;
@@ -81,57 +87,71 @@ void Menu::procesar_opcion_dos(){
     diccionario->insertar(iata, aero);
 }
 
-void Menu::procesar_opcion_tres(){
+void Menu::procesar_opcion_tres()
+{
     string iata;
     cout << "Ingrese el codigo IATA del aeropuerto que desea eliminar:";
     cin >> iata;
-    if(diccionario->buscar(iata) == 1){
+    if(diccionario->buscar(iata) == 1)
+    {
         diccionario->eliminar(iata);
         cout << iata << " fue eliminado con exito." << endl;
     }
-    else{
+    else
+    {
         cout << iata << " no se pudo eliminar ya que no se encuentra en la base de datos." << endl;
     }
 }
 
-void Menu::procesar_opcion_cuatro(){
+void Menu::procesar_opcion_cuatro()
+{
     diccionario->imprimir_en_orden();
 }
-void Menu::procesar_opcion_cinco(){
+void Menu::procesar_opcion_cinco()
+{
     diccionario->imprimir_ancho();
 }
 
-bool Menu::pedir_datos_validos( string* origen, string* destino ){
+bool Menu::pedir_datos_validos( string* origen, string* destino )
+{
 	bool valido = false;
 
-	if(h->vacio()){
+	if(h->vacio())
+	{
 		cout<<"El grafo esta vacio"<<endl;
 		valido = false;
-	}else{
-		cout<<"Ingrese origen"<<endl;
+	}
+	else
+	{
+		cout<<"Ingrese origen: ";
 		cin>>*origen;
 		cout<<endl;
-		cout<<"Ingrese destino"<<endl;
+		cout<<"Ingrese destino: ";
 		cin>>*destino;
 		cout<<endl;
 
-		if( h->obtener_vertice(*origen) == NULL || h->obtener_vertice(*destino) == NULL ){
+		if( h->obtener_vertice(*origen) == NULL || h->obtener_vertice(*destino) == NULL )
+		{
 			cout<<"Uno de los vertices no es valido"<<endl;
 			valido = false;
 		
-		}else{
+		}
+		else
+		{
 			valido = true;
 		}
 	}
 	return valido;
 }
 
-void Menu::procesar_opcion_seis(){
+void Menu::procesar_opcion_seis()
+{
 	string origen, destino;
 	string cadena;
 	Dijkstra dijkstra;
 
-	if( pedir_datos_validos( &origen, &destino ) ){
+	if( pedir_datos_validos( &origen, &destino ) )
+	{
 		dijkstra.inicializar( h, origen, destino );
 		dijkstra.procesar_camino_minimo_por_costo();
 		Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
@@ -140,12 +160,14 @@ void Menu::procesar_opcion_seis(){
 	}
 }
 
-void Menu::procesar_opcion_siete(){
+void Menu::procesar_opcion_siete()
+{
 	string origen, destino;
 	string cadena;
 	Dijkstra dijkstra;
 	
-	if( pedir_datos_validos( &origen, &destino ) ){  
+	if( pedir_datos_validos( &origen, &destino ) )
+	{
 		dijkstra.inicializar( h, origen, destino );
 		dijkstra.procesar_camino_minimo_por_duracion();
 		Lista<Vertice*>* lista = dijkstra.obtener_lista_resultado();
@@ -154,9 +176,10 @@ void Menu::procesar_opcion_siete(){
 	}
 }
 
-void Menu::procesar_opcion(int opcion){
-
-    switch(opcion){
+void Menu::procesar_opcion(int opcion)
+{
+    switch(opcion)
+    {
 	    case 0:
             cout << endl << "Gracias por utilizar el programa. Hasta luego." << endl;
             salir = true;

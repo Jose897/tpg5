@@ -15,6 +15,7 @@
 
 class Grafo {
 	private:
+
 		Vertice *h;
 
 	public:
