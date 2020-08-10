@@ -3,10 +3,12 @@ const string EXCEPCION = "Error al encontrar el archivo solicitado";
 
 Archivo::Archivo() {
     bst = new BST<string>();
+    h = new Grafo;
 }
 
 Archivo:: ~Archivo() {
     delete bst;
+    delete h;
 }
 
 void Archivo::lectura_aeropuertos(const string nombre_archivo){
@@ -34,7 +36,7 @@ void Archivo::lectura_aeropuertos(const string nombre_archivo){
     }
 }
 
-void Archivo::lectura_vuelos(const string nombre_archivo, Grafo*h){
+void Archivo::lectura_vuelos(const string nombre_archivo){
     string linea;
 
     try{
@@ -68,4 +70,8 @@ void Archivo::lectura_vuelos(const string nombre_archivo, Grafo*h){
 
 BST<string> * Archivo::obtener_diccionario(){
     return bst;
+}
+
+Grafo * Archivo::obtener_grafo(){
+    return h;
 }

@@ -17,7 +17,7 @@ class Archivo{
     private:
 
     BST<string>* bst;
-
+    Grafo* h;
 
     public:
 
@@ -30,13 +30,19 @@ class Archivo{
         void lectura_aeropuertos(const string nombre_archivo);
         // PRE: Ninguna
         // POST: Carga el grafo con los datos de los vuelos
-        void lectura_vuelos(const string,Grafo*h);
+        void lectura_vuelos(const string);
+        // PRE: Ninguna
+        // POST: Devuelve el diccionario
+        BST<string>* obtener_diccionario();
+        // PRE: Ninguna
+        // POST: Devuelve el grafo
+        Grafo* obtener_grafo();
         // Destructor
         // PRE: Ninguna
         // POST: destruye el objeto
         ~Archivo();
 
-        BST<string>* obtener_diccionario();
+
 };
 
 #endif //TPG5_ARCHIVO_H
