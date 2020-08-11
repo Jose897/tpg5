@@ -39,50 +39,42 @@ void Dijkstra::inicializar(Grafo*h, string origen, string destino)
 	lista_prioridad->insertar( aux );
 }
 
-Vertice* Dijkstra::obtener_minimo_costo_en_lista()
+void Dijkstra::condicion_costo(long int* menorCosto, Vertice* aux, unsigned i, unsigned* posicion)
 {
-	Vertice* aux;
-	unsigned i;
-	long int menor;
-	unsigned posicion;
-	
-	menor = lista_prioridad->obtener_dato(1)->obtener_acumulador_costo();
-	posicion = 1;
-
-	for( i = 1; i <= lista_prioridad->obtener_tamanio(); i++ )
+	if( aux->obtener_acumulador_costo() < *menorCosto )
 	{
-		aux = lista_prioridad->obtener_dato( i );
-		if( aux->obtener_acumulador_costo() < menor )
-		{
-			menor = aux->obtener_acumulador_costo();
-			posicion = i;
-		}
+		*menorCosto = aux->obtener_acumulador_costo();
+		*posicion = i;
 	}
-
-	aux = lista_prioridad->obtener_dato( posicion );
-	lista_prioridad->borrar_dato( posicion );
-	return aux;
 }
 
-Vertice* Dijkstra::obtener_minimo_duracion_en_lista()
+void Dijkstra::condicion_duracion(float* menorDuracion, Vertice* aux, unsigned i, unsigned* posicion)
+{
+	if( aux->obtener_acumulador_duracion() < *menorDuracion )
+	{
+		*menorDuracion = aux->obtener_acumulador_duracion();
+		*posicion = i;
+	}
+}
+Vertice* Dijkstra::obtener_minimo_en_lista( int parametro )
 {
 	Vertice* aux;
 	unsigned i;
-	float menor;
 	unsigned posicion;
+	float menorDuracion;
+	long int menorCosto;
 	
-	menor = lista_prioridad->obtener_dato( 1 )->obtener_acumulador_duracion();
+	menorDuracion = lista_prioridad->obtener_dato( 1 )->obtener_acumulador_duracion();
+	menorCosto = lista_prioridad->obtener_dato( 1 )->obtener_acumulador_costo();
 	posicion = 1;
 	for( i = 1; i <= lista_prioridad->obtener_tamanio(); i++ )
 	{
 		aux = lista_prioridad->obtener_dato( i );
-		if( aux->obtener_acumulador_duracion() < menor )
-		{
-			menor = aux->obtener_acumulador_duracion();
-			posicion = i;
+		switch( parametro ){
+			case 1 : condicion_costo( &menorCosto, aux, i, &posicion ); break;
+			case 2 : condicion_duracion( &menorDuracion, aux, i, &posicion ); break;
 		}
 	}
-
 	aux = lista_prioridad->obtener_dato( posicion );
 	lista_prioridad->borrar_dato( posicion );
 	return aux;
@@ -184,7 +176,7 @@ void Dijkstra::procesar_camino_minimo( int parametro )
 
 	while( !lista_prioridad->lista_vacia() )
 	{
-		verticeA = obtener_minimo_costo_en_lista();
+		verticeA = obtener_minimo_en_lista( parametro );
 		verticeA->cambiar_visitado( true );
 		for( i = 1; i <= verticeA->obtener_cant_ady(); i++ )
 		{

@@ -36,13 +36,17 @@ class Dijkstra {
 		//POST: se inicializa los parametros de Dijkstra por default
 		void inicializar( Grafo*, string, string );
 		//
-		//PRE: objeto creado e inicializado
-		//POST: devuelve el puntero del vertice con menor costo que esta en la lista
-		Vertice* obtener_minimo_costo_en_lista();
+		//PRE: objeto inicializado
+		//POST: evalua el Vertice con menor costo en lista
+		void condicion_costo(long int*, Vertice*, unsigned, unsigned*);
 		//
-		//PRE: objeto creado y lista no vacia
-		//POST: devuelve el puntero del vertice con menor duracion que esta en la lista
-		Vertice* obtener_minimo_duracion_en_lista();
+		//PRE: objeto inicializado
+		//POST: evalua el Vertice con menor duracion en lista
+		void condicion_duracion(float*, Vertice*, unsigned, unsigned*);
+		//
+		//PRE: objeto creado e inicializado
+		//POST: devuelve el Vertice minimo en lista
+		Vertice* obtener_minimo_en_lista(int);
 		//
 		//PRE: objeto creado y lista no vacia
 		//POST: borra la lista_resultado
