@@ -30,9 +30,8 @@ void Menu::mostrar_menu()
             cin >> opcion;
             if (cin.good() && opcion_valida(opcion))
             {
-                //limpiar_pantalla();
+                limpiar_pantalla();
                 procesar_opcion(opcion);
-		pausa_pantalla();
             }
             else
             {
@@ -45,21 +44,7 @@ void Menu::mostrar_menu()
 
 }
 
-void Menu::pausa_pantalla()
-{
-	if(!salir){
-	#ifdef WINDOWS
-		cout<<"Presionar ENTER para continuar..."<<endl;
-		system("pause");
-	#else
-		cout<<"Presionar ENTER para continuar..."<<endl;
-		system("read pause");
-	#endif
-	}
-}
-
-void Menu::limpiar_pantalla()
-{
+void Menu::limpiar_pantalla(){
 #ifdef WINDOWS
     system("cls");
 #else // Assume POSIX
@@ -115,28 +100,43 @@ void Menu::procesar_opcion_dos()
 
 void Menu::procesar_opcion_tres()
 {
-    string iata;
-    cout << "Ingrese el codigo IATA del aeropuerto que desea eliminar:";
-    cin >> iata;
-    if(diccionario->buscar(iata) == 1)
-    {
-        diccionario->eliminar(iata);
-        cout << iata << " fue eliminado con exito." << endl;
+    if (diccionario->vacio()){
+        cout<<"El diccionario esta vacio"<<endl;
     }
-    else
-    {
-        cout << iata << " no se pudo eliminar ya que no se encuentra en la base de datos." << endl;
+    else{
+        string iata;
+        cout << "Ingrese el codigo IATA del aeropuerto que desea eliminar:";
+        cin >> iata;
+        if(diccionario->buscar(iata) == 1)
+        {
+            diccionario->eliminar(iata);
+            cout << iata << " fue eliminado con exito." << endl;
+        }
+        else
+        {
+            cout << iata << " no se pudo eliminar ya que no se encuentra en la base de datos." << endl;
+        }
     }
 }
 
 void Menu::procesar_opcion_cuatro()
 {
-    diccionario->imprimir_en_orden();
+    if (diccionario->vacio()){
+        cout<<"El diccionario esta vacio"<<endl;
+    }
+    else{
+        diccionario->imprimir_en_orden();
+    }
 }
 
 void Menu::procesar_opcion_cinco()
 {
-    diccionario->imprimir_ancho();
+    if (diccionario->vacio()){
+        cout<<"El diccionario esta vacio"<<endl;
+    }
+    else{
+        diccionario->imprimir_ancho();
+    }
 }
 
 bool Menu::pedir_datos_validos( string* origen, string* destino )
@@ -180,8 +180,8 @@ void Menu::procesar_opcion_seis()
 	if( pedir_datos_validos( &origen, &destino ) )
 	{
 		dijkstra.inicializar( h, origen, destino );
-		dijkstra.procesar_camino_minimo( 1 );
-		cadena = dijkstra.impresion_camino_minimo( 1 );
+		dijkstra.procesar_camino_minimo_por_costo();
+		cadena = dijkstra.impresion_camino_minimo_por_costo();
 		cout<<cadena;
 	}
 }
@@ -195,8 +195,8 @@ void Menu::procesar_opcion_siete()
 	if( pedir_datos_validos( &origen, &destino ) )
 	{
 		dijkstra.inicializar( h, origen, destino );
-		dijkstra.procesar_camino_minimo( 2 );
-		cadena = dijkstra.impresion_camino_minimo( 2 );
+		dijkstra.procesar_camino_minimo_por_duracion();
+		cadena = dijkstra.impresion_camino_minimo_por_duracion();
 		cout<<cadena;
 	}
 }
