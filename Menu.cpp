@@ -180,8 +180,8 @@ void Menu::procesar_opcion_seis()
 	if( pedir_datos_validos( &origen, &destino ) )
 	{
 		dijkstra.inicializar( h, origen, destino );
-		dijkstra.procesar_camino_minimo_por_costo();
-		cadena = dijkstra.impresion_camino_minimo_por_costo();
+		dijkstra.procesar_camino_minimo( 1 );
+		cadena = dijkstra.impresion_camino_minimo( 1 );
 		cout<<cadena;
 	}
 }
@@ -195,8 +195,8 @@ void Menu::procesar_opcion_siete()
 	if( pedir_datos_validos( &origen, &destino ) )
 	{
 		dijkstra.inicializar( h, origen, destino );
-		dijkstra.procesar_camino_minimo_por_duracion();
-		cadena = dijkstra.impresion_camino_minimo_por_duracion();
+		dijkstra.procesar_camino_minimo( 2 );
+		cadena = dijkstra.impresion_camino_minimo( 2 );
 		cout<<cadena;
 	}
 }
