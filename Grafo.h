@@ -48,18 +48,6 @@ class Grafo {
 		//PRE: Grafo no vacio
 		//POST: imprimir las conecciones entre los vertices
 		void lista_adyacentes();
-		//Metodo eliminar_arista
-		//PRE: recibir punteros a los vertices no nulos
-		//POST: elminar la arista que conectas a los vertices
-		void eliminar_arista(Vertice *partida, Vertice *destino);
-		//Metodo eliminar_vertice
-		//PRE: recibir un puntero al vertice que se quiere eliminar
-		//POST: Eliminar dicho vertice y sus conecciones
-		void eliminar_vertice(Vertice *vert);
-		//Metodo anular
-		//PRE:
-		//POST: eliminar memoria dinamica
-		void anular_vertice();
 		//Metodo obtener_arista
 		//PRE: parametros validos
 		//POST: devuelve la direccion de la arista que une a los parametros
