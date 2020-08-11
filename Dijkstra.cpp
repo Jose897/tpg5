@@ -170,7 +170,6 @@ void Dijkstra::evaluar_camino_duracion( Vertice* verticeA, Vertice* verticeB )
 void Dijkstra::procesar_camino_minimo( int parametro )
 {
 	int i;
-	float duracionAB, duracionB;
 	Vertice* verticeA;
 	Vertice* verticeB;
 
