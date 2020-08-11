@@ -64,6 +64,30 @@ Vertice* Dijkstra::obtener_minimo_costo_en_lista()
 	return aux;
 }
 
+Vertice* Dijkstra::obtener_minimo_duracion_en_lista()
+{
+	Vertice* aux;
+	unsigned i;
+	float menor;
+	unsigned posicion;
+	
+	menor = lista_prioridad->obtener_dato( 1 )->obtener_acumulador_duracion();
+	posicion = 1;
+	for( i = 1; i <= lista_prioridad->obtener_tamanio(); i++ )
+	{
+		aux = lista_prioridad->obtener_dato( i );
+		if( aux->obtener_acumulador_duracion() < menor )
+		{
+			menor = aux->obtener_acumulador_duracion();
+			posicion = i;
+		}
+	}
+
+	aux = lista_prioridad->obtener_dato( posicion );
+	lista_prioridad->borrar_dato( posicion );
+	return aux;
+}
+
 void Dijkstra::borrar_lista_resultado()
 {
 	unsigned i;
@@ -101,10 +125,60 @@ void Dijkstra::guardar_secuencia_lista_resultado( Vertice* verticeB )
 
 }
 
-void Dijkstra::procesar_camino_minimo_por_costo()
+void Dijkstra::evaluar_camino_costo( Vertice* verticeA, Vertice* verticeB )
+{
+	long int costoAB, costoB;
+
+	costoAB = verticeA->obtener_acumulador_costo() + g->obtener_costo( verticeA, verticeB );
+	costoB = verticeB->obtener_acumulador_costo();
+	if( ( verticeB->obtener_cod_vertice() == destino ) && ( costoB  > costoAB ) )
+	{
+		borrar_lista_resultado();
+	}
+	if( ( costoB  == 0 ) && ( verticeB->obtener_cod_vertice() != destino ) )
+	{
+		lista_prioridad->insertar(verticeB);
+	}	
+	if( ( costoB >= costoAB ) || ( costoB == 0 ) )
+	{
+		verticeB->cambiar_acumulador_costo( costoAB );
+		verticeB->cambiar_predecesor( verticeA->obtener_cod_vertice() );
+		if( verticeB->obtener_cod_vertice() == destino )
+		{
+			guardar_secuencia_lista_resultado( verticeB );
+		}
+	}
+}
+
+void Dijkstra::evaluar_camino_duracion( Vertice* verticeA, Vertice* verticeB )
+{
+	float duracionAB, duracionB;
+
+	duracionAB = verticeA->obtener_acumulador_duracion() + g->obtener_duracion( verticeA, verticeB );
+	duracionB = verticeB->obtener_acumulador_duracion();
+	if( ( verticeB->obtener_cod_vertice() == destino ) && ( duracionB > duracionAB ) )
+	{
+		borrar_lista_resultado();
+	}
+	if( ( duracionB == 0 ) && ( verticeB->obtener_cod_vertice() != destino ) )
+	{
+		lista_prioridad->insertar( verticeB );
+	}
+	if( ( duracionB >= duracionAB ) || ( duracionB == 0 ) )
+	{
+		verticeB->cambiar_acumulador_duracion( duracionAB );
+		verticeB->cambiar_predecesor( verticeA->obtener_cod_vertice() );
+		if( verticeB->obtener_cod_vertice() == destino )
+		{
+			guardar_secuencia_lista_resultado( verticeB );
+		}
+	}
+}
+
+void Dijkstra::procesar_camino_minimo( int parametro )
 {
 	int i;
-	long int costoAB, costoB;
+	float duracionAB, duracionB;
 	Vertice* verticeA;
 	Vertice* verticeB;
 
@@ -117,92 +191,12 @@ void Dijkstra::procesar_camino_minimo_por_costo()
 			verticeB = verticeA->obtener_vertice_ady( i );
 			if( !verticeB->obtener_visitado() || ( origen == destino) )
 			{
-				costoAB = verticeA->obtener_acumulador_costo() + g->obtener_costo( verticeA, verticeB );
-				costoB = verticeB->obtener_acumulador_costo();
-				if( ( verticeB->obtener_cod_vertice() == destino ) && ( costoB  > costoAB ) )
-				{
-					borrar_lista_resultado();
-				}
-				if( ( costoB  == 0 ) && ( verticeB->obtener_cod_vertice() != destino ) )
-				{
-					lista_prioridad->insertar(verticeB);
-				}	
-				if( ( costoB >= costoAB ) || ( costoB == 0 ) )
-				{
-					verticeB->cambiar_acumulador_costo( costoAB );
-					verticeB->cambiar_predecesor( verticeA->obtener_cod_vertice() );
-					if( verticeB->obtener_cod_vertice() == destino )
-					{
-						guardar_secuencia_lista_resultado( verticeB );
-					}
+				switch( parametro ){
+					case 1 : evaluar_camino_costo( verticeA, verticeB ); break;
+					case 2 : evaluar_camino_duracion( verticeA, verticeB ); break;
 				}
 			}	
 		}
-	}
-}
-
-Vertice* Dijkstra::obtener_minimo_duracion_en_lista()
-{
-	Vertice* aux;
-	unsigned i;
-	float menor;
-	unsigned posicion;
-	
-	menor = lista_prioridad->obtener_dato( 1 )->obtener_acumulador_duracion();
-	posicion = 1;
-	for( i = 1; i <= lista_prioridad->obtener_tamanio(); i++ )
-	{
-		aux = lista_prioridad->obtener_dato( i );
-		if( aux->obtener_acumulador_duracion() < menor )
-		{
-			menor = aux->obtener_acumulador_duracion();
-			posicion = i;
-		}
-	}
-
-	aux = lista_prioridad->obtener_dato( posicion );
-	lista_prioridad->borrar_dato( posicion );
-	return aux;
-}
-
-void Dijkstra::procesar_camino_minimo_por_duracion()
-{
-	int i;
-	float duracionAB, duracionB;
-	Vertice* verticeA;
-	Vertice* verticeB;
-
-	while( !lista_prioridad->lista_vacia() )
-	{
-		verticeA = obtener_minimo_duracion_en_lista();
-		verticeA->cambiar_visitado( true );
-
-		for( i = 1; i <= verticeA->obtener_cant_ady(); i++ )
-		{
-			verticeB = verticeA->obtener_vertice_ady( i );
-			if( !verticeB->obtener_visitado() || origen == destino )
-			{
-				duracionAB = verticeA->obtener_acumulador_duracion() + g->obtener_duracion( verticeA, verticeB );
-				duracionB = verticeB->obtener_acumulador_duracion();
-				if( ( verticeB->obtener_cod_vertice() == destino ) && ( duracionB > duracionAB ) )
-				{
-					borrar_lista_resultado();
-				}
-				if( ( duracionB == 0 ) && ( verticeB->obtener_cod_vertice() != destino ) )
-				{
-					lista_prioridad->insertar( verticeB );
-				}
-				if( ( duracionB >= duracionAB ) || ( duracionB == 0 ) )
-				{
-					verticeB->cambiar_acumulador_duracion( duracionAB );
-					verticeB->cambiar_predecesor( verticeA->obtener_cod_vertice() );
-					if( verticeB->obtener_cod_vertice() == destino )
-					{
-						guardar_secuencia_lista_resultado( verticeB );
-					}
-				}
-			}	
-		}	
 	}
 }
 
@@ -211,13 +205,48 @@ Lista<Vertice*>* Dijkstra::obtener_lista_resultado()
 	return lista_resultado;
 }
 
-string Dijkstra::impresion_camino_minimo_por_costo()
+void Dijkstra::concatenar_costo( string &cadena, Vertice* verticeA, Vertice* verticeB, long int* totalCosto, unsigned* i )
+{
+	*totalCosto = *totalCosto + g->obtener_costo( verticeA, verticeB );
+	cadena = cadena + " " + verticeA->obtener_cod_vertice() + " -->($ " + to_string( g->obtener_costo( verticeA, verticeB ) );
+	if( verticeB->obtener_cod_vertice() == destino )
+	{
+		cadena = cadena + ")--> " + verticeB->obtener_cod_vertice() + "         total: $ " + to_string( *totalCosto ) + "\n";
+		(*i)++;
+		*totalCosto = 0;
+	}
+	else
+	{
+		cadena = cadena + ")-->";
+	}
+}
+
+void Dijkstra::concatenar_duracion( string &cadena, Vertice* verticeA, Vertice* verticeB, float* totalDuracion, unsigned* i )
+{	
+	*totalDuracion = *totalDuracion + g->obtener_duracion( verticeA, verticeB );
+	cadena = cadena + " " + verticeA->obtener_cod_vertice() + " -->(" + to_string( g->obtener_duracion( verticeA, verticeB ) );
+	if( verticeB->obtener_cod_vertice() == destino )
+	{
+		cadena = cadena + " hs)--> " + verticeB->obtener_cod_vertice() + "         total: " + to_string( *totalDuracion ) + " hs\n";
+		*i=*i+1;
+		*totalDuracion = 0;
+	}
+	else
+	{
+		cadena = cadena + " hs)-->";
+	}
+
+}
+
+
+string Dijkstra::impresion_camino_minimo( int parametro )
 {
 	unsigned i = 1;
-	long int total = 0;
 	Vertice* verticeA;
        	Vertice* verticeB;
 	string cadena = "";
+	long int totalCosto = 0;
+	float totalDuracion = 0;
 
 	if( !lista_resultado->lista_vacia() )
 	{
@@ -225,18 +254,11 @@ string Dijkstra::impresion_camino_minimo_por_costo()
 		{
 			verticeA = lista_resultado->obtener_dato( i );
 			verticeB = lista_resultado->obtener_dato( i + 1 );
-			total = total + g->obtener_costo( verticeA, verticeB );
-			cadena = cadena + " " + verticeA->obtener_cod_vertice() + " -->($ " + to_string( g->obtener_costo( verticeA, verticeB ) );
-			if( verticeB->obtener_cod_vertice() == destino )
+			switch( parametro )
 			{
-				cadena = cadena + ")--> " + verticeB->obtener_cod_vertice() + "         total: $ " + to_string( total ) + "\n";
-				i++;
-				total = 0;
-			}
-			else
-			{
-				cadena = cadena + ")-->";
-			}
+				case 1 : concatenar_costo( cadena, verticeA, verticeB, &totalCosto, &i ); break;
+				case 2 : concatenar_duracion( cadena, verticeA, verticeB, &totalDuracion, &i ); break;
+			}	
 			i++;
 		}
 	}
@@ -247,41 +269,6 @@ string Dijkstra::impresion_camino_minimo_por_costo()
 	return cadena;
 }
 
-string Dijkstra::impresion_camino_minimo_por_duracion()
-{
-	unsigned i = 1;
-	float total = 0;
-	Vertice* verticeA;
-       	Vertice* verticeB;
-	string cadena = "";
-
-	if( !lista_resultado->lista_vacia() )
-	{
-		while( i < lista_resultado->obtener_tamanio() )
-		{
-			verticeA = lista_resultado->obtener_dato( i );
-			verticeB = lista_resultado->obtener_dato( i + 1 );
-			total = total + g->obtener_duracion( verticeA, verticeB );
-			cadena = cadena + " " + verticeA->obtener_cod_vertice() + " -->($ " + to_string( g->obtener_duracion( verticeA, verticeB ) );
-			if( verticeB->obtener_cod_vertice() == destino )
-			{
-				cadena = cadena + ")--> " + verticeB->obtener_cod_vertice() + "         total: $ " + to_string( total ) + "\n";
-				i++;
-				total = 0;
-			}
-			else
-			{
-				cadena = cadena + ")-->";
-			}
-			i++;
-		}
-	}
-	else
-	{
-		cadena = "No hay ruta \n";
-	}
-	return cadena;
-}
 
 Dijkstra::~Dijkstra()
 {

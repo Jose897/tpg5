@@ -30,7 +30,7 @@ void Menu::mostrar_menu()
             cin >> opcion;
             if (cin.good() && opcion_valida(opcion))
             {
-                limpiar_pantalla();
+                //limpiar_pantalla();
                 procesar_opcion(opcion);
 		pausa_pantalla();
             }
@@ -45,19 +45,21 @@ void Menu::mostrar_menu()
 
 }
 
-void Menu::pausa_pantalla(){
+void Menu::pausa_pantalla()
+{
 	if(!salir){
-		#ifdef WINDOWS
-			cout<<"Presionar ENTER para continuar..."<<endl;
-			system("pause");
-		#else
-			cout<<"Presionar ENTER para continuar..."<<endl;
-			system("read pause");
-		#endif
+	#ifdef WINDOWS
+		cout<<"Presionar ENTER para continuar..."<<endl;
+		system("pause");
+	#else
+		cout<<"Presionar ENTER para continuar..."<<endl;
+		system("read pause");
+	#endif
 	}
 }
 
-void Menu::limpiar_pantalla(){
+void Menu::limpiar_pantalla()
+{
 #ifdef WINDOWS
     system("cls");
 #else // Assume POSIX
@@ -178,8 +180,8 @@ void Menu::procesar_opcion_seis()
 	if( pedir_datos_validos( &origen, &destino ) )
 	{
 		dijkstra.inicializar( h, origen, destino );
-		dijkstra.procesar_camino_minimo_por_costo();
-		cadena = dijkstra.impresion_camino_minimo_por_costo();
+		dijkstra.procesar_camino_minimo( 1 );
+		cadena = dijkstra.impresion_camino_minimo( 1 );
 		cout<<cadena;
 	}
 }
@@ -193,8 +195,8 @@ void Menu::procesar_opcion_siete()
 	if( pedir_datos_validos( &origen, &destino ) )
 	{
 		dijkstra.inicializar( h, origen, destino );
-		dijkstra.procesar_camino_minimo_por_duracion();
-		cadena = dijkstra.impresion_camino_minimo_por_duracion();
+		dijkstra.procesar_camino_minimo( 2 );
+		cadena = dijkstra.impresion_camino_minimo( 2 );
 		cout<<cadena;
 	}
 }

@@ -50,26 +50,34 @@ class Dijkstra {
 		//PRE: objeto creado y se debe procesar un camino minimo (costo/duracion)
 		//POST: guarda en una lista, la secuencia de un/unos posible camino minima
 		void guardar_secuencia_lista_resultado( Vertice* );
-		//
+		//?
 		//PRE: objeto creado e inicializado
 		//POST: crea una lista con el/los camino minimo del Grafo por costo
-		void procesar_camino_minimo_por_costo();
-		//
+		void evaluar_camino_costo( Vertice*, Vertice* );
+		//?
+		//PRE: 
+		//POST: 
+		void evaluar_camino_duracion( Vertice*, Vertice* );
+		//?
 		//PRE: objeto creado e inicializado
 		//POST: crea una lista con el/los camino minimo del GRafo por tiempo
-		void procesar_camino_minimo_por_duracion();
+		void procesar_camino_minimo( int );
 		//
 		//PRE: que se procese un camino minimo (costo/duracion)
 		//POST: devuelve un puntero con la lista de el/los camino minimo
 		Lista<Vertice*>* obtener_lista_resultado();
-		//
+		//?
 		//PRE: objeto creado
 		//POST: arma una cadena con el resultado del camino minimo
-		string impresion_camino_minimo_por_costo();
-		//
+		void concatenar_costo( string&, Vertice*, Vertice*, long int*, unsigned* );
+		//?
 		//PRE: objeto creado
 		//POST: arma una cedena con el resultado del camino minimo
-		string impresion_camino_minimo_por_duracion();
+		void concatenar_duracion( string&, Vertice*, Vertice*, float*, unsigned* );
+		//?
+		//
+		//
+		string impresion_camino_minimo( int );
 		//
 		//PRE: objeto creado
 		//POST: borra el objeto
