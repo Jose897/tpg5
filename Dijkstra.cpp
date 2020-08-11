@@ -207,11 +207,18 @@ Lista<Vertice*>* Dijkstra::obtener_lista_resultado()
 
 void Dijkstra::concatenar_costo( string &cadena, Vertice* verticeA, Vertice* verticeB, long int* totalCosto, unsigned* i )
 {
-	*totalCosto = *totalCosto + g->obtener_costo( verticeA, verticeB );
-	cadena = cadena + " " + verticeA->obtener_cod_vertice() + " -->($ " + to_string( g->obtener_costo( verticeA, verticeB ) );
+	long int costo; 
+	ostringstream oc, ot;
+	
+	costo = g->obtener_costo( verticeA, verticeB );
+	oc << costo;
+
+	*totalCosto = *totalCosto + costo;
+	cadena = cadena + " " + verticeA->obtener_cod_vertice() + " -->($ " + oc.str();
 	if( verticeB->obtener_cod_vertice() == destino )
 	{
-		cadena = cadena + ")--> " + verticeB->obtener_cod_vertice() + "         total: $ " + to_string( *totalCosto ) + "\n";
+		ot << *totalCosto;
+		cadena = cadena + ")--> " + verticeB->obtener_cod_vertice() + "         total: $ " + ot.str() + "\n";
 		(*i)++;
 		*totalCosto = 0;
 	}
@@ -223,12 +230,19 @@ void Dijkstra::concatenar_costo( string &cadena, Vertice* verticeA, Vertice* ver
 
 void Dijkstra::concatenar_duracion( string &cadena, Vertice* verticeA, Vertice* verticeB, float* totalDuracion, unsigned* i )
 {	
-	*totalDuracion = *totalDuracion + g->obtener_duracion( verticeA, verticeB );
-	cadena = cadena + " " + verticeA->obtener_cod_vertice() + " -->(" + to_string( g->obtener_duracion( verticeA, verticeB ) );
+	float duracion;
+	ostringstream od, ot;
+
+	duracion = g->obtener_duracion( verticeA, verticeB );
+	od << duracion;
+	
+	*totalDuracion = *totalDuracion + duracion;
+	cadena = cadena + " " + verticeA->obtener_cod_vertice() + " -->(" + od.str();
 	if( verticeB->obtener_cod_vertice() == destino )
 	{
-		cadena = cadena + " hs)--> " + verticeB->obtener_cod_vertice() + "         total: " + to_string( *totalDuracion ) + " hs\n";
-		*i=*i+1;
+		ot << *totalDuracion;
+		cadena = cadena + " hs)--> " + verticeB->obtener_cod_vertice() + "         total: " + ot.str() + " hs\n";
+		(*i)++;
 		*totalDuracion = 0;
 	}
 	else

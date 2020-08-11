@@ -12,6 +12,7 @@
 #include "Lista.h"
 #include "Nodo.h"
 #include "Vertice.h"
+#include <sstream>
 #include <string>
 #include <iostream>
 
@@ -52,31 +53,31 @@ class Dijkstra {
 		void guardar_secuencia_lista_resultado( Vertice* );
 		//?
 		//PRE: objeto creado e inicializado
-		//POST: crea una lista con el/los camino minimo del Grafo por costo
+		//POST: resuelve las comparaciones para el camino costo
 		void evaluar_camino_costo( Vertice*, Vertice* );
-		//?
-		//PRE: 
-		//POST: 
+		//
+		//PRE: objeto inicializado
+		//POST: resuelve las comparaciones para el camino duracion
 		void evaluar_camino_duracion( Vertice*, Vertice* );
-		//?
+		//
 		//PRE: objeto creado e inicializado
-		//POST: crea una lista con el/los camino minimo del GRafo por tiempo
+		//POST: crea una lista con el/los camino minimo del Grafo por tiempo
 		void procesar_camino_minimo( int );
 		//
 		//PRE: que se procese un camino minimo (costo/duracion)
 		//POST: devuelve un puntero con la lista de el/los camino minimo
 		Lista<Vertice*>* obtener_lista_resultado();
-		//?
-		//PRE: objeto creado
-		//POST: arma una cadena con el resultado del camino minimo
+		//
+		//PRE: lista_resultado no vaica
+		//POST: arma una cadena con el resultado del camino minimo costo
 		void concatenar_costo( string&, Vertice*, Vertice*, long int*, unsigned* );
-		//?
-		//PRE: objeto creado
-		//POST: arma una cedena con el resultado del camino minimo
+		//
+		//PRE: lista_resultado no vacia
+		//POST: arma una cedena con el resultado del camino minimo duracion
 		void concatenar_duracion( string&, Vertice*, Vertice*, float*, unsigned* );
-		//?
 		//
-		//
+		//PRE: lista_resultado no vacia
+		//POST: devuelve una cadena para imprimir en pantalla
 		string impresion_camino_minimo( int );
 		//
 		//PRE: objeto creado
