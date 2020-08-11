@@ -100,27 +100,6 @@ void Grafo::insertar_arista(Vertice *partida, Vertice *destino, long int costo, 
 	}
 }
 
-void Grafo::lista_adyacentes()
-{
-	Vertice *ver_aux;
-	Arista *ari_aux;
-
-	ver_aux = h;
-
-	while(ver_aux != NULL)
-	{
-		std::cout << ver_aux -> obtener_cod_vertice() << "->";
-		ari_aux = ver_aux -> obtener_adyacente();
-		while(ari_aux != NULL)
-		{
-			std::cout << ari_aux -> obtener_adyacente() -> obtener_cod_vertice() << "->";
-			ari_aux = ari_aux -> obtener_siguiente();
-		}
-		ver_aux = ver_aux -> obtener_siguiente();
-		std::cout << std::endl;
-	}
-}
-
 Arista* Grafo::obtener_arista( Vertice* verticeA, Vertice* verticeB ){
 	std::string A, B;
 	int j = 1;
