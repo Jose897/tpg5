@@ -62,7 +62,8 @@ public:
     //PRE: Arbol creado
     //POST: borra todos los nodos
     void eliminar_todos();
-
+    //TRUE en caso de que el arbol este vacio
+    bool vacio();
     //Destructor
     ~BST<T>();
 
@@ -71,6 +72,12 @@ public:
 template <class T>
 BST<T>::BST() {
     this->root = NULL;
+}
+
+template <class T>
+bool BST<T>::vacio()
+{
+    return this->root == NULL;
 }
 
 template <class T>
