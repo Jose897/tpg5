@@ -45,5 +45,5 @@ void Aeropuertos::mostrar(){
     cout << "Superficie: " << obtener_superficie() << endl;
     cout << "Terminales: " << obtener_terminales() << endl;
     cout << "Tiene " << obtener_destinos_internacionales() << " destinos internaciones." << endl;
-    cout << "Tiene " << obtener_destinos_nacionales() << " destinos nacionales..." << endl;
+    cout << "Tiene " << obtener_destinos_nacionales() << " destinos nacionales." << endl;
 }
